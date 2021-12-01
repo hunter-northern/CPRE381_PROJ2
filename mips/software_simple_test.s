@@ -1,47 +1,43 @@
-.text
-
-# NOP: ori $0, $0, 0 # NOP
-
 # test of arithmetic and logical instructions (modified from project 1 base test)
 
 # add and sub instructions
 addiu $t0, $0, -24       # put -24 in $t0
 addi $t1, $0, 43      # put 43 in $t1
-ori $0, $0, 0 # NOP
-ori $0, $0, 0 # NOP
+nop
+nop
 add $t2, $t0, $t1       # put -24 + 43 = 19 into $t2
 addu $t3, $t0, $t1      # put -24 + 43 = 19 into $t3
-ori $0, $0, 0 # NOP
-ori $0, $0, 0 # NOP
+nop
+nop
 sub $t1, $t3, $t2       # put 19 - 19 = 0 into $t1
 subu $t0, $t1, $t3      # put 0 - 19 = -19 into $t0
 
 
 # boolean logic instructions
-ori $0, $0, 0 # NOP
-ori $0, $0, 0 # NOP
+nop
+nop
 andi $t0, $t0, 0        # clear value from $t0
 and $t1, $t1, $0        # clear value from $t1
 ori $t0, $0, 7         # put 7 into $t0
 or $t1, $0, $t2        # put 19 into $t1
 xor $t4, $t3, $t2       # 0x00000013 xor 0x00000043, $t4 set to 0x00000000
-ori $0, $0, 0 # NOP
-ori $0, $0, 0 # NOP
+nop
+nop
 xori $t5, $t4, 80       # 0x00000000 xor 0x00000050, $t5 set to 0x00000050
-ori $0, $0, 0 # NOP
-ori $0, $0, 0 # NOP
+nop
+nop
 nor $t6, $t5, $t3       # 0x00000050 nor 0x00000013, $t6 set to 0xFFFFFFAC
 
 
 # shifting instructions
-ori $0, $0, 0 # NOP
-ori $0, $0, 0 # NOP
+nop
+nop
 sll $t7, $t6, 16        # $t7 becomes 0xFFAC0000
-ori $0, $0, 0 # NOP
-ori $0, $0, 0 # NOP
+nop
+nop
 sra $t8, $t7, 4         # $t8 becomes 0xFFFAC000
-ori $0, $0, 0 # NOP
-ori $0, $0, 0 # NOP
+nop
+nop
 srl $t9, $t8, 8         # $t9 becomes 0x00FFFAC0
 
 
@@ -69,30 +65,30 @@ repl.qb $t5, 4       # set $t5 to 0x04040404
 
 
 # set less than
-ori $0, $0, 0 # NOP
-ori $0, $0, 0 # NOP
+nop
+nop
 slt $t6, $t4, $t5       # set $t6 to 1 since 0x02020202 < 0x04040404
 slt $t7, $t5, $t2       # set $t7 to 0 since 0x04040404 > 19
-ori $0, $0, 0 # NOP
+nop
 slti $t8, $t6, 1        # set $t8 to 0 since 1 = 1
-ori $0, $0, 0 # NOP
-ori $0, $0, 0 # NOP
+nop
+nop
 slti $t9, $t8, 1        # set $t9 to 1 since 0 < 1
 
 # test of control flow instructions (modified from project 1 cf test)
 
 addi $a0, $0, 10	# set n = 10
 jal recursive
-ori $0, $0, 0 # NOP
+nop
 addi $t9, $0, 55
-ori $0, $0, 0 # NOP
-ori $0, $0, 0 # NOP
+nop
+nop
 bne $v0, $t9, failure
-ori $0, $0, 0 # NOP
-ori $0, $0, 0 # NOP
-ori $0, $0, 0 # NOP
+nop
+nop
+nop
 j exit
-ori $0, $0, 0 # NOP
+nop
 
 recursive:
 addi $sp, $sp, -8	# space for two words
@@ -100,31 +96,31 @@ sw $ra, 4($sp)		# save return address
 sw $a0, 0($sp)		# temporary variable to hold n
 li $v0, 1
 slti $t0, $a0, 1
-ori $0, $0, 0 # NOP
-ori $0, $0, 0 # NOP
+nop
+nop
 bne $t0, $0, recexit
-ori $0, $0, 0 # NOP
-ori $0, $0, 0 # NOP
-ori $0, $0, 0 # NOP
+nop
+nop
+nop
 addi $a0, $a0, -1
 jal recursive
-ori $0, $0, 0 # NOP
+nop
 lw $a0, 0($sp)		# retrieve original n
-ori $0, $0, 0 # NOP
-ori $0, $0, 0 # NOP
+nop
+nop
 add $v0, $v0, $a0	# n + ((n - 1) + (n - 2) + ... (n - n))
 
 recexit:
 lw $ra 4($sp)		# restore $ra
 addi $sp, $sp, 8	# restore $sp
-ori $0, $0, 0 # NOP
+nop
 jr $ra			# back to caller
-ori $0, $0, 0 # NOP
+nop
 
 failure:
 addi $t8, $0, 1
 j exit
-ori $0, $0, 0 # NOP
+nop
 
 exit:
 li $v0, 10
