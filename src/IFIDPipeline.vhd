@@ -30,14 +30,14 @@ begin
 INSTDFF: DffR_N port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => i_CLK,
+	i_WE  => '1',
 	i_D   => i_Inst,
 	o_Q   => o_Inst);
 
 PCADDRDFF: DffR_N port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => i_CLK,
+	i_WE  => '1',
 	i_D   => i_PCAddr,
 	o_Q   => o_PCAddr);
  

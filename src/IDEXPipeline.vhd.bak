@@ -25,6 +25,7 @@ generic(N : integer := 32); -- Generic of type integer for input/output data wid
 	i_SHFTDIR	: in std_logic;
 	i_SHFTTYPE	: in std_logic;
 	i_Halt		: in std_logic;
+	i_Unsigned	: in std_logic;
 	i_SHAMT		: in std_logic_vector(4 downto 0);
 	i_LogicCtrl	: in std_logic_vector(1 downto 0);
        
@@ -46,6 +47,7 @@ generic(N : integer := 32); -- Generic of type integer for input/output data wid
 	o_SHFTDIR	: out std_logic;
 	o_SHFTTYPE	: out std_logic;
 	o_Halt		: out std_logic;
+	o_Unsigned	: out std_logic;
 	o_SHAMT		: out std_logic_vector(4 downto 0);
 	o_LogicCtrl	: out std_logic_vector(1 downto 0));   -- Data value output
 
@@ -186,6 +188,13 @@ JALDFF: dffg port map(
 	i_D   => i_Jal,
 	o_Q   => o_Jal);
 
+MemWrEnDFF: dffg port map(
+	i_Clk => i_CLK,
+	i_RST => i_RST,
+	i_WE  => i_CLK,
+	i_D   => i_MemWrEn,
+	o_Q   => o_MemWrEn);
+
 ALUSRCDFF: dffg port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
@@ -234,6 +243,13 @@ HALTDFF: dffg port map(
 	i_WE  => i_CLK,
 	i_D   => i_Halt,
 	o_Q   => o_Halt);
+
+UNSIGNEDDFF: dffg port map(
+	i_CLK => i_CLK,
+       i_RST  => i_RST,
+       i_WE   => i_CLK,
+       i_D    => i_Unsigned,
+       o_Q    => o_Unsigned); 
 
 
  

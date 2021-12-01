@@ -39,5 +39,6 @@ PCADDRDFF: DffR_N port map(
 	i_RST => i_RST,
 	i_WE  => i_CLK,
 	i_D   => i_PCAddr,
-	o_Q   
+	o_Q   => o_PCAddr);
+ 
 end mixed;

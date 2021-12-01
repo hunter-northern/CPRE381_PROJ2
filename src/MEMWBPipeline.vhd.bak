@@ -84,12 +84,12 @@ ALURESDFF: DffR_N port map(
 	i_D   => i_ALURES,
 	o_Q   => o_ALURES);
 
-RTDFF: DffR_N port map(
+MEMDATADFF: DffR_N port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
 	i_WE  => i_CLK,
-	i_D   => i_RT,
-	o_Q   => o_RT);
+	i_D   => i_MEMDATA,
+	o_Q   => o_MEMDATA);
 
 PCADDRDFF: DffR_N port map(
 	i_Clk => i_CLK,
@@ -127,13 +127,6 @@ REGWRENDFF: dffg port map(
 	i_WE  => i_CLK,
 	i_D   => i_RegWrEn,
 	o_Q   => o_RegWrEn);
-
-MEMWRENDFF: dffg port map(
-	i_Clk => i_CLK,
-	i_RST => i_RST,
-	i_WE  => i_CLK,
-	i_D   => i_MemWrEn,
-	o_Q   => o_MemWrEn);
 
 HALTDFF: dffg port map(
 	i_Clk => i_CLK,
