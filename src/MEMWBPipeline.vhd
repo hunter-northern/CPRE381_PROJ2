@@ -5,9 +5,11 @@ use IEEE.std_logic_1164.all;
 entity MEMWBPipeline is
 generic(N : integer := 32); -- Generic of type integer for input/output data width. Default value is 32
 
-  port(i_CLK        : in std_logic;     -- Clock input
-       i_RST        : in std_logic;     -- Reset input
-       i_ALURES	    : in std_logic_vector(31 downto 0);
+  port( i_CLK        	: in std_logic;     -- Clock input
+        i_RST        	: in std_logic;     -- Reset input
+	i_Stall		: in std_logic;
+        i_Inst	    	: in std_logic_vector(31 downto 0);
+	i_ALURES	: in std_logic_vector(31 downto 0);
 	i_PCADDR    	: in std_logic_vector(31 downto 0);
 	i_MEMDATA    	: in std_logic_vector(31 downto 0);
 	i_RGDST	    	: in std_logic_vector(4 downto 0);
@@ -16,6 +18,7 @@ generic(N : integer := 32); -- Generic of type integer for input/output data wid
 	i_RegWrEn	: in std_logic;
 	i_Halt		: in std_logic;
        
+	o_Inst	    	: out std_logic_vector(31 downto 0);
 	o_ALURES	: out std_logic_vector(31 downto 0);
 	o_PCADDR	: out std_logic_vector(31 downto 0);
 	o_MEMDATA    	: out std_logic_vector(31 downto 0);
@@ -77,24 +80,31 @@ end component;
 
 begin
 
+INSTDFF: DffR_N port map(
+	i_Clk => i_CLK,
+	i_RST => i_RST,
+	i_WE  => i_Stall,
+	i_D   => i_Inst,
+	o_Q   => o_Inst);
+
 ALURESDFF: DffR_N port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_ALURES,
 	o_Q   => o_ALURES);
 
 MEMDATADFF: DffR_N port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_MEMDATA,
 	o_Q   => o_MEMDATA);
 
 PCADDRDFF: DffR_N port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_PCADDR,
 	o_Q   => o_PCADDR);
 
@@ -102,7 +112,7 @@ PCADDRDFF: DffR_N port map(
 REGDSTDFF: DffR_5 port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_RGDST,
 	o_Q   => o_RGDST);
 
@@ -110,28 +120,28 @@ REGDSTDFF: DffR_5 port map(
 MemToRegDFF: dffg port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_MemtoReg,
 	o_Q   => o_MemtoReg);
 
 JALDFF: dffg port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_Jal,
 	o_Q   => o_Jal);
 
 REGWRENDFF: dffg port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_RegWrEn,
 	o_Q   => o_RegWrEn);
 
 HALTDFF: dffg port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_Halt,
 	o_Q   => o_Halt);
 

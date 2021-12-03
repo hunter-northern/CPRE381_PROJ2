@@ -48,43 +48,45 @@ architecture structure of MIPS_Processor is
   --       requires below this comment
 
 component control is
-  port(iOP      : in std_logic_vector(5 downto 0);
-       iFunc    : in std_logic_vector(5 downto 0);
-       oRegDst  : out std_logic; --done
-	oJ	: out std_logic; -- done
-       oBranch  : out std_logic; --done
-       oMemtoReg: out std_logic; --done
-       oALUOp   : out std_logic_vector(2 downto 0); --done
-       oMemWrite: out std_logic; --done 
-       oALUSrc  : out std_logic; --done
-	o_ADDSUB : out std_logic; --done
-	o_SHFTDIR : out std_logic; --done
-	o_SHFTTYPE : out std_logic; --done
-	o_LogicChoice : out std_logic_vector(1 downto 0); --done
-	o_Unsigned : out std_logic;
-	o_Halt	   : out std_logic;
-	o_SignSelCtl : out std_logic;
-       oJr	: out std_logic; --done
-       oJal     : out std_logic; --done
-       oBNE     : out std_logic; --done
-       oRegWrite: out std_logic); --done
+  port(	iOP      	: in std_logic_vector(5 downto 0);
+       	iFunc    	: in std_logic_vector(5 downto 0);
+       	oRegDst 	: out std_logic; --done
+	oJ		: out std_logic; -- done
+       	oBranch  	: out std_logic; --done
+       	oMemtoReg	: out std_logic; --done
+       	oALUOp   	: out std_logic_vector(2 downto 0); --done
+       	oMemWrite	: out std_logic; --done 
+       	oALUSrc  	: out std_logic; --done
+	o_ADDSUB 	: out std_logic; --done
+	o_SHFTDIR 	: out std_logic; --done
+	o_SHFTTYPE 	: out std_logic; --done
+	o_LogicChoice 	: out std_logic_vector(1 downto 0); --done
+	o_Unsigned 	: out std_logic;
+	o_Halt	   	: out std_logic;
+	o_SignSelCtl 	: out std_logic;
+       	oJr		: out std_logic; --done
+       	oJal     	: out std_logic; --done
+       	oBNE     	: out std_logic; --done
+       	oRegWrite	: out std_logic); --done
 
 end component;
 
 component IFIDPipeline is
-  port(i_CLK        : in std_logic;     -- Clock input
-       i_RST        : in std_logic;     -- Reset input
-       i_Inst	    : in std_logic_vector(31 downto 0);
-	i_PCAddr    : in std_logic_vector(31 downto 0);
-       o_Inst          : out std_logic_vector(31 downto 0);     -- Data value input
-       o_PCAddr          : out std_logic_vector(31 downto 0));   -- Data value output
+  port(i_CLK        	: in std_logic;     -- Clock input
+       i_RST        	: in std_logic;     -- Reset input
+       i_Stall		: in std_logic;
+       i_Inst	    	: in std_logic_vector(31 downto 0);
+       i_PCAddr         : in std_logic_vector(31 downto 0);
+       o_Inst        	: out std_logic_vector(31 downto 0);     -- Data value input
+       o_PCAddr         : out std_logic_vector(31 downto 0));   -- Data value output
 end component;
 
 component IDEXPipeline is
-
-  port(i_CLK        : in std_logic;     -- Clock input
-       i_RST        : in std_logic;     -- Reset input
-       i_PA	    : in std_logic_vector(31 downto 0);
+  port( i_CLK        	: in std_logic;     -- Clock input
+        i_RST        	: in std_logic;     -- Reset input
+        i_PA	    	: in std_logic_vector(31 downto 0);
+	i_Stall		: in std_logic;
+	i_Inst	    	: in std_logic_vector(31 downto 0);
 	i_PB    	: in std_logic_vector(31 downto 0);
 	i_RS	    	: in std_logic_vector(4 downto 0);
 	i_RT    	: in std_logic_vector(4 downto 0);
@@ -106,6 +108,7 @@ component IDEXPipeline is
 	i_SHAMT		: in std_logic_vector(4 downto 0);
 	i_LogicCtrl	: in std_logic_vector(1 downto 0);
        
+	o_Inst	    	: out std_logic_vector(31 downto 0);
 	o_PA	    	: out std_logic_vector(31 downto 0);
 	o_PB    	: out std_logic_vector(31 downto 0);
 	o_RS	    	: out std_logic_vector(4 downto 0);
@@ -131,10 +134,11 @@ component IDEXPipeline is
 end component;
 
 component EXMEMPipeline is
-
-  port(i_CLK        : in std_logic;     -- Clock input
-       i_RST        : in std_logic;     -- Reset input
-       i_ALURES	    : in std_logic_vector(31 downto 0);
+  port( i_CLK        	: in std_logic;     -- Clock input
+        i_RST        	: in std_logic;     -- Reset input
+	i_Stall		: in std_logic;
+	i_Inst	    	: in std_logic_vector(31 downto 0);
+        i_ALURES	: in std_logic_vector(31 downto 0);
 	i_PCADDR    	: in std_logic_vector(31 downto 0);
 	i_RT    	: in std_logic_vector(31 downto 0);
 	i_RGDST	    	: in std_logic_vector(4 downto 0);
@@ -144,6 +148,7 @@ component EXMEMPipeline is
 	i_MemWrEn	: in std_logic;
 	i_Halt		: in std_logic;
        
+	o_Inst	    	: out std_logic_vector(31 downto 0);
 	o_ALURES	: out std_logic_vector(31 downto 0);
 	o_PCADDR	: out std_logic_vector(31 downto 0);
 	o_RT    	: out std_logic_vector(31 downto 0);
@@ -157,9 +162,11 @@ component EXMEMPipeline is
 end component;
 
 component MEMWBPipeline is
-  port(i_CLK        : in std_logic;     -- Clock input
-       i_RST        : in std_logic;     -- Reset input
-       i_ALURES	    : in std_logic_vector(31 downto 0);
+  port( i_CLK        	: in std_logic;     -- Clock input
+        i_RST           : in std_logic;     -- Reset input
+	i_Stall		: in std_logic;
+	i_Inst	    	: in std_logic_vector(31 downto 0);
+        i_ALURES	: in std_logic_vector(31 downto 0);
 	i_PCADDR    	: in std_logic_vector(31 downto 0);
 	i_MEMDATA    	: in std_logic_vector(31 downto 0);
 	i_RGDST	    	: in std_logic_vector(4 downto 0);
@@ -168,6 +175,7 @@ component MEMWBPipeline is
 	i_RegWrEn	: in std_logic;
 	i_Halt		: in std_logic;
        
+	o_Inst	    	: out std_logic_vector(31 downto 0);
 	o_ALURES	: out std_logic_vector(31 downto 0);
 	o_PCADDR	: out std_logic_vector(31 downto 0);
 	o_MEMDATA    	: out std_logic_vector(31 downto 0);
@@ -287,10 +295,10 @@ signal s_IDRS, s_IDRT, s_IDRD : std_logic_vector(4 downto 0);
 signal s_IDALUOP : std_logic_vector(2 downto 0);
 signal s_IDLogicCtrl : std_logic_vector(1 downto 0);
 signal s_IDRegDst, s_IDMemToReg, s_IDMemWrEn, s_IDALUSRC, s_IDADDSUB, s_IDSHFTDIR, s_IDSHFTTYPE, s_IDHalt, s_IDJal, s_IDRegWrEn : std_logic;
-signal s_IDC, s_BranchTrue, s_JorBranch, s_IDOVER1, s_IDOVER2, s_IDC1, s_IDC2, s_IDOVER3, s_IDZero, s_IDNotZero, s_JorBrnch, s_IDFlush : std_logic; 
+signal s_IDC, s_BranchTrue, s_JorBranch, s_IDOVER1, s_IDOVER2, s_IDC1, s_IDC2, s_IDOVER3, s_IDZero, s_IDNotZero, s_JorBrnch : std_logic;
 
  --EX PIPE Signals
-signal s_EXPCADDR, s_EXINST, s_EXPA, s_EXPB, s_EXALURES, s_EXIMM, s_EXPBoIMM: std_logic_vector(31 downto 0); 
+signal s_EXPCADDR, s_EXPA, s_EXPB, s_EXALURES, s_EXIMM, s_EXPBoIMM: std_logic_vector(31 downto 0); 
 signal s_EXRS, s_EXRT, s_EXRD, s_EXREGDST, s_EXSHAMT : std_logic_vector(4 downto 0);
 signal s_EXALUOP : std_logic_vector(2 downto 0);
 signal s_EXLogicCtrl : std_logic_vector(1 downto 0);
@@ -306,6 +314,12 @@ signal s_MEMMemToReg, s_MEMMemWrEn, s_MEMHalt, s_MEMJal, s_MEMRegWrEn : std_logi
 signal s_WBPCADDR, s_WBALURES, s_WBMemData: std_logic_vector(31 downto 0); 
 signal s_WBREGDST : std_logic_vector(4 downto 0);
 signal s_WBMemToReg, s_WBMHalt, s_WBJal, s_WBRegWrEn : std_logic;
+
+--Stall and Flush Signals
+signal s_PCStall, s_IFIDStall, s_IDEXStall, s_MEMWBStall, s_EXMEMStall : std_logic;
+signal s_IFIDFlush, s_IDEXFlush, s_MEMWBFlush, s_EXMEMFlush : std_logic;
+signal s_EXInst, s_MEMInst, s_WBInst : std_logic_Vector(31 downto 0);
+
 
 
   -- Required data memory signals
@@ -357,88 +371,95 @@ begin
              we   => s_DMemWr,
              q    => s_DMemOut);
 
-
-  -- TODO: Ensure that s_Halt is connected to an output control signal produced from decoding the Halt instruction (Opcode: 01 0100)
-  
+-- TODO: Ensure that s_Halt is connected to an output control signal produced from decoding the Halt instruction (Opcode: 01 0100)  
 -- TODO: Ensure that s_Ovfl is connected to the overflow output of your ALU
+-- TODO: Implement the rest of your processor below this comment! 
 
-  -- TODO: Implement the rest of your processor below this comment! 
-
+s_PCStall <= '1'; --?????? when should we stall PC
 
 PCREG: PC port map(
 	i_CLK  => iCLK,
-	i_WE   => '1',
+	i_WE   => s_PCStall,
 	i_RST  => iRST,
        	i_WD   => s_PCADDRNEXT,	
        	o_InsAdd  => s_PCADDR);
 
 s_NextInstAddr <= s_PCADDR;
 
-s_IDFlush <= (s_JorBranch or iRST);
+s_IFIDFlush <= (s_JorBranch or iRST); --any other times we need to stall this?
+s_IFIDStall <= '1'; --????? When do we stall this pipeline
 
 IDIFPIPE: IFIDPipeline port map(
-	i_CLK  => iCLK,
-       i_RST   => s_IDFlush,
-       i_Inst  => s_Inst,
+	i_CLK    => iCLK,
+	i_Stall  => s_IFIDStall,
+        i_RST    => s_IFIDFlush,
+        i_Inst   => s_Inst,
 	i_PCAddr => s_PCADDR,
-       o_Inst   => s_IDINST,
-       o_PCAddr => s_IDPCADDR);
+        o_Inst   => s_IDINST,
+        o_PCAddr => s_IDPCADDR);
 
 CONTROL1: control
-  port map(iOP      => s_IDINST(31 downto 26),
-       iFunc    => s_IDINST(5 downto 0),
-       oRegDst  => s_IDRegDst,
-	oJ	=> s_J,
-       oBranch  => s_Branch,
-       oMemtoReg=> s_IDMemtoReg,
-       oALUOp   => s_IDALUOp,
-       oMemWrite=> s_IDMemWrEn, 
-       oALUSrc  => s_IDALUSrc, --done
-	o_ADDSUB => s_IDADDSUB, --done
-	o_SHFTDIR => s_IDSHFTDIR, --done
-	o_SHFTTYPE => s_IDSHFTTYPE, --done
-	o_LogicChoice => s_IDLogicCtrl, --done
-	o_Unsigned => s_IDUnsigned,
-	o_Halt	  =>  s_IDHalt,
-	o_SignSelCtl => s_SignSelCtl,
-       oJr	=> s_Jr, --done
-       oJal     => s_IDJal, --done
-       oBNE     => s_BNE, --done
-       oRegWrite => s_IDRegWrEn); --done
+  port map(
+	iOP      	=> s_IDINST(31 downto 26),
+        iFunc    	=> s_IDINST(5 downto 0),
+        oRegDst  	=> s_IDRegDst,
+	oJ		=> s_J,
+        oBranch  	=> s_Branch,
+        oMemtoReg	=> s_IDMemtoReg,
+        oALUOp   	=> s_IDALUOp,
+        oMemWrite	=> s_IDMemWrEn, 
+        oALUSrc  	=> s_IDALUSrc, --done
+	o_ADDSUB 	=> s_IDADDSUB, --done
+	o_SHFTDIR 	=> s_IDSHFTDIR, --done
+	o_SHFTTYPE 	=> s_IDSHFTTYPE, --done
+	o_LogicChoice 	=> s_IDLogicCtrl, --done
+	o_Unsigned    	=> s_IDUnsigned,
+	o_Halt	      	=> s_IDHalt,
+	o_SignSelCtl  	=> s_SignSelCtl,
+        oJr		=> s_Jr, --done
+        oJal     	=> s_IDJal, --done
+        oBNE     	=> s_BNE, --done
+        oRegWrite 	=> s_IDRegWrEn); --done
 
 REGFILE1: RegFile
-  port map(i_CLK  => iCLK,
-	i_WE => s_RegWr,
-       i_WRN  =>  s_RegWrAddr,
-	i_RST =>  iRST,
-       i_WD   =>  s_RegWrData,	
-       i_RPA  =>  s_IDINST(25 downto 21),
-       i_RPB  =>  s_IDINST(20 downto 16),
-       o_RPA  =>  s_IDPA,
-       o_RPB  =>  s_IDPB);
+  port map(
+	i_CLK  => iCLK,
+	i_WE   => s_RegWr,
+       	i_WRN  =>  s_RegWrAddr,
+	i_RST  =>  iRST,
+       	i_WD   =>  s_RegWrData,	
+       	i_RPA  =>  s_IDINST(25 downto 21),
+       	i_RPB  =>  s_IDINST(20 downto 16),
+       	o_RPA  =>  s_IDPA,
+       	o_RPB  =>  s_IDPB);
 
 BITIMM: bitExtension
  port map(i_SignSel => s_SignSelCtl,
 	i_bit16	=> s_IDINST(15 downto 0),
 	o_bit32	=> s_IDIMM);	
 
+s_IDEXStall <= '1'; --????? when do we need to stall this pipeline
+s_IDEXFlush <= '0'; --????? when do we need to flush this pipeline
+
 IDEXPIPE: IDEXPipeline port map(
-	i_CLK  => iCLK,
-       i_RST   => iRST,
-       i_PA    => s_IDPA,
-	i_PB   => s_IDPB,
-	i_RS   => s_IDINST(25 downto 21),
-	i_RT   => s_IDINST(20 downto 16),
-	i_RD   => s_IDINST(15 downto 11),
-	i_IMM  => s_IDIMM,
-	i_PCADDR => s_PCADDR4,
-	i_ALUOP	 => s_IDALUOP,	
-	i_Jal	 => s_IDJal,
-	i_MemWrEn => s_IDMemWrEn,
-	i_MemtoReg => s_IDMemtoReg,
-	i_ALUSrc  => s_IDALUSrc,
-	i_RegWrEn => s_IDRegWrEn,
-	i_RegDst  => s_IDRegDst,
+	i_CLK  		=> iCLK,
+        i_RST   	=> s_IDEXFlush,
+        i_PA    	=> s_IDPA,
+	i_Inst		=> s_IDInst,
+	i_Stall 	=> s_IDEXStall, 
+	i_PB   		=> s_IDPB,
+	i_RS   		=> s_IDINST(25 downto 21),
+	i_RT   		=> s_IDINST(20 downto 16),
+	i_RD   		=> s_IDINST(15 downto 11),
+	i_IMM  		=> s_IDIMM,
+	i_PCADDR 	=> s_PCADDR4,
+	i_ALUOP	 	=> s_IDALUOP,	
+	i_Jal	 	=> s_IDJal,
+	i_MemWrEn 	=> s_IDMemWrEn,
+	i_MemtoReg 	=> s_IDMemtoReg,
+	i_ALUSrc  	=> s_IDALUSrc,
+	i_RegWrEn 	=> s_IDRegWrEn,
+	i_RegDst  	=> s_IDRegDst,
 	i_ADDSUB  	=> s_IDADDSUB,
 	i_SHFTDIR	=> s_SHFTDIR,
 	i_SHFTTYPE	=> s_IDSHFTTYPE,
@@ -447,6 +468,7 @@ IDEXPIPE: IDEXPipeline port map(
 	i_SHAMT		=> s_IDINST(10 downto 6),
 	i_LogicCtrl	=> s_IDLogicCtrl,
        
+	o_Inst		=> s_EXInst,
 	o_PA	    	=> s_EXPA,
 	o_PB    	=> s_EXPB,
 	o_RS	    	=> s_EXRS,
@@ -564,19 +586,25 @@ REGDST1: mux2t1_5 port map(
        i_D1  => s_EXRD,
        o_O   => s_EXREGDST);
 
+s_EXMEMStall <= '1'; --????? when do we need to stall this pipeline
+s_EXMEMFlush <= '0'; --????? when do we need to flush this pipeline
+
 EXMEMPIPE: EXMEMPipeline port map(
-	i_CLK  => iCLK,
-       i_RST   => iRST,
-       i_ALURES	=> s_EXALURES,
-	i_PCADDR  => s_EXPCADDR,
-	i_RT   => s_EXPB,
-	i_RGDST	 => s_EXREGDST,
-	i_Jal	=> s_EXJal,
+	i_CLK  		=> iCLK,
+        i_RST   	=> s_EXMEMFlush,
+	i_Stall 	=> s_EXMEMStall,
+	i_Inst		=> s_EXInst,
+        i_ALURES	=> s_EXALURES,
+	i_PCADDR  	=> s_EXPCADDR,
+	i_RT   		=> s_EXPB,
+	i_RGDST	 	=> s_EXREGDST,
+	i_Jal		=> s_EXJal,
 	i_MemtoReg	=> s_EXMemtoReg,
 	i_RegWrEn	=> s_EXRegWrEn,
 	i_MemWrEn	=> s_EXMemWrEn,
 	i_Halt		=> s_EXHalt,
        
+	o_Inst		=> s_MEMInst,
 	o_ALURES	=> s_MEMALURES,
 	o_PCADDR	=> s_MEMPCADDR,
 	o_RT    	=> s_MEMPB,
@@ -591,17 +619,24 @@ s_DMemData <= s_MEMPB;
 s_DMemAddr <= s_MEMALURES;
 s_DMemWr  <=  s_MEMMemWrEn;
 
+
+s_MEMWBStall <= '1'; --????? when do we need to stall this pipeline
+s_MEMWBFlush <= '0'; --????? when do we need to flush this pipeline
+
 MEMWBPIPE: MEMWBPipeline port map(i_CLK => iCLK,
-       i_RST => iRST,
-       i_ALURES	 => s_MEMALURES,
-	i_PCADDR => s_MEMPCADDR,
-	i_MEMDATA => s_DMemOut,
-	i_RGDST	  => s_MEMRegDst,
-	i_Jal	  => s_MEMJal,
+        i_RST      => s_MEMWBFlush,
+	i_Stall    => s_MEMWBStall,
+	i_Inst     => s_MEMInst,
+        i_ALURES   => s_MEMALURES,
+	i_PCADDR   => s_MEMPCADDR,
+	i_MEMDATA  => s_DMemOut,
+	i_RGDST	   => s_MEMRegDst,
+	i_Jal	   => s_MEMJal,
 	i_MemtoReg => s_MEMMemtoReg,
 	i_RegWrEn  => s_MEMRegWrEn,
 	i_Halt	   => s_MEMHalt,
        
+	o_Inst	   => s_WBInst,
 	o_ALURES   => s_WBALURES,
 	o_PCADDR   => s_WBPCADDR,
 	o_MEMDATA  => s_WBMEMDATA,

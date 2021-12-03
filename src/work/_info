@@ -1,0 +1,238 @@
+m255
+K4
+z2
+!s11e vcom 2021.2 2021.04, Apr 14 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/evang/CPRE381_Fall/Project 2 Group 2/cpre-381-toolflow-fall-2021-master/src
+Eexmempipeline
+Z1 w1638572176
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 29
+R0
+Z4 8/home/evang/CPRE381_Fall/Project 2 Group 2/cpre-381-toolflow-fall-2021-master/src/EXMEMPipeline.vhd
+Z5 F/home/evang/CPRE381_Fall/Project 2 Group 2/cpre-381-toolflow-fall-2021-master/src/EXMEMPipeline.vhd
+l0
+L5 1
+V2RT>jM>I`:GcSNWQdY^;D2
+!s100 D6lOFi2LOE=acdY1cHSg42
+Z6 OL;C;2021.2;73
+33
+Z7 !s110 1638574209
+!i10b 1
+Z8 !s108 1638574209.000000
+Z9 !s90 -reportprogress|30|-work|work|/home/evang/CPRE381_Fall/Project 2 Group 2/cpre-381-toolflow-fall-2021-master/src/EXMEMPipeline.vhd|
+Z10 !s107 /home/evang/CPRE381_Fall/Project 2 Group 2/cpre-381-toolflow-fall-2021-master/src/EXMEMPipeline.vhd|
+!i113 0
+Z11 o-work work
+Z12 tExplicit 1 NoCoverage 1 CvgOpt 0
+Amixed
+R2
+R3
+Z13 DEx4 work 13 exmempipeline 0 22 2RT>jM>I`:GcSNWQdY^;D2
+!i122 29
+l83
+Z14 L35 125
+Z15 V:zc4me4X;7Z_LSlTGAg^`1
+Z16 !s100 zUc7KmN;HmKTcNg58=cK:3
+R6
+33
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 0
+R11
+R12
+Eidexpipeline
+Z17 w1638572170
+R2
+R3
+!i122 24
+R0
+Z18 8/home/evang/CPRE381_Fall/Project 2 Group 2/cpre-381-toolflow-fall-2021-master/src/IDEXPipeline.vhd
+Z19 F/home/evang/CPRE381_Fall/Project 2 Group 2/cpre-381-toolflow-fall-2021-master/src/IDEXPipeline.vhd
+l0
+L5 1
+VEHgYcO_DO8e^c>[YWOdD?2
+!s100 D2K4IhbHhkZ`9VA5:b`YR3
+R6
+33
+Z20 !s110 1638574208
+!i10b 1
+Z21 !s108 1638574208.000000
+Z22 !s90 -reportprogress|300|-work|work|/home/evang/CPRE381_Fall/Project 2 Group 2/cpre-381-toolflow-fall-2021-master/src/IDEXPipeline.vhd|
+Z23 !s107 /home/evang/CPRE381_Fall/Project 2 Group 2/cpre-381-toolflow-fall-2021-master/src/IDEXPipeline.vhd|
+!i113 0
+R11
+R12
+Amixed
+R2
+R3
+DEx4 work 12 idexpipeline 0 22 EHgYcO_DO8e^c>[YWOdD?2
+!i122 24
+l107
+L59 208
+VoY`eC6aP3UIOk;4n0MAJI2
+!s100 o?Tg<lk^@IJDVkFhh@Vdf2
+R6
+33
+R20
+!i10b 1
+R21
+R22
+R23
+!i113 0
+R11
+R12
+Eifidpipeline
+Z24 w1638573996
+R2
+R3
+!i122 25
+R0
+Z25 8/home/evang/CPRE381_Fall/Project 2 Group 2/cpre-381-toolflow-fall-2021-master/src/IFIDPipeline.vhd
+Z26 F/home/evang/CPRE381_Fall/Project 2 Group 2/cpre-381-toolflow-fall-2021-master/src/IFIDPipeline.vhd
+l0
+L5 1
+VW7fkCiDAfgPcB4e6g4cT80
+!s100 T[=Rg2Yf@XZL92Af<kQkg0
+R6
+33
+R7
+!i10b 1
+R8
+Z27 !s90 -reportprogress|300|-work|work|/home/evang/CPRE381_Fall/Project 2 Group 2/cpre-381-toolflow-fall-2021-master/src/IFIDPipeline.vhd|
+Z28 !s107 /home/evang/CPRE381_Fall/Project 2 Group 2/cpre-381-toolflow-fall-2021-master/src/IFIDPipeline.vhd|
+!i113 0
+R11
+R12
+Amixed
+R2
+R3
+DEx4 work 12 ifidpipeline 0 22 W7fkCiDAfgPcB4e6g4cT80
+!i122 25
+l29
+L18 28
+Vz]H5]cEPn:CWEZ>1==F:K0
+!s100 P;lkY=hzjJnFoeXcl`Vbb0
+R6
+33
+R7
+!i10b 1
+R8
+R27
+R28
+!i113 0
+R11
+R12
+Ememwbpipeline
+Z29 w1638572245
+R2
+R3
+!i122 27
+R0
+Z30 8/home/evang/CPRE381_Fall/Project 2 Group 2/cpre-381-toolflow-fall-2021-master/src/MEMWBPipeline.vhd
+Z31 F/home/evang/CPRE381_Fall/Project 2 Group 2/cpre-381-toolflow-fall-2021-master/src/MEMWBPipeline.vhd
+l0
+L5 1
+VNl5zkG6]WP3=Wgl5^`fj23
+!s100 j?5lQ2PFN]E8S0z@`@Ua70
+R6
+33
+R7
+!i10b 1
+R8
+Z32 !s90 -reportprogress|30|-work|work|/home/evang/CPRE381_Fall/Project 2 Group 2/cpre-381-toolflow-fall-2021-master/src/MEMWBPipeline.vhd|
+Z33 !s107 /home/evang/CPRE381_Fall/Project 2 Group 2/cpre-381-toolflow-fall-2021-master/src/MEMWBPipeline.vhd|
+!i113 0
+R11
+R12
+Amixed
+R2
+R3
+DEx4 work 13 memwbpipeline 0 22 Nl5zkG6]WP3=Wgl5^`fj23
+!i122 27
+l81
+L33 118
+V=;SUFIlmD@G9YgN6Mm0Kh0
+!s100 P15bBekF`I;kQhR;DmK?`1
+R6
+33
+R7
+!i10b 1
+R8
+R32
+R33
+!i113 0
+R11
+R12
+Emips_processor
+Z34 w1638574190
+R2
+R3
+!i122 26
+R0
+Z35 8/home/evang/CPRE381_Fall/Project 2 Group 2/cpre-381-toolflow-fall-2021-master/src/MIPS_Processor.vhd
+Z36 F/home/evang/CPRE381_Fall/Project 2 Group 2/cpre-381-toolflow-fall-2021-master/src/MIPS_Processor.vhd
+l0
+Z37 L20 1
+V:GoEWjbmEoDIY7z>;lkh_2
+!s100 EF3b8zbH1Cla5TLWgQz2T1
+R6
+33
+R7
+!i10b 1
+R8
+Z38 !s90 -reportprogress|300|-work|work|/home/evang/CPRE381_Fall/Project 2 Group 2/cpre-381-toolflow-fall-2021-master/src/MIPS_Processor.vhd|
+Z39 !s107 /home/evang/CPRE381_Fall/Project 2 Group 2/cpre-381-toolflow-fall-2021-master/src/MIPS_Processor.vhd|
+!i113 0
+R11
+R12
+Astructure
+R2
+R3
+DEx4 work 14 mips_processor 0 22 :GoEWjbmEoDIY7z>;lkh_2
+!i122 26
+l348
+L34 636
+Vl24mF:DGAzO5:QzNVVkoG3
+!s100 ei5oB:8fOMZ7d43S3o;E]2
+R6
+33
+R7
+!i10b 1
+R8
+R38
+R39
+!i113 0
+R11
+R12
+Epipeline_test
+w1638574024
+R2
+R3
+!i122 28
+R0
+8/home/evang/CPRE381_Fall/Project 2 Group 2/cpre-381-toolflow-fall-2021-master/src/pipeline_test.vhd
+F/home/evang/CPRE381_Fall/Project 2 Group 2/cpre-381-toolflow-fall-2021-master/src/pipeline_test.vhd
+l0
+R37
+VPI9=4FJO?QQAIAZUUK8;O0
+!s100 oHldCGd[;`3ib5^PZUZzg3
+R6
+33
+R7
+!i10b 1
+R8
+!s90 -reportprogress|30|-work|work|/home/evang/CPRE381_Fall/Project 2 Group 2/cpre-381-toolflow-fall-2021-master/src/pipeline_test.vhd|
+!s107 /home/evang/CPRE381_Fall/Project 2 Group 2/cpre-381-toolflow-fall-2021-master/src/pipeline_test.vhd|
+!i113 0
+R11
+R12

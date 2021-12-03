@@ -5,9 +5,11 @@ use IEEE.std_logic_1164.all;
 entity IDEXPipeline is
 generic(N : integer := 32); -- Generic of type integer for input/output data width. Default value is 32
 
-  port(i_CLK        : in std_logic;     -- Clock input
-       i_RST        : in std_logic;     -- Reset input
-       i_PA	    : in std_logic_vector(31 downto 0);
+  port( i_CLK        	: in std_logic;     -- Clock input
+        i_RST        	: in std_logic;     -- Reset input
+	i_Stall	   	: in std_logic;
+        i_PA	    	: in std_logic_vector(31 downto 0);
+	i_Inst	    	: in std_logic_vector(31 downto 0);
 	i_PB    	: in std_logic_vector(31 downto 0);
 	i_RS	    	: in std_logic_vector(4 downto 0);
 	i_RT    	: in std_logic_vector(4 downto 0);
@@ -29,6 +31,7 @@ generic(N : integer := 32); -- Generic of type integer for input/output data wid
 	i_SHAMT		: in std_logic_vector(4 downto 0);
 	i_LogicCtrl	: in std_logic_vector(1 downto 0);
        
+	o_Inst	    	: out std_logic_vector(31 downto 0);
 	o_PA	    	: out std_logic_vector(31 downto 0);
 	o_PB    	: out std_logic_vector(31 downto 0);
 	o_RS	    	: out std_logic_vector(4 downto 0);
@@ -103,66 +106,73 @@ end component;
 
 begin
 
+INSTDFF: DffR_N port map(
+	i_Clk => i_CLK,
+	i_RST => i_RST,
+	i_WE  => i_Stall,
+	i_D   => i_Inst,
+	o_Q   => o_Inst);
+
 PADFF: DffR_N port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_PA,
 	o_Q   => o_PA);
 
 PBDFF: DffR_N port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_PB,
 	o_Q   => o_PB);
 
 PCADDRDFF: DffR_N port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_PCADDR,
 	o_Q   => o_PCADDR);
 
 IMMDFF: DffR_N port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_IMM,
 	o_Q   => o_IMM);
 
 RSDFF: DffR_5 port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_RS,
 	o_Q   => o_RS);
 
 RTDFF: DffR_5 port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_RT,
 	o_Q   => o_RT);
 
 RDDFF: DffR_5 port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_RD,
 	o_Q   => o_RD);
 
 SHAMTDFF: DffR_5 port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_SHAMT,
 	o_Q   => o_SHAMT);
 
 ALUOPDFF: DffR_3 port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_ALUOP,
 	o_Q   => o_ALUOP);
 
@@ -170,84 +180,84 @@ ALUOPDFF: DffR_3 port map(
 LGCTRLDFF: DffR_2 port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_LogicCtrl,
 	o_Q   => o_LogicCtrl);
 
 MemToRegDFF: dffg port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_MemtoReg,
 	o_Q   => o_MemtoReg);
 
 JALDFF: dffg port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_Jal,
 	o_Q   => o_Jal);
 
 MemWrEnDFF: dffg port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_MemWrEn,
 	o_Q   => o_MemWrEn);
 
 ALUSRCDFF: dffg port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_ALUSrc,
 	o_Q   => o_ALUSrc);
 
 REGWRENDFF: dffg port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_RegWrEn,
 	o_Q   => o_RegWrEn);
 
 REGDSTDFF: dffg port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_RegDst,
 	o_Q   => o_RegDst);
 
 ADDSUBDFF: dffg port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_ADDSUB,
 	o_Q   => o_ADDSUB);
 
 SHFTDIRDFF: dffg port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_SHFTDIR,
 	o_Q   => o_SHFTDIR);
 
 SHFTTYPEDFF: dffg port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_SHFTTYPE,
 	o_Q   => o_SHFTTYPE);
 
 HALTDFF: dffg port map(
 	i_Clk => i_CLK,
 	i_RST => i_RST,
-	i_WE  => '1',
+	i_WE  => i_Stall,
 	i_D   => i_Halt,
 	o_Q   => o_Halt);
 
 UNSIGNEDDFF: dffg port map(
 	i_CLK => i_CLK,
        i_RST  => i_RST,
-       i_WE   => '1',
+       i_WE   => i_Stall,
        i_D    => i_Unsigned,
        o_Q    => o_Unsigned); 
 
