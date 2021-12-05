@@ -164,6 +164,7 @@ IDIFPIPE: IFIDPipeline port map(
 	i_RST    => iIFIDFlush,
 	i_Stall	 => iIFIDStall,
         i_Inst   => iInst,
+	i_PCAddr => "00000000000000000000000000000000",
 	o_Inst => s_IDInst);
 
 IDEXPIPE: IDEXPipeline port map(
@@ -171,13 +172,43 @@ IDEXPIPE: IDEXPipeline port map(
         i_RST   	=> iIDEXFlush,
 	i_Stall 	=> iIDEXStall,
 	i_Inst		=> s_IDInst,
-	o_Inst		=> s_EXInst);   
+        i_PA	    	=> "00000000000000000000000000000000",
+	i_PB    	=> "00000000000000000000000000000000",
+	i_RS	    	=> "00000",
+	i_RT    	=> "00000",
+	i_RD	    	=> "00000",
+	i_IMM    	=> "00000000000000000000000000000000",
+	i_PCADDR	=> "00000000000000000000000000000000",
+	i_ALUOP		=> "000",	
+	i_Jal		=> '0',
+	i_MemWrEn	=> '0',
+	i_MemtoReg	=> '0',
+	i_ALUSrc	=> '0',
+	i_RegWrEn	=> '0',
+	i_RegDst	=> '0',
+	i_ADDSUB	=> '0',
+	i_SHFTDIR	=> '0',
+	i_SHFTTYPE	=> '0',
+	i_Halt		=> '0',
+	i_Unsigned	=> '0',
+	i_SHAMT		=> "00000",
+	i_LogicCtrl	=> "00",
+	o_Inst		=> s_EXInst); 
 
 EXMEMPIPE: EXMEMPipeline port map(
 	i_CLK  		=> iCLK,
         i_RST   	=> iEXMEMFlush,
 	i_Stall 	=> iEXMEMStall,
 	i_Inst		=> s_EXInst,
+        i_ALURES	=> "00000000000000000000000000000000",
+	i_PCADDR    	=> "00000000000000000000000000000000",
+	i_RT    	=> "00000000000000000000000000000000",
+	i_RGDST	    	=> "00000",
+	i_Jal		=> '0',
+	i_MemtoReg	=> '0',
+	i_RegWrEn	=> '0',
+	i_MemWrEn	=> '0',
+	i_Halt		=> '0',
 	o_Inst		=> s_MEMInst);
 
 MEMWBPIPE: MEMWBPipeline port map(
@@ -185,6 +216,14 @@ MEMWBPIPE: MEMWBPipeline port map(
         i_RST      => iMEMWBFlush,
 	i_Stall    => iMEMWBStall,
 	i_Inst	   => s_MEMInst,
+        i_ALURES   => "00000000000000000000000000000000",
+	i_PCADDR   => "00000000000000000000000000000000",
+	i_MEMDATA  => "00000000000000000000000000000000",
+	i_RGDST	   => "00000",
+	i_Jal	   => '0',
+	i_MemtoReg => '0',
+	i_RegWrEn  => '0',
+	i_Halt	   => '0',
 	o_Inst	   => oInst);
 
 end structure;
