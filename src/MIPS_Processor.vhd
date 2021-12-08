@@ -298,7 +298,7 @@ signal s_IDRegDst, s_IDMemToReg, s_IDMemWrEn, s_IDALUSRC, s_IDADDSUB, s_IDSHFTDI
 signal s_IDC, s_BranchTrue, s_JorBranch, s_IDOVER1, s_IDOVER2, s_IDC1, s_IDC2, s_IDOVER3, s_IDZero, s_IDNotZero, s_JorBrnch : std_logic;
 
  --EX PIPE Signals
-signal s_EXPCADDR, s_EXPA, s_EXPB, s_EXALURES, s_EXIMM, s_EXPBoIMM: std_logic_vector(31 downto 0); 
+signal s_EXPCADDR, s_EXPA, s_EXPB, s_EXALURES, s_EXIMM : std_logic_vector(31 downto 0); 
 signal s_EXRS, s_EXRT, s_EXRD, s_EXREGDST, s_EXSHAMT : std_logic_vector(4 downto 0);
 signal s_EXALUOP : std_logic_vector(2 downto 0);
 signal s_EXLogicCtrl : std_logic_vector(1 downto 0);
@@ -319,6 +319,10 @@ signal s_WBMemToReg, s_WBMHalt, s_WBJal, s_WBRegWrEn : std_logic;
 signal s_PCStall, s_IFIDStall, s_IDEXStall, s_MEMWBStall, s_EXMEMStall : std_logic;
 signal s_IFIDFlush, s_IDEXFlush, s_MEMWBFlush, s_EXMEMFlush : std_logic;
 signal s_EXInst, s_MEMInst, s_WBInst : std_logic_Vector(31 downto 0);
+
+--Forwarding Signals
+signal s_ALUAoDMEM : std_logic_vector(1 downto 0);
+signal ALUAInput, ALUBInput, s_ALUAMUXA, ALUBoIMM, s_ALUBMUXA : std_logic_vector(31 downto 0);
 
 
 
@@ -559,12 +563,13 @@ s_BranchImm <= s_IDIMM(29 downto 0) & "00";
 
 MUXRTI: mux2t1_N port map(
 	i_S => s_EXALUSrc,
-	i_D0 => s_EXPB,
+	i_D0 => ALUBoIMM,								--changed
 	i_D1 => s_EXIMM,
-	o_O  => s_EXPBoIMM);
+	o_O  => ALUBInput);
 
-ALU1 : ALU port map(i_PA => s_EXPA,
-       i_PBoIMM	 => s_EXPBoIMM,
+ALU1 : ALU port map(
+	i_PA => ALUAInput,								--changed
+        i_PBoIMM => ALUBInput,
 	i_SHAMT	 => s_EXSHAMT,
 	i_ALUOP	 => s_EXALUOp,
 	i_ShftDIR => s_EXSHFTDIR,
@@ -665,6 +670,37 @@ REGDSTJal: mux2t1_5 port map(
        i_D0  => s_WBREGDST,
        i_D1  => "11111",
        o_O   => s_RegWrAddr);
+
+--Forwarding Logic Stuff
+--ALUA or Last Mux Out
+MUXALUAOLASTMUX: mux2t1_N port map(
+	i_S => s_ALUAoDMEM(0),
+	i_D0 => s_EXPA,
+	i_D1 => S_ALUWriteData,
+	o_O => s_ALUAMUXA);
+
+--DMEM or (ALUA or Last Mux Out)
+MUXDMEMOALUA: mux2t1_N port map(
+	i_S => s_ALUAoDMEM(1),
+	i_D0 => s_ALUAMUXA,
+	i_D1 => i_ALURES,
+	o_O => ALUAInput);
+
+--ALUB or Last Mux Out
+MUXALUAOLASTMUX: mux2t1_N port map(
+	i_S => s_ALUBoDMEM(0),
+	i_D0 => s_EXPB,
+	i_D1 => S_ALUWriteData,
+	o_O => s_ALUBMUXA);
+
+--DMEM or (ALUA or Last Mux Out)
+MUXDMEMOALUA: mux2t1_N port map(
+	i_S => s_ALUBoDMEM(1),
+	i_D0 => s_ALUBMUXA,
+	i_D1 => i_ALURES,
+	o_O => ALUBoIMM);
+
+--s_EXPB
 
 end structure;
 
