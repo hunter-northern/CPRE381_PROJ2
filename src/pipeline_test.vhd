@@ -164,7 +164,7 @@ IDIFPIPE: IFIDPipeline port map(
 	i_RST    => iIFIDFlush,
 	i_Stall	 => iIFIDStall,
         i_Inst   => iInst,
-	i_PCAddr => "00000000000000000000000000000000",
+	i_PCAddr => iInst,
 	o_Inst => s_IDInst);
 
 IDEXPIPE: IDEXPipeline port map(

@@ -20,7 +20,7 @@ entity tb_pipeline_test is
           N : integer := 32);   -- Generic for half of the clock cycle period
 end tb_pipeline_test;
 
-architecture mixed of tb_barrel_shifter is
+architecture mixed of tb_pipeline_test is
 
 -- Define the total clock period time
 constant cCLK_PER  : time := gCLK_HPER * 2;
@@ -56,7 +56,8 @@ signal s_iIFIDFlush    : std_logic;
 signal s_iIDEXFlush    : std_logic;
 signal s_iMEMWBFlush   : std_logic;
 signal s_iEXMEMFlush   : std_logic;
-signal s_iInst         : std_logic;
+signal s_iInst         : std_logic_vector(N-1 downto 0);
+signal s_oInst         : std_logic_vector(N-1 downto 0);
 
 begin
 
@@ -65,7 +66,8 @@ begin
   -- during simulation. What follows DUT0 is the entity name that will be used to find
   -- the appropriate library component during simulation loading.
   DUT0: pipeline_test
-  port map(iIFIDStall 	=>  s_iIFIDStall,
+  port map(iCLK		=>  CLK,
+	   iIFIDStall 	=>  s_iIFIDStall,
 	   iIDEXStall 	=>  s_iIDEXStall,
 	   iMEMWBStall 	=>  s_iMEMWBStall,
   	   iEXMEMStall 	=>  s_iEXMEMStall,
@@ -73,7 +75,8 @@ begin
 	   iIDEXFlush 	=>  s_iIDEXFlush,
 	   iMEMWBFlush 	=>  s_iMEMWBFlush,
 	   iEXMEMFlush 	=>  s_iEXMEMFlush,
-           iInst        =>  s_iInst);
+           iInst        =>  s_iInst,
+	   oInst	=>  s_oInst);
 
   
   --This first process is to setup the clock for the test bench
@@ -103,102 +106,105 @@ begin
   -- TODO: add test cases as needed.
   P_TEST_CASES: process
   begin
-    wait for gCLK_HPER/2; -- for waveform clarity, I prefer not to change inputs on clk edges
+    wait for gCLK_HPER; -- for waveform clarity, I prefer not to change inputs on clk edges
+wait for gCLK_HPER;
+wait for gCLK_HPER;
+wait for gCLK_HPER;
 
     -- Test case 1:
-    iIFIDStall 	<= '1';
-    iIDEXStall 	<= '1';
-    iMEMWBStall <= '1';
-    iEXMEMStall <= '1';
-    iIFIDFlush 	<= '0';
-    iIDEXFlush 	<= '0';
-    iMEMWBFlush <= '0';
-    iEXMEMFlush <= '0';
-    iInst       <= "00000000010000000000000000000100";
+    s_iIFIDStall  <= '1';
+    s_iIDEXStall  <= '1';
+    s_iMEMWBStall <= '1';
+    s_iEXMEMStall <= '1';
+    s_iIFIDFlush  <= '0';
+    s_iIDEXFlush  <= '0';
+    s_iMEMWBFlush <= '0';
+    s_iEXMEMFlush <= '0';
+    s_iInst       <= "00000000010000000000000000000100";
     wait for gCLK_HPER*2;
 
     -- Test case 2:
-    iIFIDStall 	<= '0';
-    iIDEXStall 	<= '0';
-    iMEMWBStall <= '0';
-    iEXMEMStall <= '0';
-    iIFIDFlush 	<= '0';
-    iIDEXFlush 	<= '0';
-    iMEMWBFlush <= '0';
-    iEXMEMFlush <= '0';
-    iInst       <= "00000000010000000000000000000100";
+    s_iIFIDStall  <= '0';
+    s_iIDEXStall  <= '0';
+    s_iMEMWBStall <= '0';
+    s_iEXMEMStall <= '0';
+    s_iIFIDFlush  <= '0';
+    s_iIDEXFlush  <= '0';
+    s_iMEMWBFlush <= '0';
+    s_iEXMEMFlush <= '0';
+    s_iInst       <= "00000000010000000000000000000100";
     wait for gCLK_HPER*2;
 
     -- Test case 3:
-    iIFIDStall 	<= '0';
-    iIDEXStall 	<= '0';
-    iMEMWBStall <= '1';
-    iEXMEMStall <= '1';
-    iIFIDFlush 	<= '0';
-    iIDEXFlush 	<= '0';
-    iMEMWBFlush <= '1';
-    iEXMEMFlush <= '0';
-    iInst       <= "00000000010000000000000000000100";
+    s_iIFIDStall  <= '0';
+    s_iIDEXStall  <= '0';
+    s_iMEMWBStall <= '1';
+    s_iEXMEMStall <= '1';
+    s_iIFIDFlush  <= '0';
+    s_iIDEXFlush  <= '0';
+    s_iMEMWBFlush <= '1';
+    s_iEXMEMFlush <= '0';
+    s_iInst       <= "00000000010000000000000000000100";
     wait for gCLK_HPER*2;
 
     -- Test case 4:
-    iIFIDStall 	<= '1';
-    iIDEXStall 	<= '1';
-    iMEMWBStall <= '1';
-    iEXMEMStall <= '1';
-    iIFIDFlush 	<= '1';
-    iIDEXFlush 	<= '1';
-    iMEMWBFlush <= '1';
-    iEXMEMFlush <= '1';
-    iInst       <= "00000000010000000000000000000100";
+    s_iIFIDStall  <= '1';
+    s_iIDEXStall  <= '1';
+    s_iMEMWBStall <= '1';
+    s_iEXMEMStall <= '1';
+    s_iIFIDFlush  <= '1';
+    s_iIDEXFlush  <= '1';
+    s_iMEMWBFlush <= '1';
+    s_iEXMEMFlush <= '1';
+    s_iInst       <= "00000000010000000000000000000100";
     wait for gCLK_HPER*2;
 
     -- Test case 5:
-    iIFIDStall 	<= '0';
-    iIDEXStall 	<= '0';
-    iMEMWBStall <= '0';
-    iEXMEMStall <= '0';
-    iIFIDFlush 	<= '1';
-    iIDEXFlush 	<= '1';
-    iMEMWBFlush <= '1';
-    iEXMEMFlush <= '1';
-    iInst       <= "00000000010000000000000000000100";
+    s_iIFIDStall  <= '0';
+    s_iIDEXStall  <= '0';
+    s_iMEMWBStall <= '0';
+    s_iEXMEMStall <= '0';
+    s_iIFIDFlush  <= '1';
+    s_iIDEXFlush  <= '1';
+    s_iMEMWBFlush <= '1';
+    s_iEXMEMFlush <= '1';
+    s_iInst       <= "00000000010000000000000000000100";
     wait for gCLK_HPER*2;
 
     -- Test case 6:
-    iIFIDStall 	<= '1';
-    iIDEXStall 	<= '0';
-    iMEMWBStall <= '0';
-    iEXMEMStall <= '0';
-    iIFIDFlush 	<= '0';
-    iIDEXFlush 	<= '0';
-    iMEMWBFlush <= '0';
-    iEXMEMFlush <= '0';
-    iInst       <= "00000000010000000000000000000100";
+    s_iIFIDStall  <= '1';
+    s_iIDEXStall  <= '0';
+    s_iMEMWBStall <= '0';
+    s_iEXMEMStall <= '0';
+    s_iIFIDFlush  <= '0';
+    s_iIDEXFlush  <= '0';
+    s_iMEMWBFlush <= '0';
+    s_iEXMEMFlush <= '0';
+    s_iInst       <= "00000000010000000000000000000100";
     wait for gCLK_HPER*2;
 
     -- Test case 7:
-    iIFIDStall 	<= '1';
-    iIDEXStall 	<= '1';
-    iMEMWBStall <= '1';
-    iEXMEMStall <= '1';
-    iIFIDFlush 	<= '1';
-    iIDEXFlush 	<= '0';
-    iMEMWBFlush <= '0';
-    iEXMEMFlush <= '0';
-    iInst       <= "00000000010000000000000000000100";
+    s_iIFIDStall  <= '1';
+    s_iIDEXStall  <= '1';
+    s_iMEMWBStall <= '1';
+    s_iEXMEMStall <= '1';
+    s_iIFIDFlush  <= '1';
+    s_iIDEXFlush  <= '0';
+    s_iMEMWBFlush <= '0';
+    s_iEXMEMFlush <= '0';
+    s_iInst       <= "00000000010000000000000000000100";
     wait for gCLK_HPER*2;
 
     -- Test case 1:
-    iIFIDStall 	<= '1';
-    iIDEXStall 	<= '1';
-    iMEMWBStall <= '1';
-    iEXMEMStall <= '1';
-    iIFIDFlush 	<= '0';
-    iIDEXFlush 	<= '0';
-    iMEMWBFlush <= '1';
-    iEXMEMFlush <= '0';
-    iInst       <= "00000000010000000000000000000100";
+    s_iIFIDStall  <= '1';
+    s_iIDEXStall  <= '1';
+    s_iMEMWBStall <= '1';
+    s_iEXMEMStall <= '1';
+    s_iIFIDFlush  <= '0';
+    s_iIDEXFlush  <= '0';
+    s_iMEMWBFlush <= '0';
+    s_iEXMEMFlush <= '1';
+    s_iInst       <= "00000000010000000000000000000100";
     wait for gCLK_HPER*2;
 
   end process;

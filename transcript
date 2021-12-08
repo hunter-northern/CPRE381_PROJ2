@@ -1,0 +1,1855 @@
+# //  Questa Sim-64
+# //  Version 2021.2 linux_x86_64 Apr 14 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+cd /home/evang/CPRE381_Fall/PROJ2/CPRE381_PROJ2/src
+# reading modelsim.ini
+vcom -2008 -work work *.vhd
+# QuestaSim-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 12:10:00 on Dec 08,2021
+# vcom -reportprogress 300 -2008 -work work ALU.vhd AdderH.vhd AdderH_n.vhd AdderSub.vhd DffR_2.vhd DffR_3.vhd DffR_5.vhd DffR_N.vhd EXMEMPipeline.vhd FetchLogic.vhd FirstDataPath.vhd IDEXPipeline.vhd IFIDPipeline.vhd InstMem.vhd LogicUnit.vhd MEMWBPipeline.vhd MIPS_Processor.vhd OnesComp.vhd PC.vhd RegFile.vhd andg2.vhd andg2_N.vhd barrelShifter.vhd bitExtension.vhd control.vhd decoder5t32.vhd dffg.vhd invg.vhd mem.vhd mux2t1.vhd mux2t1_5.vhd mux2t1_N.vhd mux2t1data.vhd mux32t1.vhd mux4t1.vhd mux8t1.vhd norg2_N.vhd org2.vhd org2_N.vhd pipeline_test.vhd tb.vhd tb_pipeline_test.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity ALU
+# -- Compiling architecture structure of ALU
+# -- Compiling entity AdderH
+# -- Compiling architecture structure of AdderH
+# -- Compiling entity AdderH_n
+# -- Compiling architecture structural of AdderH_n
+# -- Compiling entity AdderSub_N
+# -- Compiling architecture structure of AdderSub_N
+# -- Compiling entity DffR_2
+# -- Compiling architecture structural of DffR_2
+# -- Compiling entity DffR_3
+# -- Compiling architecture structural of DffR_3
+# -- Compiling entity DffR_5
+# -- Compiling architecture structural of DffR_5
+# -- Compiling entity DffR_N
+# -- Compiling architecture structural of DffR_N
+# -- Compiling entity EXMEMPipeline
+# -- Compiling architecture mixed of EXMEMPipeline
+# -- Compiling entity FetchLogic
+# -- Compiling architecture structure of FetchLogic
+# -- Compiling entity FirstDataPath
+# -- Compiling architecture structure of FirstDataPath
+# -- Compiling entity IDEXPipeline
+# -- Compiling architecture mixed of IDEXPipeline
+# -- Compiling entity IFIDPipeline
+# -- Compiling architecture mixed of IFIDPipeline
+# -- Loading package NUMERIC_STD
+# -- Compiling entity InstMem
+# -- Compiling architecture rtl of InstMem
+# -- Compiling entity LogicUnit
+# -- Compiling architecture structure of LogicUnit
+# -- Compiling entity MEMWBPipeline
+# -- Compiling architecture mixed of MEMWBPipeline
+# -- Compiling entity MIPS_Processor
+# -- Compiling architecture structure of MIPS_Processor
+# -- Compiling entity OnesComp
+# -- Compiling architecture structural of OnesComp
+# -- Compiling entity PC
+# -- Compiling architecture structural of PC
+# -- Compiling entity RegFile
+# -- Compiling architecture structural of RegFile
+# -- Compiling entity andg2
+# -- Compiling architecture dataflow of andg2
+# -- Compiling entity andg2_N
+# -- Compiling architecture structural of andg2_N
+# -- Compiling entity barrelShifter
+# -- Compiling architecture structural of barrelShifter
+# -- Compiling entity bitExtension
+# -- Compiling architecture structural of bitExtension
+# -- Compiling entity control
+# -- Compiling architecture structural of control
+# -- Compiling entity decoder5t32
+# -- Compiling architecture structure of decoder5t32
+# -- Compiling entity dffg
+# -- Compiling architecture mixed of dffg
+# -- Compiling entity invg
+# -- Compiling architecture dataflow of invg
+# -- Compiling entity mem
+# -- Compiling architecture rtl of mem
+# -- Compiling entity mux2t1
+# -- Compiling architecture structure of mux2t1
+# -- Compiling entity mux2t1_5
+# -- Compiling architecture structural of mux2t1_5
+# -- Compiling entity mux2t1_N
+# -- Compiling architecture structural of mux2t1_N
+# -- Compiling entity mux2t1data
+# -- Compiling architecture dataflow of mux2t1data
+# -- Compiling entity mux32t1
+# -- Compiling architecture structure of mux32t1
+# -- Compiling entity mux4t1
+# -- Compiling architecture structure of mux4t1
+# -- Compiling entity mux8t1
+# -- Compiling architecture structure of mux8t1
+# -- Compiling entity norg2_N
+# -- Compiling architecture structural of norg2_N
+# -- Compiling entity org2
+# -- Compiling architecture dataflow of org2
+# -- Compiling entity org2_N
+# -- Compiling architecture structural of org2_N
+# -- Compiling entity pipeline_test
+# -- Compiling architecture structure of pipeline_test
+# -- Loading package std_logic_textio
+# -- Loading package ENV
+# -- Compiling entity tb
+# -- Compiling architecture mixed of tb
+# -- Compiling entity tb_pipeline_test
+# -- Compiling architecture mixed of tb_barrel_shifter
+# ** Error: (vcom-11) Could not find work.tb_barrel_shifter.
+# ** Note: tb_pipeline_test.vhd(23): VHDL Compiler exiting
+# End time: 12:10:00 on Dec 08,2021, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+# /usr/local/mentor/questasim/linux_x86_64/vcom failed.
+vcom -2008 -work work *.vhd
+# QuestaSim-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 12:10:34 on Dec 08,2021
+# vcom -reportprogress 300 -2008 -work work ALU.vhd AdderH.vhd AdderH_n.vhd AdderSub.vhd DffR_2.vhd DffR_3.vhd DffR_5.vhd DffR_N.vhd EXMEMPipeline.vhd FetchLogic.vhd FirstDataPath.vhd IDEXPipeline.vhd IFIDPipeline.vhd InstMem.vhd LogicUnit.vhd MEMWBPipeline.vhd MIPS_Processor.vhd OnesComp.vhd PC.vhd RegFile.vhd andg2.vhd andg2_N.vhd barrelShifter.vhd bitExtension.vhd control.vhd decoder5t32.vhd dffg.vhd invg.vhd mem.vhd mux2t1.vhd mux2t1_5.vhd mux2t1_N.vhd mux2t1data.vhd mux32t1.vhd mux4t1.vhd mux8t1.vhd norg2_N.vhd org2.vhd org2_N.vhd pipeline_test.vhd tb.vhd tb_pipeline_test.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity ALU
+# -- Compiling architecture structure of ALU
+# -- Compiling entity AdderH
+# -- Compiling architecture structure of AdderH
+# -- Compiling entity AdderH_n
+# -- Compiling architecture structural of AdderH_n
+# -- Compiling entity AdderSub_N
+# -- Compiling architecture structure of AdderSub_N
+# -- Compiling entity DffR_2
+# -- Compiling architecture structural of DffR_2
+# -- Compiling entity DffR_3
+# -- Compiling architecture structural of DffR_3
+# -- Compiling entity DffR_5
+# -- Compiling architecture structural of DffR_5
+# -- Compiling entity DffR_N
+# -- Compiling architecture structural of DffR_N
+# -- Compiling entity EXMEMPipeline
+# -- Compiling architecture mixed of EXMEMPipeline
+# -- Compiling entity FetchLogic
+# -- Compiling architecture structure of FetchLogic
+# -- Compiling entity FirstDataPath
+# -- Compiling architecture structure of FirstDataPath
+# -- Compiling entity IDEXPipeline
+# -- Compiling architecture mixed of IDEXPipeline
+# -- Compiling entity IFIDPipeline
+# -- Compiling architecture mixed of IFIDPipeline
+# -- Loading package NUMERIC_STD
+# -- Compiling entity InstMem
+# -- Compiling architecture rtl of InstMem
+# -- Compiling entity LogicUnit
+# -- Compiling architecture structure of LogicUnit
+# -- Compiling entity MEMWBPipeline
+# -- Compiling architecture mixed of MEMWBPipeline
+# -- Compiling entity MIPS_Processor
+# -- Compiling architecture structure of MIPS_Processor
+# -- Compiling entity OnesComp
+# -- Compiling architecture structural of OnesComp
+# -- Compiling entity PC
+# -- Compiling architecture structural of PC
+# -- Compiling entity RegFile
+# -- Compiling architecture structural of RegFile
+# -- Compiling entity andg2
+# -- Compiling architecture dataflow of andg2
+# -- Compiling entity andg2_N
+# -- Compiling architecture structural of andg2_N
+# -- Compiling entity barrelShifter
+# -- Compiling architecture structural of barrelShifter
+# -- Compiling entity bitExtension
+# -- Compiling architecture structural of bitExtension
+# -- Compiling entity control
+# -- Compiling architecture structural of control
+# -- Compiling entity decoder5t32
+# -- Compiling architecture structure of decoder5t32
+# -- Compiling entity dffg
+# -- Compiling architecture mixed of dffg
+# -- Compiling entity invg
+# -- Compiling architecture dataflow of invg
+# -- Compiling entity mem
+# -- Compiling architecture rtl of mem
+# -- Compiling entity mux2t1
+# -- Compiling architecture structure of mux2t1
+# -- Compiling entity mux2t1_5
+# -- Compiling architecture structural of mux2t1_5
+# -- Compiling entity mux2t1_N
+# -- Compiling architecture structural of mux2t1_N
+# -- Compiling entity mux2t1data
+# -- Compiling architecture dataflow of mux2t1data
+# -- Compiling entity mux32t1
+# -- Compiling architecture structure of mux32t1
+# -- Compiling entity mux4t1
+# -- Compiling architecture structure of mux4t1
+# -- Compiling entity mux8t1
+# -- Compiling architecture structure of mux8t1
+# -- Compiling entity norg2_N
+# -- Compiling architecture structural of norg2_N
+# -- Compiling entity org2
+# -- Compiling architecture dataflow of org2
+# -- Compiling entity org2_N
+# -- Compiling architecture structural of org2_N
+# -- Compiling entity pipeline_test
+# -- Compiling architecture structure of pipeline_test
+# -- Loading package std_logic_textio
+# -- Loading package ENV
+# -- Compiling entity tb
+# -- Compiling architecture mixed of tb
+# -- Compiling entity tb_pipeline_test
+# -- Compiling architecture mixed of tb_barrel_shifter
+# ** Error: (vcom-11) Could not find work.tb_barrel_shifter.
+# ** Note: tb_pipeline_test.vhd(23): VHDL Compiler exiting
+# End time: 12:10:34 on Dec 08,2021, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+# /usr/local/mentor/questasim/linux_x86_64/vcom failed.
+vcom -2008 -work work *.vhd
+# QuestaSim-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 12:11:06 on Dec 08,2021
+# vcom -reportprogress 300 -2008 -work work ALU.vhd AdderH.vhd AdderH_n.vhd AdderSub.vhd DffR_2.vhd DffR_3.vhd DffR_5.vhd DffR_N.vhd EXMEMPipeline.vhd FetchLogic.vhd FirstDataPath.vhd IDEXPipeline.vhd IFIDPipeline.vhd InstMem.vhd LogicUnit.vhd MEMWBPipeline.vhd MIPS_Processor.vhd OnesComp.vhd PC.vhd RegFile.vhd andg2.vhd andg2_N.vhd barrelShifter.vhd bitExtension.vhd control.vhd decoder5t32.vhd dffg.vhd invg.vhd mem.vhd mux2t1.vhd mux2t1_5.vhd mux2t1_N.vhd mux2t1data.vhd mux32t1.vhd mux4t1.vhd mux8t1.vhd norg2_N.vhd org2.vhd org2_N.vhd pipeline_test.vhd tb.vhd tb_pipeline_test.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity ALU
+# -- Compiling architecture structure of ALU
+# -- Compiling entity AdderH
+# -- Compiling architecture structure of AdderH
+# -- Compiling entity AdderH_n
+# -- Compiling architecture structural of AdderH_n
+# -- Compiling entity AdderSub_N
+# -- Compiling architecture structure of AdderSub_N
+# -- Compiling entity DffR_2
+# -- Compiling architecture structural of DffR_2
+# -- Compiling entity DffR_3
+# -- Compiling architecture structural of DffR_3
+# -- Compiling entity DffR_5
+# -- Compiling architecture structural of DffR_5
+# -- Compiling entity DffR_N
+# -- Compiling architecture structural of DffR_N
+# -- Compiling entity EXMEMPipeline
+# -- Compiling architecture mixed of EXMEMPipeline
+# -- Compiling entity FetchLogic
+# -- Compiling architecture structure of FetchLogic
+# -- Compiling entity FirstDataPath
+# -- Compiling architecture structure of FirstDataPath
+# -- Compiling entity IDEXPipeline
+# -- Compiling architecture mixed of IDEXPipeline
+# -- Compiling entity IFIDPipeline
+# -- Compiling architecture mixed of IFIDPipeline
+# -- Loading package NUMERIC_STD
+# -- Compiling entity InstMem
+# -- Compiling architecture rtl of InstMem
+# -- Compiling entity LogicUnit
+# -- Compiling architecture structure of LogicUnit
+# -- Compiling entity MEMWBPipeline
+# -- Compiling architecture mixed of MEMWBPipeline
+# -- Compiling entity MIPS_Processor
+# -- Compiling architecture structure of MIPS_Processor
+# -- Compiling entity OnesComp
+# -- Compiling architecture structural of OnesComp
+# -- Compiling entity PC
+# -- Compiling architecture structural of PC
+# -- Compiling entity RegFile
+# -- Compiling architecture structural of RegFile
+# -- Compiling entity andg2
+# -- Compiling architecture dataflow of andg2
+# -- Compiling entity andg2_N
+# -- Compiling architecture structural of andg2_N
+# -- Compiling entity barrelShifter
+# -- Compiling architecture structural of barrelShifter
+# -- Compiling entity bitExtension
+# -- Compiling architecture structural of bitExtension
+# -- Compiling entity control
+# -- Compiling architecture structural of control
+# -- Compiling entity decoder5t32
+# -- Compiling architecture structure of decoder5t32
+# -- Compiling entity dffg
+# -- Compiling architecture mixed of dffg
+# -- Compiling entity invg
+# -- Compiling architecture dataflow of invg
+# -- Compiling entity mem
+# -- Compiling architecture rtl of mem
+# -- Compiling entity mux2t1
+# -- Compiling architecture structure of mux2t1
+# -- Compiling entity mux2t1_5
+# -- Compiling architecture structural of mux2t1_5
+# -- Compiling entity mux2t1_N
+# -- Compiling architecture structural of mux2t1_N
+# -- Compiling entity mux2t1data
+# -- Compiling architecture dataflow of mux2t1data
+# -- Compiling entity mux32t1
+# -- Compiling architecture structure of mux32t1
+# -- Compiling entity mux4t1
+# -- Compiling architecture structure of mux4t1
+# -- Compiling entity mux8t1
+# -- Compiling architecture structure of mux8t1
+# -- Compiling entity norg2_N
+# -- Compiling architecture structural of norg2_N
+# -- Compiling entity org2
+# -- Compiling architecture dataflow of org2
+# -- Compiling entity org2_N
+# -- Compiling architecture structural of org2_N
+# -- Compiling entity pipeline_test
+# -- Compiling architecture structure of pipeline_test
+# -- Loading package std_logic_textio
+# -- Loading package ENV
+# -- Compiling entity tb
+# -- Compiling architecture mixed of tb
+# -- Compiling entity tb_pipeline_test
+# -- Compiling architecture mixed of tb_barrel_shifter
+# ** Error: (vcom-11) Could not find work.tb_barrel_shifter.
+# ** Note: tb_pipeline_test.vhd(23): VHDL Compiler exiting
+# End time: 12:11:06 on Dec 08,2021, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+# /usr/local/mentor/questasim/linux_x86_64/vcom failed.
+vcom -2008 -work work *.vhd
+# QuestaSim-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 12:12:16 on Dec 08,2021
+# vcom -reportprogress 300 -2008 -work work ALU.vhd AdderH.vhd AdderH_n.vhd AdderSub.vhd DffR_2.vhd DffR_3.vhd DffR_5.vhd DffR_N.vhd EXMEMPipeline.vhd FetchLogic.vhd FirstDataPath.vhd IDEXPipeline.vhd IFIDPipeline.vhd InstMem.vhd LogicUnit.vhd MEMWBPipeline.vhd MIPS_Processor.vhd OnesComp.vhd PC.vhd RegFile.vhd andg2.vhd andg2_N.vhd barrelShifter.vhd bitExtension.vhd control.vhd decoder5t32.vhd dffg.vhd invg.vhd mem.vhd mux2t1.vhd mux2t1_5.vhd mux2t1_N.vhd mux2t1data.vhd mux32t1.vhd mux4t1.vhd mux8t1.vhd norg2_N.vhd org2.vhd org2_N.vhd pipeline_test.vhd tb.vhd tb_pipeline_test.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity ALU
+# -- Compiling architecture structure of ALU
+# -- Compiling entity AdderH
+# -- Compiling architecture structure of AdderH
+# -- Compiling entity AdderH_n
+# -- Compiling architecture structural of AdderH_n
+# -- Compiling entity AdderSub_N
+# -- Compiling architecture structure of AdderSub_N
+# -- Compiling entity DffR_2
+# -- Compiling architecture structural of DffR_2
+# -- Compiling entity DffR_3
+# -- Compiling architecture structural of DffR_3
+# -- Compiling entity DffR_5
+# -- Compiling architecture structural of DffR_5
+# -- Compiling entity DffR_N
+# -- Compiling architecture structural of DffR_N
+# -- Compiling entity EXMEMPipeline
+# -- Compiling architecture mixed of EXMEMPipeline
+# -- Compiling entity FetchLogic
+# -- Compiling architecture structure of FetchLogic
+# -- Compiling entity FirstDataPath
+# -- Compiling architecture structure of FirstDataPath
+# -- Compiling entity IDEXPipeline
+# -- Compiling architecture mixed of IDEXPipeline
+# -- Compiling entity IFIDPipeline
+# -- Compiling architecture mixed of IFIDPipeline
+# -- Loading package NUMERIC_STD
+# -- Compiling entity InstMem
+# -- Compiling architecture rtl of InstMem
+# -- Compiling entity LogicUnit
+# -- Compiling architecture structure of LogicUnit
+# -- Compiling entity MEMWBPipeline
+# -- Compiling architecture mixed of MEMWBPipeline
+# -- Compiling entity MIPS_Processor
+# -- Compiling architecture structure of MIPS_Processor
+# -- Compiling entity OnesComp
+# -- Compiling architecture structural of OnesComp
+# -- Compiling entity PC
+# -- Compiling architecture structural of PC
+# -- Compiling entity RegFile
+# -- Compiling architecture structural of RegFile
+# -- Compiling entity andg2
+# -- Compiling architecture dataflow of andg2
+# -- Compiling entity andg2_N
+# -- Compiling architecture structural of andg2_N
+# -- Compiling entity barrelShifter
+# -- Compiling architecture structural of barrelShifter
+# -- Compiling entity bitExtension
+# -- Compiling architecture structural of bitExtension
+# -- Compiling entity control
+# -- Compiling architecture structural of control
+# -- Compiling entity decoder5t32
+# -- Compiling architecture structure of decoder5t32
+# -- Compiling entity dffg
+# -- Compiling architecture mixed of dffg
+# -- Compiling entity invg
+# -- Compiling architecture dataflow of invg
+# -- Compiling entity mem
+# -- Compiling architecture rtl of mem
+# -- Compiling entity mux2t1
+# -- Compiling architecture structure of mux2t1
+# -- Compiling entity mux2t1_5
+# -- Compiling architecture structural of mux2t1_5
+# -- Compiling entity mux2t1_N
+# -- Compiling architecture structural of mux2t1_N
+# -- Compiling entity mux2t1data
+# -- Compiling architecture dataflow of mux2t1data
+# -- Compiling entity mux32t1
+# -- Compiling architecture structure of mux32t1
+# -- Compiling entity mux4t1
+# -- Compiling architecture structure of mux4t1
+# -- Compiling entity mux8t1
+# -- Compiling architecture structure of mux8t1
+# -- Compiling entity norg2_N
+# -- Compiling architecture structural of norg2_N
+# -- Compiling entity org2
+# -- Compiling architecture dataflow of org2
+# -- Compiling entity org2_N
+# -- Compiling architecture structural of org2_N
+# -- Compiling entity pipeline_test
+# -- Compiling architecture structure of pipeline_test
+# -- Loading package std_logic_textio
+# -- Loading package ENV
+# -- Compiling entity tb
+# -- Compiling architecture mixed of tb
+# -- Compiling entity tb_pipeline_test
+# -- Compiling architecture mixed of tb_barrel_shifter
+# ** Error: (vcom-11) Could not find work.tb_barrel_shifter.
+# ** Note: tb_pipeline_test.vhd(23): VHDL Compiler exiting
+# End time: 12:12:16 on Dec 08,2021, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+# /usr/local/mentor/questasim/linux_x86_64/vcom failed.
+vcom -2008 -work work *.vhd
+# QuestaSim-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 12:13:09 on Dec 08,2021
+# vcom -reportprogress 300 -2008 -work work ALU.vhd AdderH.vhd AdderH_n.vhd AdderSub.vhd DffR_2.vhd DffR_3.vhd DffR_5.vhd DffR_N.vhd EXMEMPipeline.vhd FetchLogic.vhd FirstDataPath.vhd IDEXPipeline.vhd IFIDPipeline.vhd InstMem.vhd LogicUnit.vhd MEMWBPipeline.vhd MIPS_Processor.vhd OnesComp.vhd PC.vhd RegFile.vhd andg2.vhd andg2_N.vhd barrelShifter.vhd bitExtension.vhd control.vhd decoder5t32.vhd dffg.vhd invg.vhd mem.vhd mux2t1.vhd mux2t1_5.vhd mux2t1_N.vhd mux2t1data.vhd mux32t1.vhd mux4t1.vhd mux8t1.vhd norg2_N.vhd org2.vhd org2_N.vhd pipeline_test.vhd tb.vhd tb_pipeline_test.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity ALU
+# -- Compiling architecture structure of ALU
+# -- Compiling entity AdderH
+# -- Compiling architecture structure of AdderH
+# -- Compiling entity AdderH_n
+# -- Compiling architecture structural of AdderH_n
+# -- Compiling entity AdderSub_N
+# -- Compiling architecture structure of AdderSub_N
+# -- Compiling entity DffR_2
+# -- Compiling architecture structural of DffR_2
+# -- Compiling entity DffR_3
+# -- Compiling architecture structural of DffR_3
+# -- Compiling entity DffR_5
+# -- Compiling architecture structural of DffR_5
+# -- Compiling entity DffR_N
+# -- Compiling architecture structural of DffR_N
+# -- Compiling entity EXMEMPipeline
+# -- Compiling architecture mixed of EXMEMPipeline
+# -- Compiling entity FetchLogic
+# -- Compiling architecture structure of FetchLogic
+# -- Compiling entity FirstDataPath
+# -- Compiling architecture structure of FirstDataPath
+# -- Compiling entity IDEXPipeline
+# -- Compiling architecture mixed of IDEXPipeline
+# -- Compiling entity IFIDPipeline
+# -- Compiling architecture mixed of IFIDPipeline
+# -- Loading package NUMERIC_STD
+# -- Compiling entity InstMem
+# -- Compiling architecture rtl of InstMem
+# -- Compiling entity LogicUnit
+# -- Compiling architecture structure of LogicUnit
+# -- Compiling entity MEMWBPipeline
+# -- Compiling architecture mixed of MEMWBPipeline
+# -- Compiling entity MIPS_Processor
+# -- Compiling architecture structure of MIPS_Processor
+# -- Compiling entity OnesComp
+# -- Compiling architecture structural of OnesComp
+# -- Compiling entity PC
+# -- Compiling architecture structural of PC
+# -- Compiling entity RegFile
+# -- Compiling architecture structural of RegFile
+# -- Compiling entity andg2
+# -- Compiling architecture dataflow of andg2
+# -- Compiling entity andg2_N
+# -- Compiling architecture structural of andg2_N
+# -- Compiling entity barrelShifter
+# -- Compiling architecture structural of barrelShifter
+# -- Compiling entity bitExtension
+# -- Compiling architecture structural of bitExtension
+# -- Compiling entity control
+# -- Compiling architecture structural of control
+# -- Compiling entity decoder5t32
+# -- Compiling architecture structure of decoder5t32
+# -- Compiling entity dffg
+# -- Compiling architecture mixed of dffg
+# -- Compiling entity invg
+# -- Compiling architecture dataflow of invg
+# -- Compiling entity mem
+# -- Compiling architecture rtl of mem
+# -- Compiling entity mux2t1
+# -- Compiling architecture structure of mux2t1
+# -- Compiling entity mux2t1_5
+# -- Compiling architecture structural of mux2t1_5
+# -- Compiling entity mux2t1_N
+# -- Compiling architecture structural of mux2t1_N
+# -- Compiling entity mux2t1data
+# -- Compiling architecture dataflow of mux2t1data
+# -- Compiling entity mux32t1
+# -- Compiling architecture structure of mux32t1
+# -- Compiling entity mux4t1
+# -- Compiling architecture structure of mux4t1
+# -- Compiling entity mux8t1
+# -- Compiling architecture structure of mux8t1
+# -- Compiling entity norg2_N
+# -- Compiling architecture structural of norg2_N
+# -- Compiling entity org2
+# -- Compiling architecture dataflow of org2
+# -- Compiling entity org2_N
+# -- Compiling architecture structural of org2_N
+# -- Compiling entity pipeline_test
+# -- Compiling architecture structure of pipeline_test
+# -- Loading package std_logic_textio
+# -- Loading package ENV
+# -- Compiling entity tb
+# -- Compiling architecture mixed of tb
+# -- Compiling entity tb_pipeline_test
+# -- Compiling architecture mixed of tb_pipeline_test
+# ** Error: tb_pipeline_test.vhd(76): Signal "s_iInst" is type ieee.std_logic_1164.STD_LOGIC; expecting type ieee.std_logic_1164.STD_LOGIC_VECTOR.
+# ** Error: tb_pipeline_test.vhd(109): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(109): (vcom-1136) Unknown identifier "iIFIDStall".
+# ** Error: tb_pipeline_test.vhd(110): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(110): (vcom-1136) Unknown identifier "iIDEXStall".
+# ** Error: tb_pipeline_test.vhd(111): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(111): (vcom-1136) Unknown identifier "iMEMWBStall".
+# ** Error: tb_pipeline_test.vhd(112): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(112): (vcom-1136) Unknown identifier "iEXMEMStall".
+# ** Error: tb_pipeline_test.vhd(113): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(113): (vcom-1136) Unknown identifier "iIFIDFlush".
+# ** Error: tb_pipeline_test.vhd(114): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(114): (vcom-1136) Unknown identifier "iIDEXFlush".
+# ** Error: tb_pipeline_test.vhd(115): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(115): (vcom-1136) Unknown identifier "iMEMWBFlush".
+# ** Error: tb_pipeline_test.vhd(116): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(116): (vcom-1136) Unknown identifier "iEXMEMFlush".
+# ** Error: tb_pipeline_test.vhd(117): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(117): (vcom-1136) Unknown identifier "iInst".
+# ** Error: tb_pipeline_test.vhd(121): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(121): (vcom-1136) Unknown identifier "iIFIDStall".
+# ** Error: tb_pipeline_test.vhd(122): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(122): (vcom-1136) Unknown identifier "iIDEXStall".
+# ** Error: tb_pipeline_test.vhd(123): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(123): (vcom-1136) Unknown identifier "iMEMWBStall".
+# ** Error: tb_pipeline_test.vhd(124): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(124): (vcom-1136) Unknown identifier "iEXMEMStall".
+# ** Error: tb_pipeline_test.vhd(125): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(125): (vcom-1136) Unknown identifier "iIFIDFlush".
+# ** Error: tb_pipeline_test.vhd(126): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(126): (vcom-1136) Unknown identifier "iIDEXFlush".
+# ** Error: tb_pipeline_test.vhd(127): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(127): (vcom-1136) Unknown identifier "iMEMWBFlush".
+# ** Error: tb_pipeline_test.vhd(128): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(128): (vcom-1136) Unknown identifier "iEXMEMFlush".
+# ** Error: tb_pipeline_test.vhd(129): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(129): (vcom-1136) Unknown identifier "iInst".
+# ** Error: tb_pipeline_test.vhd(133): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(133): (vcom-1136) Unknown identifier "iIFIDStall".
+# ** Error: tb_pipeline_test.vhd(134): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(134): (vcom-1136) Unknown identifier "iIDEXStall".
+# ** Error: tb_pipeline_test.vhd(135): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(135): (vcom-1136) Unknown identifier "iMEMWBStall".
+# ** Error: tb_pipeline_test.vhd(136): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(136): (vcom-1136) Unknown identifier "iEXMEMStall".
+# ** Error: tb_pipeline_test.vhd(137): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(137): (vcom-1136) Unknown identifier "iIFIDFlush".
+# ** Error: tb_pipeline_test.vhd(138): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(138): (vcom-1136) Unknown identifier "iIDEXFlush".
+# ** Error: tb_pipeline_test.vhd(139): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(139): (vcom-1136) Unknown identifier "iMEMWBFlush".
+# ** Error: tb_pipeline_test.vhd(140): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(140): (vcom-1136) Unknown identifier "iEXMEMFlush".
+# ** Error: tb_pipeline_test.vhd(141): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(141): (vcom-1136) Unknown identifier "iInst".
+# ** Error: tb_pipeline_test.vhd(145): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(145): (vcom-1136) Unknown identifier "iIFIDStall".
+# ** Error: tb_pipeline_test.vhd(146): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(146): (vcom-1136) Unknown identifier "iIDEXStall".
+# ** Error: tb_pipeline_test.vhd(147): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(147): (vcom-1136) Unknown identifier "iMEMWBStall".
+# ** Error: tb_pipeline_test.vhd(148): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(148): (vcom-1136) Unknown identifier "iEXMEMStall".
+# ** Error: tb_pipeline_test.vhd(149): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(149): (vcom-1136) Unknown identifier "iIFIDFlush".
+# ** Error: tb_pipeline_test.vhd(150): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(150): (vcom-1136) Unknown identifier "iIDEXFlush".
+# ** Error: tb_pipeline_test.vhd(151): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(151): (vcom-1136) Unknown identifier "iMEMWBFlush".
+# ** Error: tb_pipeline_test.vhd(152): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(152): (vcom-1136) Unknown identifier "iEXMEMFlush".
+# ** Error: tb_pipeline_test.vhd(153): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(153): (vcom-1136) Unknown identifier "iInst".
+# ** Error: tb_pipeline_test.vhd(157): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(157): (vcom-1136) Unknown identifier "iIFIDStall".
+# ** Error: tb_pipeline_test.vhd(158): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(158): (vcom-1136) Unknown identifier "iIDEXStall".
+# ** Error: tb_pipeline_test.vhd(159): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(159): (vcom-1136) Unknown identifier "iMEMWBStall".
+# ** Error: tb_pipeline_test.vhd(160): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(160): (vcom-1136) Unknown identifier "iEXMEMStall".
+# ** Error: tb_pipeline_test.vhd(161): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(161): (vcom-1136) Unknown identifier "iIFIDFlush".
+# ** Error: tb_pipeline_test.vhd(162): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(162): (vcom-1136) Unknown identifier "iIDEXFlush".
+# ** Error: tb_pipeline_test.vhd(163): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(163): (vcom-1136) Unknown identifier "iMEMWBFlush".
+# ** Error: tb_pipeline_test.vhd(164): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(164): (vcom-1136) Unknown identifier "iEXMEMFlush".
+# ** Error: tb_pipeline_test.vhd(165): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(165): (vcom-1136) Unknown identifier "iInst".
+# ** Error: tb_pipeline_test.vhd(169): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(169): (vcom-1136) Unknown identifier "iIFIDStall".
+# ** Error: tb_pipeline_test.vhd(170): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(170): (vcom-1136) Unknown identifier "iIDEXStall".
+# ** Error: tb_pipeline_test.vhd(171): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(171): (vcom-1136) Unknown identifier "iMEMWBStall".
+# ** Error: tb_pipeline_test.vhd(172): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(172): (vcom-1136) Unknown identifier "iEXMEMStall".
+# ** Error: tb_pipeline_test.vhd(173): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(173): (vcom-1136) Unknown identifier "iIFIDFlush".
+# ** Error: tb_pipeline_test.vhd(174): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(174): (vcom-1136) Unknown identifier "iIDEXFlush".
+# ** Error: tb_pipeline_test.vhd(175): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(175): (vcom-1136) Unknown identifier "iMEMWBFlush".
+# ** Error: tb_pipeline_test.vhd(176): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(176): (vcom-1136) Unknown identifier "iEXMEMFlush".
+# ** Error: tb_pipeline_test.vhd(177): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(177): (vcom-1136) Unknown identifier "iInst".
+# ** Error: tb_pipeline_test.vhd(181): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(181): (vcom-1136) Unknown identifier "iIFIDStall".
+# ** Error: tb_pipeline_test.vhd(182): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(182): (vcom-1136) Unknown identifier "iIDEXStall".
+# ** Error: tb_pipeline_test.vhd(183): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(183): (vcom-1136) Unknown identifier "iMEMWBStall".
+# ** Error: tb_pipeline_test.vhd(184): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(184): (vcom-1136) Unknown identifier "iEXMEMStall".
+# ** Error: tb_pipeline_test.vhd(185): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(185): (vcom-1136) Unknown identifier "iIFIDFlush".
+# ** Error: tb_pipeline_test.vhd(186): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(186): (vcom-1136) Unknown identifier "iIDEXFlush".
+# ** Error: tb_pipeline_test.vhd(187): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(187): (vcom-1136) Unknown identifier "iMEMWBFlush".
+# ** Error: tb_pipeline_test.vhd(188): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(188): (vcom-1136) Unknown identifier "iEXMEMFlush".
+# ** Error: tb_pipeline_test.vhd(189): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(189): (vcom-1136) Unknown identifier "iInst".
+# ** Error: tb_pipeline_test.vhd(193): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(193): (vcom-1136) Unknown identifier "iIFIDStall".
+# ** Error: tb_pipeline_test.vhd(194): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(194): (vcom-1136) Unknown identifier "iIDEXStall".
+# ** Error: tb_pipeline_test.vhd(195): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(195): (vcom-1136) Unknown identifier "iMEMWBStall".
+# ** Error: tb_pipeline_test.vhd(196): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(196): (vcom-1136) Unknown identifier "iEXMEMStall".
+# ** Error: tb_pipeline_test.vhd(197): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(197): (vcom-1136) Unknown identifier "iIFIDFlush".
+# ** Error: tb_pipeline_test.vhd(198): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(198): (vcom-1136) Unknown identifier "iIDEXFlush".
+# ** Error: tb_pipeline_test.vhd(199): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(199): (vcom-1136) Unknown identifier "iMEMWBFlush".
+# ** Error: tb_pipeline_test.vhd(200): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(200): (vcom-1136) Unknown identifier "iEXMEMFlush".
+# ** Error: tb_pipeline_test.vhd(201): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(201): (vcom-1136) Unknown identifier "iInst".
+# ** Error: tb_pipeline_test.vhd(76): (vcom-1035) Formal port "iCLK" has OPEN or no actual associated with it.
+# ** Note: tb_pipeline_test.vhd(206): VHDL Compiler exiting
+# End time: 12:13:09 on Dec 08,2021, Elapsed time: 0:00:00
+# Errors: 146, Warnings: 0
+# /usr/local/mentor/questasim/linux_x86_64/vcom failed.
+vcom -2008 -work work *.vhd
+# QuestaSim-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 12:14:12 on Dec 08,2021
+# vcom -reportprogress 300 -2008 -work work ALU.vhd AdderH.vhd AdderH_n.vhd AdderSub.vhd DffR_2.vhd DffR_3.vhd DffR_5.vhd DffR_N.vhd EXMEMPipeline.vhd FetchLogic.vhd FirstDataPath.vhd IDEXPipeline.vhd IFIDPipeline.vhd InstMem.vhd LogicUnit.vhd MEMWBPipeline.vhd MIPS_Processor.vhd OnesComp.vhd PC.vhd RegFile.vhd andg2.vhd andg2_N.vhd barrelShifter.vhd bitExtension.vhd control.vhd decoder5t32.vhd dffg.vhd invg.vhd mem.vhd mux2t1.vhd mux2t1_5.vhd mux2t1_N.vhd mux2t1data.vhd mux32t1.vhd mux4t1.vhd mux8t1.vhd norg2_N.vhd org2.vhd org2_N.vhd pipeline_test.vhd tb.vhd tb_pipeline_test.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity ALU
+# -- Compiling architecture structure of ALU
+# -- Compiling entity AdderH
+# -- Compiling architecture structure of AdderH
+# -- Compiling entity AdderH_n
+# -- Compiling architecture structural of AdderH_n
+# -- Compiling entity AdderSub_N
+# -- Compiling architecture structure of AdderSub_N
+# -- Compiling entity DffR_2
+# -- Compiling architecture structural of DffR_2
+# -- Compiling entity DffR_3
+# -- Compiling architecture structural of DffR_3
+# -- Compiling entity DffR_5
+# -- Compiling architecture structural of DffR_5
+# -- Compiling entity DffR_N
+# -- Compiling architecture structural of DffR_N
+# -- Compiling entity EXMEMPipeline
+# -- Compiling architecture mixed of EXMEMPipeline
+# -- Compiling entity FetchLogic
+# -- Compiling architecture structure of FetchLogic
+# -- Compiling entity FirstDataPath
+# -- Compiling architecture structure of FirstDataPath
+# -- Compiling entity IDEXPipeline
+# -- Compiling architecture mixed of IDEXPipeline
+# -- Compiling entity IFIDPipeline
+# -- Compiling architecture mixed of IFIDPipeline
+# -- Loading package NUMERIC_STD
+# -- Compiling entity InstMem
+# -- Compiling architecture rtl of InstMem
+# -- Compiling entity LogicUnit
+# -- Compiling architecture structure of LogicUnit
+# -- Compiling entity MEMWBPipeline
+# -- Compiling architecture mixed of MEMWBPipeline
+# -- Compiling entity MIPS_Processor
+# -- Compiling architecture structure of MIPS_Processor
+# -- Compiling entity OnesComp
+# -- Compiling architecture structural of OnesComp
+# -- Compiling entity PC
+# -- Compiling architecture structural of PC
+# -- Compiling entity RegFile
+# -- Compiling architecture structural of RegFile
+# -- Compiling entity andg2
+# -- Compiling architecture dataflow of andg2
+# -- Compiling entity andg2_N
+# -- Compiling architecture structural of andg2_N
+# -- Compiling entity barrelShifter
+# -- Compiling architecture structural of barrelShifter
+# -- Compiling entity bitExtension
+# -- Compiling architecture structural of bitExtension
+# -- Compiling entity control
+# -- Compiling architecture structural of control
+# -- Compiling entity decoder5t32
+# -- Compiling architecture structure of decoder5t32
+# -- Compiling entity dffg
+# -- Compiling architecture mixed of dffg
+# -- Compiling entity invg
+# -- Compiling architecture dataflow of invg
+# -- Compiling entity mem
+# -- Compiling architecture rtl of mem
+# -- Compiling entity mux2t1
+# -- Compiling architecture structure of mux2t1
+# -- Compiling entity mux2t1_5
+# -- Compiling architecture structural of mux2t1_5
+# -- Compiling entity mux2t1_N
+# -- Compiling architecture structural of mux2t1_N
+# -- Compiling entity mux2t1data
+# -- Compiling architecture dataflow of mux2t1data
+# -- Compiling entity mux32t1
+# -- Compiling architecture structure of mux32t1
+# -- Compiling entity mux4t1
+# -- Compiling architecture structure of mux4t1
+# -- Compiling entity mux8t1
+# -- Compiling architecture structure of mux8t1
+# -- Compiling entity norg2_N
+# -- Compiling architecture structural of norg2_N
+# -- Compiling entity org2
+# -- Compiling architecture dataflow of org2
+# -- Compiling entity org2_N
+# -- Compiling architecture structural of org2_N
+# -- Compiling entity pipeline_test
+# -- Compiling architecture structure of pipeline_test
+# -- Loading package std_logic_textio
+# -- Loading package ENV
+# -- Compiling entity tb
+# -- Compiling architecture mixed of tb
+# -- Compiling entity tb_pipeline_test
+# -- Compiling architecture mixed of tb_pipeline_test
+# ** Error: tb_pipeline_test.vhd(109): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(109): (vcom-1136) Unknown identifier "iIFIDStall".
+# ** Error: tb_pipeline_test.vhd(110): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(110): (vcom-1136) Unknown identifier "iIDEXStall".
+# ** Error: tb_pipeline_test.vhd(111): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(111): (vcom-1136) Unknown identifier "iMEMWBStall".
+# ** Error: tb_pipeline_test.vhd(112): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(112): (vcom-1136) Unknown identifier "iEXMEMStall".
+# ** Error: tb_pipeline_test.vhd(113): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(113): (vcom-1136) Unknown identifier "iIFIDFlush".
+# ** Error: tb_pipeline_test.vhd(114): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(114): (vcom-1136) Unknown identifier "iIDEXFlush".
+# ** Error: tb_pipeline_test.vhd(115): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(115): (vcom-1136) Unknown identifier "iMEMWBFlush".
+# ** Error: tb_pipeline_test.vhd(116): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(116): (vcom-1136) Unknown identifier "iEXMEMFlush".
+# ** Error: tb_pipeline_test.vhd(117): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(117): (vcom-1136) Unknown identifier "iInst".
+# ** Error: tb_pipeline_test.vhd(121): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(121): (vcom-1136) Unknown identifier "iIFIDStall".
+# ** Error: tb_pipeline_test.vhd(122): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(122): (vcom-1136) Unknown identifier "iIDEXStall".
+# ** Error: tb_pipeline_test.vhd(123): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(123): (vcom-1136) Unknown identifier "iMEMWBStall".
+# ** Error: tb_pipeline_test.vhd(124): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(124): (vcom-1136) Unknown identifier "iEXMEMStall".
+# ** Error: tb_pipeline_test.vhd(125): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(125): (vcom-1136) Unknown identifier "iIFIDFlush".
+# ** Error: tb_pipeline_test.vhd(126): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(126): (vcom-1136) Unknown identifier "iIDEXFlush".
+# ** Error: tb_pipeline_test.vhd(127): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(127): (vcom-1136) Unknown identifier "iMEMWBFlush".
+# ** Error: tb_pipeline_test.vhd(128): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(128): (vcom-1136) Unknown identifier "iEXMEMFlush".
+# ** Error: tb_pipeline_test.vhd(129): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(129): (vcom-1136) Unknown identifier "iInst".
+# ** Error: tb_pipeline_test.vhd(133): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(133): (vcom-1136) Unknown identifier "iIFIDStall".
+# ** Error: tb_pipeline_test.vhd(134): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(134): (vcom-1136) Unknown identifier "iIDEXStall".
+# ** Error: tb_pipeline_test.vhd(135): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(135): (vcom-1136) Unknown identifier "iMEMWBStall".
+# ** Error: tb_pipeline_test.vhd(136): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(136): (vcom-1136) Unknown identifier "iEXMEMStall".
+# ** Error: tb_pipeline_test.vhd(137): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(137): (vcom-1136) Unknown identifier "iIFIDFlush".
+# ** Error: tb_pipeline_test.vhd(138): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(138): (vcom-1136) Unknown identifier "iIDEXFlush".
+# ** Error: tb_pipeline_test.vhd(139): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(139): (vcom-1136) Unknown identifier "iMEMWBFlush".
+# ** Error: tb_pipeline_test.vhd(140): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(140): (vcom-1136) Unknown identifier "iEXMEMFlush".
+# ** Error: tb_pipeline_test.vhd(141): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(141): (vcom-1136) Unknown identifier "iInst".
+# ** Error: tb_pipeline_test.vhd(145): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(145): (vcom-1136) Unknown identifier "iIFIDStall".
+# ** Error: tb_pipeline_test.vhd(146): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(146): (vcom-1136) Unknown identifier "iIDEXStall".
+# ** Error: tb_pipeline_test.vhd(147): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(147): (vcom-1136) Unknown identifier "iMEMWBStall".
+# ** Error: tb_pipeline_test.vhd(148): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(148): (vcom-1136) Unknown identifier "iEXMEMStall".
+# ** Error: tb_pipeline_test.vhd(149): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(149): (vcom-1136) Unknown identifier "iIFIDFlush".
+# ** Error: tb_pipeline_test.vhd(150): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(150): (vcom-1136) Unknown identifier "iIDEXFlush".
+# ** Error: tb_pipeline_test.vhd(151): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(151): (vcom-1136) Unknown identifier "iMEMWBFlush".
+# ** Error: tb_pipeline_test.vhd(152): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(152): (vcom-1136) Unknown identifier "iEXMEMFlush".
+# ** Error: tb_pipeline_test.vhd(153): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(153): (vcom-1136) Unknown identifier "iInst".
+# ** Error: tb_pipeline_test.vhd(157): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(157): (vcom-1136) Unknown identifier "iIFIDStall".
+# ** Error: tb_pipeline_test.vhd(158): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(158): (vcom-1136) Unknown identifier "iIDEXStall".
+# ** Error: tb_pipeline_test.vhd(159): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(159): (vcom-1136) Unknown identifier "iMEMWBStall".
+# ** Error: tb_pipeline_test.vhd(160): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(160): (vcom-1136) Unknown identifier "iEXMEMStall".
+# ** Error: tb_pipeline_test.vhd(161): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(161): (vcom-1136) Unknown identifier "iIFIDFlush".
+# ** Error: tb_pipeline_test.vhd(162): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(162): (vcom-1136) Unknown identifier "iIDEXFlush".
+# ** Error: tb_pipeline_test.vhd(163): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(163): (vcom-1136) Unknown identifier "iMEMWBFlush".
+# ** Error: tb_pipeline_test.vhd(164): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(164): (vcom-1136) Unknown identifier "iEXMEMFlush".
+# ** Error: tb_pipeline_test.vhd(165): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(165): (vcom-1136) Unknown identifier "iInst".
+# ** Error: tb_pipeline_test.vhd(169): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(169): (vcom-1136) Unknown identifier "iIFIDStall".
+# ** Error: tb_pipeline_test.vhd(170): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(170): (vcom-1136) Unknown identifier "iIDEXStall".
+# ** Error: tb_pipeline_test.vhd(171): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(171): (vcom-1136) Unknown identifier "iMEMWBStall".
+# ** Error: tb_pipeline_test.vhd(172): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(172): (vcom-1136) Unknown identifier "iEXMEMStall".
+# ** Error: tb_pipeline_test.vhd(173): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(173): (vcom-1136) Unknown identifier "iIFIDFlush".
+# ** Error: tb_pipeline_test.vhd(174): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(174): (vcom-1136) Unknown identifier "iIDEXFlush".
+# ** Error: tb_pipeline_test.vhd(175): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(175): (vcom-1136) Unknown identifier "iMEMWBFlush".
+# ** Error: tb_pipeline_test.vhd(176): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(176): (vcom-1136) Unknown identifier "iEXMEMFlush".
+# ** Error: tb_pipeline_test.vhd(177): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(177): (vcom-1136) Unknown identifier "iInst".
+# ** Error: tb_pipeline_test.vhd(181): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(181): (vcom-1136) Unknown identifier "iIFIDStall".
+# ** Error: tb_pipeline_test.vhd(182): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(182): (vcom-1136) Unknown identifier "iIDEXStall".
+# ** Error: tb_pipeline_test.vhd(183): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(183): (vcom-1136) Unknown identifier "iMEMWBStall".
+# ** Error: tb_pipeline_test.vhd(184): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(184): (vcom-1136) Unknown identifier "iEXMEMStall".
+# ** Error: tb_pipeline_test.vhd(185): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(185): (vcom-1136) Unknown identifier "iIFIDFlush".
+# ** Error: tb_pipeline_test.vhd(186): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(186): (vcom-1136) Unknown identifier "iIDEXFlush".
+# ** Error: tb_pipeline_test.vhd(187): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(187): (vcom-1136) Unknown identifier "iMEMWBFlush".
+# ** Error: tb_pipeline_test.vhd(188): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(188): (vcom-1136) Unknown identifier "iEXMEMFlush".
+# ** Error: tb_pipeline_test.vhd(189): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(189): (vcom-1136) Unknown identifier "iInst".
+# ** Error: tb_pipeline_test.vhd(193): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(193): (vcom-1136) Unknown identifier "iIFIDStall".
+# ** Error: tb_pipeline_test.vhd(194): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(194): (vcom-1136) Unknown identifier "iIDEXStall".
+# ** Error: tb_pipeline_test.vhd(195): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(195): (vcom-1136) Unknown identifier "iMEMWBStall".
+# ** Error: tb_pipeline_test.vhd(196): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(196): (vcom-1136) Unknown identifier "iEXMEMStall".
+# ** Error: tb_pipeline_test.vhd(197): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(197): (vcom-1136) Unknown identifier "iIFIDFlush".
+# ** Error: tb_pipeline_test.vhd(198): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(198): (vcom-1136) Unknown identifier "iIDEXFlush".
+# ** Error: tb_pipeline_test.vhd(199): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(199): (vcom-1136) Unknown identifier "iMEMWBFlush".
+# ** Error: tb_pipeline_test.vhd(200): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(200): (vcom-1136) Unknown identifier "iEXMEMFlush".
+# ** Error: tb_pipeline_test.vhd(201): Illegal target for signal assignment.
+# ** Error: tb_pipeline_test.vhd(201): (vcom-1136) Unknown identifier "iInst".
+# ** Error: tb_pipeline_test.vhd(76): (vcom-1035) Formal port "iCLK" has OPEN or no actual associated with it.
+# ** Note: tb_pipeline_test.vhd(206): VHDL Compiler exiting
+# End time: 12:14:12 on Dec 08,2021, Elapsed time: 0:00:00
+# Errors: 145, Warnings: 0
+# /usr/local/mentor/questasim/linux_x86_64/vcom failed.
+vcom -2008 -work work *.vhd
+# QuestaSim-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 12:19:54 on Dec 08,2021
+# vcom -reportprogress 300 -2008 -work work ALU.vhd AdderH.vhd AdderH_n.vhd AdderSub.vhd DffR_2.vhd DffR_3.vhd DffR_5.vhd DffR_N.vhd EXMEMPipeline.vhd FetchLogic.vhd FirstDataPath.vhd IDEXPipeline.vhd IFIDPipeline.vhd InstMem.vhd LogicUnit.vhd MEMWBPipeline.vhd MIPS_Processor.vhd OnesComp.vhd PC.vhd RegFile.vhd andg2.vhd andg2_N.vhd barrelShifter.vhd bitExtension.vhd control.vhd decoder5t32.vhd dffg.vhd invg.vhd mem.vhd mux2t1.vhd mux2t1_5.vhd mux2t1_N.vhd mux2t1data.vhd mux32t1.vhd mux4t1.vhd mux8t1.vhd norg2_N.vhd org2.vhd org2_N.vhd pipeline_test.vhd tb.vhd tb_pipeline_test.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity ALU
+# -- Compiling architecture structure of ALU
+# -- Compiling entity AdderH
+# -- Compiling architecture structure of AdderH
+# -- Compiling entity AdderH_n
+# -- Compiling architecture structural of AdderH_n
+# -- Compiling entity AdderSub_N
+# -- Compiling architecture structure of AdderSub_N
+# -- Compiling entity DffR_2
+# -- Compiling architecture structural of DffR_2
+# -- Compiling entity DffR_3
+# -- Compiling architecture structural of DffR_3
+# -- Compiling entity DffR_5
+# -- Compiling architecture structural of DffR_5
+# -- Compiling entity DffR_N
+# -- Compiling architecture structural of DffR_N
+# -- Compiling entity EXMEMPipeline
+# -- Compiling architecture mixed of EXMEMPipeline
+# -- Compiling entity FetchLogic
+# -- Compiling architecture structure of FetchLogic
+# -- Compiling entity FirstDataPath
+# -- Compiling architecture structure of FirstDataPath
+# -- Compiling entity IDEXPipeline
+# -- Compiling architecture mixed of IDEXPipeline
+# -- Compiling entity IFIDPipeline
+# -- Compiling architecture mixed of IFIDPipeline
+# -- Loading package NUMERIC_STD
+# -- Compiling entity InstMem
+# -- Compiling architecture rtl of InstMem
+# -- Compiling entity LogicUnit
+# -- Compiling architecture structure of LogicUnit
+# -- Compiling entity MEMWBPipeline
+# -- Compiling architecture mixed of MEMWBPipeline
+# -- Compiling entity MIPS_Processor
+# -- Compiling architecture structure of MIPS_Processor
+# -- Compiling entity OnesComp
+# -- Compiling architecture structural of OnesComp
+# -- Compiling entity PC
+# -- Compiling architecture structural of PC
+# -- Compiling entity RegFile
+# -- Compiling architecture structural of RegFile
+# -- Compiling entity andg2
+# -- Compiling architecture dataflow of andg2
+# -- Compiling entity andg2_N
+# -- Compiling architecture structural of andg2_N
+# -- Compiling entity barrelShifter
+# -- Compiling architecture structural of barrelShifter
+# -- Compiling entity bitExtension
+# -- Compiling architecture structural of bitExtension
+# -- Compiling entity control
+# -- Compiling architecture structural of control
+# -- Compiling entity decoder5t32
+# -- Compiling architecture structure of decoder5t32
+# -- Compiling entity dffg
+# -- Compiling architecture mixed of dffg
+# -- Compiling entity invg
+# -- Compiling architecture dataflow of invg
+# -- Compiling entity mem
+# -- Compiling architecture rtl of mem
+# -- Compiling entity mux2t1
+# -- Compiling architecture structure of mux2t1
+# -- Compiling entity mux2t1_5
+# -- Compiling architecture structural of mux2t1_5
+# -- Compiling entity mux2t1_N
+# -- Compiling architecture structural of mux2t1_N
+# -- Compiling entity mux2t1data
+# -- Compiling architecture dataflow of mux2t1data
+# -- Compiling entity mux32t1
+# -- Compiling architecture structure of mux32t1
+# -- Compiling entity mux4t1
+# -- Compiling architecture structure of mux4t1
+# -- Compiling entity mux8t1
+# -- Compiling architecture structure of mux8t1
+# -- Compiling entity norg2_N
+# -- Compiling architecture structural of norg2_N
+# -- Compiling entity org2
+# -- Compiling architecture dataflow of org2
+# -- Compiling entity org2_N
+# -- Compiling architecture structural of org2_N
+# -- Compiling entity pipeline_test
+# -- Compiling architecture structure of pipeline_test
+# -- Loading package std_logic_textio
+# -- Loading package ENV
+# -- Compiling entity tb
+# -- Compiling architecture mixed of tb
+# -- Compiling entity tb_pipeline_test
+# -- Compiling architecture mixed of tb_pipeline_test
+# ** Error: tb_pipeline_test.vhd(76): (vcom-1035) Formal port "iCLK" has OPEN or no actual associated with it.
+# ** Note: tb_pipeline_test.vhd(206): VHDL Compiler exiting
+# End time: 12:19:54 on Dec 08,2021, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+# /usr/local/mentor/questasim/linux_x86_64/vcom failed.
+vcom -2008 -work work *.vhd
+# QuestaSim-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 12:23:42 on Dec 08,2021
+# vcom -reportprogress 300 -2008 -work work ALU.vhd AdderH.vhd AdderH_n.vhd AdderSub.vhd DffR_2.vhd DffR_3.vhd DffR_5.vhd DffR_N.vhd EXMEMPipeline.vhd FetchLogic.vhd FirstDataPath.vhd IDEXPipeline.vhd IFIDPipeline.vhd InstMem.vhd LogicUnit.vhd MEMWBPipeline.vhd MIPS_Processor.vhd OnesComp.vhd PC.vhd RegFile.vhd andg2.vhd andg2_N.vhd barrelShifter.vhd bitExtension.vhd control.vhd decoder5t32.vhd dffg.vhd invg.vhd mem.vhd mux2t1.vhd mux2t1_5.vhd mux2t1_N.vhd mux2t1data.vhd mux32t1.vhd mux4t1.vhd mux8t1.vhd norg2_N.vhd org2.vhd org2_N.vhd pipeline_test.vhd tb.vhd tb_pipeline_test.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity ALU
+# -- Compiling architecture structure of ALU
+# -- Compiling entity AdderH
+# -- Compiling architecture structure of AdderH
+# -- Compiling entity AdderH_n
+# -- Compiling architecture structural of AdderH_n
+# -- Compiling entity AdderSub_N
+# -- Compiling architecture structure of AdderSub_N
+# -- Compiling entity DffR_2
+# -- Compiling architecture structural of DffR_2
+# -- Compiling entity DffR_3
+# -- Compiling architecture structural of DffR_3
+# -- Compiling entity DffR_5
+# -- Compiling architecture structural of DffR_5
+# -- Compiling entity DffR_N
+# -- Compiling architecture structural of DffR_N
+# -- Compiling entity EXMEMPipeline
+# -- Compiling architecture mixed of EXMEMPipeline
+# -- Compiling entity FetchLogic
+# -- Compiling architecture structure of FetchLogic
+# -- Compiling entity FirstDataPath
+# -- Compiling architecture structure of FirstDataPath
+# -- Compiling entity IDEXPipeline
+# -- Compiling architecture mixed of IDEXPipeline
+# -- Compiling entity IFIDPipeline
+# -- Compiling architecture mixed of IFIDPipeline
+# -- Loading package NUMERIC_STD
+# -- Compiling entity InstMem
+# -- Compiling architecture rtl of InstMem
+# -- Compiling entity LogicUnit
+# -- Compiling architecture structure of LogicUnit
+# -- Compiling entity MEMWBPipeline
+# -- Compiling architecture mixed of MEMWBPipeline
+# -- Compiling entity MIPS_Processor
+# -- Compiling architecture structure of MIPS_Processor
+# -- Compiling entity OnesComp
+# -- Compiling architecture structural of OnesComp
+# -- Compiling entity PC
+# -- Compiling architecture structural of PC
+# -- Compiling entity RegFile
+# -- Compiling architecture structural of RegFile
+# -- Compiling entity andg2
+# -- Compiling architecture dataflow of andg2
+# -- Compiling entity andg2_N
+# -- Compiling architecture structural of andg2_N
+# -- Compiling entity barrelShifter
+# -- Compiling architecture structural of barrelShifter
+# -- Compiling entity bitExtension
+# -- Compiling architecture structural of bitExtension
+# -- Compiling entity control
+# -- Compiling architecture structural of control
+# -- Compiling entity decoder5t32
+# -- Compiling architecture structure of decoder5t32
+# -- Compiling entity dffg
+# -- Compiling architecture mixed of dffg
+# -- Compiling entity invg
+# -- Compiling architecture dataflow of invg
+# -- Compiling entity mem
+# -- Compiling architecture rtl of mem
+# -- Compiling entity mux2t1
+# -- Compiling architecture structure of mux2t1
+# -- Compiling entity mux2t1_5
+# -- Compiling architecture structural of mux2t1_5
+# -- Compiling entity mux2t1_N
+# -- Compiling architecture structural of mux2t1_N
+# -- Compiling entity mux2t1data
+# -- Compiling architecture dataflow of mux2t1data
+# -- Compiling entity mux32t1
+# -- Compiling architecture structure of mux32t1
+# -- Compiling entity mux4t1
+# -- Compiling architecture structure of mux4t1
+# -- Compiling entity mux8t1
+# -- Compiling architecture structure of mux8t1
+# -- Compiling entity norg2_N
+# -- Compiling architecture structural of norg2_N
+# -- Compiling entity org2
+# -- Compiling architecture dataflow of org2
+# -- Compiling entity org2_N
+# -- Compiling architecture structural of org2_N
+# -- Compiling entity pipeline_test
+# -- Compiling architecture structure of pipeline_test
+# -- Loading package std_logic_textio
+# -- Loading package ENV
+# -- Compiling entity tb
+# -- Compiling architecture mixed of tb
+# -- Compiling entity tb_pipeline_test
+# -- Compiling architecture mixed of tb_pipeline_test
+# End time: 12:23:42 on Dec 08,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Optimization canceled
+vsim -voptargs="+acc" tb_pipeline_test
+# vsim tb_pipeline_test 
+# Start time: 12:24:21 on Dec 08,2021
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.tb_pipeline_test(mixed)#1
+# Loading work.pipeline_test(structure)#1
+# Loading work.dffr_n(structural)#1
+# Loading work.idexpipeline(mixed)#1
+add wave -position insertpoint  \
+sim:/tb_pipeline_test/CLK \
+sim:/tb_pipeline_test/gCLK_HPER \
+sim:/tb_pipeline_test/N \
+sim:/tb_pipeline_test/s_iEXMEMFlush \
+sim:/tb_pipeline_test/s_iEXMEMStall \
+sim:/tb_pipeline_test/s_iIDEXFlush \
+sim:/tb_pipeline_test/s_iIDEXStall \
+sim:/tb_pipeline_test/s_iIFIDFlush \
+sim:/tb_pipeline_test/s_iIFIDStall \
+sim:/tb_pipeline_test/s_iInst \
+sim:/tb_pipeline_test/s_iMEMWBFlush \
+sim:/tb_pipeline_test/s_iMEMWBStall
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 12:33:14 on Dec 08,2021, Elapsed time: 0:08:53
+# Errors: 0, Warnings: 0
+vcom -2008 -work work *.vhd
+# QuestaSim-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 12:33:17 on Dec 08,2021
+# vcom -reportprogress 300 -2008 -work work ALU.vhd AdderH.vhd AdderH_n.vhd AdderSub.vhd DffR_2.vhd DffR_3.vhd DffR_5.vhd DffR_N.vhd EXMEMPipeline.vhd FetchLogic.vhd FirstDataPath.vhd IDEXPipeline.vhd IFIDPipeline.vhd InstMem.vhd LogicUnit.vhd MEMWBPipeline.vhd MIPS_Processor.vhd OnesComp.vhd PC.vhd RegFile.vhd andg2.vhd andg2_N.vhd barrelShifter.vhd bitExtension.vhd control.vhd decoder5t32.vhd dffg.vhd invg.vhd mem.vhd mux2t1.vhd mux2t1_5.vhd mux2t1_N.vhd mux2t1data.vhd mux32t1.vhd mux4t1.vhd mux8t1.vhd norg2_N.vhd org2.vhd org2_N.vhd pipeline_test.vhd tb.vhd tb_pipeline_test.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity ALU
+# -- Compiling architecture structure of ALU
+# -- Compiling entity AdderH
+# -- Compiling architecture structure of AdderH
+# -- Compiling entity AdderH_n
+# -- Compiling architecture structural of AdderH_n
+# -- Compiling entity AdderSub_N
+# -- Compiling architecture structure of AdderSub_N
+# -- Compiling entity DffR_2
+# -- Compiling architecture structural of DffR_2
+# -- Compiling entity DffR_3
+# -- Compiling architecture structural of DffR_3
+# -- Compiling entity DffR_5
+# -- Compiling architecture structural of DffR_5
+# -- Compiling entity DffR_N
+# -- Compiling architecture structural of DffR_N
+# -- Compiling entity EXMEMPipeline
+# -- Compiling architecture mixed of EXMEMPipeline
+# -- Compiling entity FetchLogic
+# -- Compiling architecture structure of FetchLogic
+# -- Compiling entity FirstDataPath
+# -- Compiling architecture structure of FirstDataPath
+# -- Compiling entity IDEXPipeline
+# -- Compiling architecture mixed of IDEXPipeline
+# -- Compiling entity IFIDPipeline
+# -- Compiling architecture mixed of IFIDPipeline
+# -- Loading package NUMERIC_STD
+# -- Compiling entity InstMem
+# -- Compiling architecture rtl of InstMem
+# -- Compiling entity LogicUnit
+# -- Compiling architecture structure of LogicUnit
+# -- Compiling entity MEMWBPipeline
+# -- Compiling architecture mixed of MEMWBPipeline
+# -- Compiling entity MIPS_Processor
+# -- Compiling architecture structure of MIPS_Processor
+# -- Compiling entity OnesComp
+# -- Compiling architecture structural of OnesComp
+# -- Compiling entity PC
+# -- Compiling architecture structural of PC
+# -- Compiling entity RegFile
+# -- Compiling architecture structural of RegFile
+# -- Compiling entity andg2
+# -- Compiling architecture dataflow of andg2
+# -- Compiling entity andg2_N
+# -- Compiling architecture structural of andg2_N
+# -- Compiling entity barrelShifter
+# -- Compiling architecture structural of barrelShifter
+# -- Compiling entity bitExtension
+# -- Compiling architecture structural of bitExtension
+# -- Compiling entity control
+# -- Compiling architecture structural of control
+# -- Compiling entity decoder5t32
+# -- Compiling architecture structure of decoder5t32
+# -- Compiling entity dffg
+# -- Compiling architecture mixed of dffg
+# -- Compiling entity invg
+# -- Compiling architecture dataflow of invg
+# -- Compiling entity mem
+# -- Compiling architecture rtl of mem
+# -- Compiling entity mux2t1
+# -- Compiling architecture structure of mux2t1
+# -- Compiling entity mux2t1_5
+# -- Compiling architecture structural of mux2t1_5
+# -- Compiling entity mux2t1_N
+# -- Compiling architecture structural of mux2t1_N
+# -- Compiling entity mux2t1data
+# -- Compiling architecture dataflow of mux2t1data
+# -- Compiling entity mux32t1
+# -- Compiling architecture structure of mux32t1
+# -- Compiling entity mux4t1
+# -- Compiling architecture structure of mux4t1
+# -- Compiling entity mux8t1
+# -- Compiling architecture structure of mux8t1
+# -- Compiling entity norg2_N
+# -- Compiling architecture structural of norg2_N
+# -- Compiling entity org2
+# -- Compiling architecture dataflow of org2
+# -- Compiling entity org2_N
+# -- Compiling architecture structural of org2_N
+# -- Compiling entity pipeline_test
+# -- Compiling architecture structure of pipeline_test
+# -- Loading package std_logic_textio
+# -- Loading package ENV
+# -- Compiling entity tb
+# -- Compiling architecture mixed of tb
+# -- Compiling entity tb_pipeline_test
+# -- Compiling architecture mixed of tb_pipeline_test
+# End time: 12:33:18 on Dec 08,2021, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+vsim -voptargs="+acc" tb_pipeline_test
+# vsim tb_pipeline_test 
+# Start time: 12:33:21 on Dec 08,2021
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.tb_pipeline_test(mixed)#1
+# Loading work.pipeline_test(structure)#1
+# Loading work.dffr_n(structural)#1
+# Loading work.idexpipeline(mixed)#1
+add wave -position insertpoint  \
+sim:/tb_pipeline_test/CLK \
+sim:/tb_pipeline_test/gCLK_HPER \
+sim:/tb_pipeline_test/N \
+sim:/tb_pipeline_test/s_iEXMEMFlush \
+sim:/tb_pipeline_test/s_iEXMEMStall \
+sim:/tb_pipeline_test/s_iIDEXFlush \
+sim:/tb_pipeline_test/s_iIDEXStall \
+sim:/tb_pipeline_test/s_iIFIDFlush \
+sim:/tb_pipeline_test/s_iIFIDStall \
+sim:/tb_pipeline_test/s_iInst \
+sim:/tb_pipeline_test/s_iMEMWBFlush \
+sim:/tb_pipeline_test/s_iMEMWBStall \
+sim:/tb_pipeline_test/s_oInst
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 12:38:09 on Dec 08,2021, Elapsed time: 0:04:48
+# Errors: 0, Warnings: 0
+vcom -2008 -work work *.vhd
+# QuestaSim-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 12:38:14 on Dec 08,2021
+# vcom -reportprogress 300 -2008 -work work ALU.vhd AdderH.vhd AdderH_n.vhd AdderSub.vhd DffR_2.vhd DffR_3.vhd DffR_5.vhd DffR_N.vhd EXMEMPipeline.vhd FetchLogic.vhd FirstDataPath.vhd IDEXPipeline.vhd IFIDPipeline.vhd InstMem.vhd LogicUnit.vhd MEMWBPipeline.vhd MIPS_Processor.vhd OnesComp.vhd PC.vhd RegFile.vhd andg2.vhd andg2_N.vhd barrelShifter.vhd bitExtension.vhd control.vhd decoder5t32.vhd dffg.vhd invg.vhd mem.vhd mux2t1.vhd mux2t1_5.vhd mux2t1_N.vhd mux2t1data.vhd mux32t1.vhd mux4t1.vhd mux8t1.vhd norg2_N.vhd org2.vhd org2_N.vhd pipeline_test.vhd tb.vhd tb_pipeline_test.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity ALU
+# -- Compiling architecture structure of ALU
+# -- Compiling entity AdderH
+# -- Compiling architecture structure of AdderH
+# -- Compiling entity AdderH_n
+# -- Compiling architecture structural of AdderH_n
+# -- Compiling entity AdderSub_N
+# -- Compiling architecture structure of AdderSub_N
+# -- Compiling entity DffR_2
+# -- Compiling architecture structural of DffR_2
+# -- Compiling entity DffR_3
+# -- Compiling architecture structural of DffR_3
+# -- Compiling entity DffR_5
+# -- Compiling architecture structural of DffR_5
+# -- Compiling entity DffR_N
+# -- Compiling architecture structural of DffR_N
+# -- Compiling entity EXMEMPipeline
+# -- Compiling architecture mixed of EXMEMPipeline
+# -- Compiling entity FetchLogic
+# -- Compiling architecture structure of FetchLogic
+# -- Compiling entity FirstDataPath
+# -- Compiling architecture structure of FirstDataPath
+# -- Compiling entity IDEXPipeline
+# -- Compiling architecture mixed of IDEXPipeline
+# -- Compiling entity IFIDPipeline
+# -- Compiling architecture mixed of IFIDPipeline
+# -- Loading package NUMERIC_STD
+# -- Compiling entity InstMem
+# -- Compiling architecture rtl of InstMem
+# -- Compiling entity LogicUnit
+# -- Compiling architecture structure of LogicUnit
+# -- Compiling entity MEMWBPipeline
+# -- Compiling architecture mixed of MEMWBPipeline
+# -- Compiling entity MIPS_Processor
+# -- Compiling architecture structure of MIPS_Processor
+# -- Compiling entity OnesComp
+# -- Compiling architecture structural of OnesComp
+# -- Compiling entity PC
+# -- Compiling architecture structural of PC
+# -- Compiling entity RegFile
+# -- Compiling architecture structural of RegFile
+# -- Compiling entity andg2
+# -- Compiling architecture dataflow of andg2
+# -- Compiling entity andg2_N
+# -- Compiling architecture structural of andg2_N
+# -- Compiling entity barrelShifter
+# -- Compiling architecture structural of barrelShifter
+# -- Compiling entity bitExtension
+# -- Compiling architecture structural of bitExtension
+# -- Compiling entity control
+# -- Compiling architecture structural of control
+# -- Compiling entity decoder5t32
+# -- Compiling architecture structure of decoder5t32
+# -- Compiling entity dffg
+# -- Compiling architecture mixed of dffg
+# -- Compiling entity invg
+# -- Compiling architecture dataflow of invg
+# -- Compiling entity mem
+# -- Compiling architecture rtl of mem
+# -- Compiling entity mux2t1
+# -- Compiling architecture structure of mux2t1
+# -- Compiling entity mux2t1_5
+# -- Compiling architecture structural of mux2t1_5
+# -- Compiling entity mux2t1_N
+# -- Compiling architecture structural of mux2t1_N
+# -- Compiling entity mux2t1data
+# -- Compiling architecture dataflow of mux2t1data
+# -- Compiling entity mux32t1
+# -- Compiling architecture structure of mux32t1
+# -- Compiling entity mux4t1
+# -- Compiling architecture structure of mux4t1
+# -- Compiling entity mux8t1
+# -- Compiling architecture structure of mux8t1
+# -- Compiling entity norg2_N
+# -- Compiling architecture structural of norg2_N
+# -- Compiling entity org2
+# -- Compiling architecture dataflow of org2
+# -- Compiling entity org2_N
+# -- Compiling architecture structural of org2_N
+# -- Compiling entity pipeline_test
+# -- Compiling architecture structure of pipeline_test
+# -- Loading package std_logic_textio
+# -- Loading package ENV
+# -- Compiling entity tb
+# -- Compiling architecture mixed of tb
+# -- Compiling entity tb_pipeline_test
+# -- Compiling architecture mixed of tb_pipeline_test
+# End time: 12:38:14 on Dec 08,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vsim -voptargs="+acc" tb_pipeline_test
+# vsim tb_pipeline_test 
+# Start time: 12:38:16 on Dec 08,2021
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.tb_pipeline_test(mixed)#1
+# Loading work.pipeline_test(structure)#1
+# Loading work.dffr_n(structural)#1
+# Loading work.idexpipeline(mixed)#1
+add wave -position insertpoint  \
+sim:/tb_pipeline_test/CLK \
+sim:/tb_pipeline_test/gCLK_HPER \
+sim:/tb_pipeline_test/N \
+sim:/tb_pipeline_test/s_iEXMEMFlush \
+sim:/tb_pipeline_test/s_iEXMEMStall \
+sim:/tb_pipeline_test/s_iIDEXFlush \
+sim:/tb_pipeline_test/s_iIDEXStall \
+sim:/tb_pipeline_test/s_iIFIDFlush \
+sim:/tb_pipeline_test/s_iIFIDStall \
+sim:/tb_pipeline_test/s_iInst \
+sim:/tb_pipeline_test/s_iMEMWBFlush \
+sim:/tb_pipeline_test/s_iMEMWBStall \
+sim:/tb_pipeline_test/s_oInst
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 12:45:28 on Dec 08,2021, Elapsed time: 0:07:12
+# Errors: 0, Warnings: 0
+# Optimization canceled
+vcom -2008 -work work *.vhd
+# QuestaSim-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 12:46:00 on Dec 08,2021
+# vcom -reportprogress 300 -2008 -work work ALU.vhd AdderH.vhd AdderH_n.vhd AdderSub.vhd DffR_2.vhd DffR_3.vhd DffR_5.vhd DffR_N.vhd EXMEMPipeline.vhd FetchLogic.vhd FirstDataPath.vhd IDEXPipeline.vhd IFIDPipeline.vhd InstMem.vhd LogicUnit.vhd MEMWBPipeline.vhd MIPS_Processor.vhd OnesComp.vhd PC.vhd RegFile.vhd andg2.vhd andg2_N.vhd barrelShifter.vhd bitExtension.vhd control.vhd decoder5t32.vhd dffg.vhd invg.vhd mem.vhd mux2t1.vhd mux2t1_5.vhd mux2t1_N.vhd mux2t1data.vhd mux32t1.vhd mux4t1.vhd mux8t1.vhd norg2_N.vhd org2.vhd org2_N.vhd pipeline_test.vhd tb.vhd tb_pipeline_test.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity ALU
+# -- Compiling architecture structure of ALU
+# -- Compiling entity AdderH
+# -- Compiling architecture structure of AdderH
+# -- Compiling entity AdderH_n
+# -- Compiling architecture structural of AdderH_n
+# -- Compiling entity AdderSub_N
+# -- Compiling architecture structure of AdderSub_N
+# -- Compiling entity DffR_2
+# -- Compiling architecture structural of DffR_2
+# -- Compiling entity DffR_3
+# -- Compiling architecture structural of DffR_3
+# -- Compiling entity DffR_5
+# -- Compiling architecture structural of DffR_5
+# -- Compiling entity DffR_N
+# -- Compiling architecture structural of DffR_N
+# -- Compiling entity EXMEMPipeline
+# -- Compiling architecture mixed of EXMEMPipeline
+# -- Compiling entity FetchLogic
+# -- Compiling architecture structure of FetchLogic
+# -- Compiling entity FirstDataPath
+# -- Compiling architecture structure of FirstDataPath
+# -- Compiling entity IDEXPipeline
+# -- Compiling architecture mixed of IDEXPipeline
+# -- Compiling entity IFIDPipeline
+# -- Compiling architecture mixed of IFIDPipeline
+# -- Loading package NUMERIC_STD
+# -- Compiling entity InstMem
+# -- Compiling architecture rtl of InstMem
+# -- Compiling entity LogicUnit
+# -- Compiling architecture structure of LogicUnit
+# -- Compiling entity MEMWBPipeline
+# -- Compiling architecture mixed of MEMWBPipeline
+# -- Compiling entity MIPS_Processor
+# -- Compiling architecture structure of MIPS_Processor
+# -- Compiling entity OnesComp
+# -- Compiling architecture structural of OnesComp
+# -- Compiling entity PC
+# -- Compiling architecture structural of PC
+# -- Compiling entity RegFile
+# -- Compiling architecture structural of RegFile
+# -- Compiling entity andg2
+# -- Compiling architecture dataflow of andg2
+# -- Compiling entity andg2_N
+# -- Compiling architecture structural of andg2_N
+# -- Compiling entity barrelShifter
+# -- Compiling architecture structural of barrelShifter
+# -- Compiling entity bitExtension
+# -- Compiling architecture structural of bitExtension
+# -- Compiling entity control
+# -- Compiling architecture structural of control
+# -- Compiling entity decoder5t32
+# -- Compiling architecture structure of decoder5t32
+# -- Compiling entity dffg
+# -- Compiling architecture mixed of dffg
+# -- Compiling entity invg
+# -- Compiling architecture dataflow of invg
+# -- Compiling entity mem
+# -- Compiling architecture rtl of mem
+# -- Compiling entity mux2t1
+# -- Compiling architecture structure of mux2t1
+# -- Compiling entity mux2t1_5
+# -- Compiling architecture structural of mux2t1_5
+# -- Compiling entity mux2t1_N
+# -- Compiling architecture structural of mux2t1_N
+# -- Compiling entity mux2t1data
+# -- Compiling architecture dataflow of mux2t1data
+# -- Compiling entity mux32t1
+# -- Compiling architecture structure of mux32t1
+# -- Compiling entity mux4t1
+# -- Compiling architecture structure of mux4t1
+# -- Compiling entity mux8t1
+# -- Compiling architecture structure of mux8t1
+# -- Compiling entity norg2_N
+# -- Compiling architecture structural of norg2_N
+# -- Compiling entity org2
+# -- Compiling architecture dataflow of org2
+# -- Compiling entity org2_N
+# -- Compiling architecture structural of org2_N
+# -- Compiling entity pipeline_test
+# -- Compiling architecture structure of pipeline_test
+# -- Loading package std_logic_textio
+# -- Loading package ENV
+# -- Compiling entity tb
+# -- Compiling architecture mixed of tb
+# -- Compiling entity tb_pipeline_test
+# -- Compiling architecture mixed of tb_pipeline_test
+# End time: 12:46:00 on Dec 08,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vsim -voptargs="+acc" tb_pipeline_test
+# vsim -voptargs="+acc" tb_pipeline_test 
+# Start time: 12:46:02 on Dec 08,2021
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.tb_pipeline_test(mixed)#1
+# Loading work.pipeline_test(structure)#1
+# Loading work.ifidpipeline(mixed)#1
+# Loading work.dffr_n(structural)#1
+# Loading work.dffg(mixed)#1
+# Loading work.idexpipeline(mixed)#1
+# Loading work.dffr_5(structural)#1
+# Loading work.dffr_3(structural)#1
+# Loading work.dffr_2(structural)#1
+# Loading work.exmempipeline(mixed)#1
+# Loading work.memwbpipeline(mixed)#1
+add wave -position insertpoint  \
+sim:/tb_pipeline_test/cCLK_PER \
+sim:/tb_pipeline_test/CLK \
+sim:/tb_pipeline_test/gCLK_HPER \
+sim:/tb_pipeline_test/N \
+sim:/tb_pipeline_test/reset \
+sim:/tb_pipeline_test/s_iEXMEMFlush \
+sim:/tb_pipeline_test/s_iEXMEMStall \
+sim:/tb_pipeline_test/s_iIDEXFlush \
+sim:/tb_pipeline_test/s_iIDEXStall \
+sim:/tb_pipeline_test/s_iIFIDFlush \
+sim:/tb_pipeline_test/s_iIFIDStall \
+sim:/tb_pipeline_test/s_iInst \
+sim:/tb_pipeline_test/s_iMEMWBFlush \
+sim:/tb_pipeline_test/s_iMEMWBStall \
+sim:/tb_pipeline_test/s_oInst
+add wave -position insertpoint  \
+sim:/tb_pipeline_test/DUT0/IDIFPIPE/INSTDFF/o_Q
+add wave -position insertpoint  \
+sim:/tb_pipeline_test/DUT0/IDIFPIPE/o_Inst
+add wave -position insertpoint  \
+sim:/tb_pipeline_test/DUT0/IDEXPIPE/o_Inst
+add wave -position insertpoint  \
+sim:/tb_pipeline_test/DUT0/EXMEMPIPE/o_Inst
+add wave -position insertpoint  \
+sim:/tb_pipeline_test/DUT0/MEMWBPIPE/o_Inst
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 12:50:55 on Dec 08,2021, Elapsed time: 0:04:53
+# Errors: 0, Warnings: 0
+vcom -2008 -work work *.vhd
+# QuestaSim-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 12:51:05 on Dec 08,2021
+# vcom -reportprogress 300 -2008 -work work ALU.vhd AdderH.vhd AdderH_n.vhd AdderSub.vhd DffR_2.vhd DffR_3.vhd DffR_5.vhd DffR_N.vhd EXMEMPipeline.vhd FetchLogic.vhd FirstDataPath.vhd IDEXPipeline.vhd IFIDPipeline.vhd InstMem.vhd LogicUnit.vhd MEMWBPipeline.vhd MIPS_Processor.vhd OnesComp.vhd PC.vhd RegFile.vhd andg2.vhd andg2_N.vhd barrelShifter.vhd bitExtension.vhd control.vhd decoder5t32.vhd dffg.vhd invg.vhd mem.vhd mux2t1.vhd mux2t1_5.vhd mux2t1_N.vhd mux2t1data.vhd mux32t1.vhd mux4t1.vhd mux8t1.vhd norg2_N.vhd org2.vhd org2_N.vhd pipeline_test.vhd tb.vhd tb_pipeline_test.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity ALU
+# -- Compiling architecture structure of ALU
+# -- Compiling entity AdderH
+# -- Compiling architecture structure of AdderH
+# -- Compiling entity AdderH_n
+# -- Compiling architecture structural of AdderH_n
+# -- Compiling entity AdderSub_N
+# -- Compiling architecture structure of AdderSub_N
+# -- Compiling entity DffR_2
+# -- Compiling architecture structural of DffR_2
+# -- Compiling entity DffR_3
+# -- Compiling architecture structural of DffR_3
+# -- Compiling entity DffR_5
+# -- Compiling architecture structural of DffR_5
+# -- Compiling entity DffR_N
+# -- Compiling architecture structural of DffR_N
+# -- Compiling entity EXMEMPipeline
+# -- Compiling architecture mixed of EXMEMPipeline
+# -- Compiling entity FetchLogic
+# -- Compiling architecture structure of FetchLogic
+# -- Compiling entity FirstDataPath
+# -- Compiling architecture structure of FirstDataPath
+# -- Compiling entity IDEXPipeline
+# -- Compiling architecture mixed of IDEXPipeline
+# -- Compiling entity IFIDPipeline
+# -- Compiling architecture mixed of IFIDPipeline
+# -- Loading package NUMERIC_STD
+# -- Compiling entity InstMem
+# -- Compiling architecture rtl of InstMem
+# -- Compiling entity LogicUnit
+# -- Compiling architecture structure of LogicUnit
+# -- Compiling entity MEMWBPipeline
+# -- Compiling architecture mixed of MEMWBPipeline
+# -- Compiling entity MIPS_Processor
+# -- Compiling architecture structure of MIPS_Processor
+# -- Compiling entity OnesComp
+# -- Compiling architecture structural of OnesComp
+# -- Compiling entity PC
+# -- Compiling architecture structural of PC
+# -- Compiling entity RegFile
+# -- Compiling architecture structural of RegFile
+# -- Compiling entity andg2
+# -- Compiling architecture dataflow of andg2
+# -- Compiling entity andg2_N
+# -- Compiling architecture structural of andg2_N
+# -- Compiling entity barrelShifter
+# -- Compiling architecture structural of barrelShifter
+# -- Compiling entity bitExtension
+# -- Compiling architecture structural of bitExtension
+# -- Compiling entity control
+# -- Compiling architecture structural of control
+# -- Compiling entity decoder5t32
+# -- Compiling architecture structure of decoder5t32
+# -- Compiling entity dffg
+# -- Compiling architecture mixed of dffg
+# -- Compiling entity invg
+# -- Compiling architecture dataflow of invg
+# -- Compiling entity mem
+# -- Compiling architecture rtl of mem
+# -- Compiling entity mux2t1
+# -- Compiling architecture structure of mux2t1
+# -- Compiling entity mux2t1_5
+# -- Compiling architecture structural of mux2t1_5
+# -- Compiling entity mux2t1_N
+# -- Compiling architecture structural of mux2t1_N
+# -- Compiling entity mux2t1data
+# -- Compiling architecture dataflow of mux2t1data
+# -- Compiling entity mux32t1
+# -- Compiling architecture structure of mux32t1
+# -- Compiling entity mux4t1
+# -- Compiling architecture structure of mux4t1
+# -- Compiling entity mux8t1
+# -- Compiling architecture structure of mux8t1
+# -- Compiling entity norg2_N
+# -- Compiling architecture structural of norg2_N
+# -- Compiling entity org2
+# -- Compiling architecture dataflow of org2
+# -- Compiling entity org2_N
+# -- Compiling architecture structural of org2_N
+# -- Compiling entity pipeline_test
+# -- Compiling architecture structure of pipeline_test
+# -- Loading package std_logic_textio
+# -- Loading package ENV
+# -- Compiling entity tb
+# -- Compiling architecture mixed of tb
+# -- Compiling entity tb_pipeline_test
+# -- Compiling architecture mixed of tb_pipeline_test
+# End time: 12:51:05 on Dec 08,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vsim -voptargs="+acc" tb_pipeline_test
+# vsim -voptargs="+acc" tb_pipeline_test 
+# Start time: 12:51:08 on Dec 08,2021
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.tb_pipeline_test(mixed)#1
+# Loading work.pipeline_test(structure)#1
+# Loading work.ifidpipeline(mixed)#1
+# Loading work.dffr_n(structural)#1
+# Loading work.dffg(mixed)#1
+# Loading work.idexpipeline(mixed)#1
+# Loading work.dffr_5(structural)#1
+# Loading work.dffr_3(structural)#1
+# Loading work.dffr_2(structural)#1
+# Loading work.exmempipeline(mixed)#1
+# Loading work.memwbpipeline(mixed)#1
+add wave -position insertpoint  \
+sim:/tb_pipeline_test/cCLK_PER \
+sim:/tb_pipeline_test/CLK \
+sim:/tb_pipeline_test/gCLK_HPER \
+sim:/tb_pipeline_test/N \
+sim:/tb_pipeline_test/reset \
+sim:/tb_pipeline_test/s_iEXMEMFlush \
+sim:/tb_pipeline_test/s_iEXMEMStall \
+sim:/tb_pipeline_test/s_iIDEXFlush \
+sim:/tb_pipeline_test/s_iIDEXStall \
+sim:/tb_pipeline_test/s_iIFIDFlush \
+sim:/tb_pipeline_test/s_iIFIDStall \
+sim:/tb_pipeline_test/s_iInst \
+sim:/tb_pipeline_test/s_iMEMWBFlush \
+sim:/tb_pipeline_test/s_iMEMWBStall \
+sim:/tb_pipeline_test/s_oInst
+run
+run
+run
+run
+run
+quit -sim
+# End time: 12:52:20 on Dec 08,2021, Elapsed time: 0:01:12
+# Errors: 0, Warnings: 0
+vcom -2008 -work work *.vhd
+# QuestaSim-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 12:52:23 on Dec 08,2021
+# vcom -reportprogress 300 -2008 -work work ALU.vhd AdderH.vhd AdderH_n.vhd AdderSub.vhd DffR_2.vhd DffR_3.vhd DffR_5.vhd DffR_N.vhd EXMEMPipeline.vhd FetchLogic.vhd FirstDataPath.vhd IDEXPipeline.vhd IFIDPipeline.vhd InstMem.vhd LogicUnit.vhd MEMWBPipeline.vhd MIPS_Processor.vhd OnesComp.vhd PC.vhd RegFile.vhd andg2.vhd andg2_N.vhd barrelShifter.vhd bitExtension.vhd control.vhd decoder5t32.vhd dffg.vhd invg.vhd mem.vhd mux2t1.vhd mux2t1_5.vhd mux2t1_N.vhd mux2t1data.vhd mux32t1.vhd mux4t1.vhd mux8t1.vhd norg2_N.vhd org2.vhd org2_N.vhd pipeline_test.vhd tb.vhd tb_pipeline_test.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity ALU
+# -- Compiling architecture structure of ALU
+# -- Compiling entity AdderH
+# -- Compiling architecture structure of AdderH
+# -- Compiling entity AdderH_n
+# -- Compiling architecture structural of AdderH_n
+# -- Compiling entity AdderSub_N
+# -- Compiling architecture structure of AdderSub_N
+# -- Compiling entity DffR_2
+# -- Compiling architecture structural of DffR_2
+# -- Compiling entity DffR_3
+# -- Compiling architecture structural of DffR_3
+# -- Compiling entity DffR_5
+# -- Compiling architecture structural of DffR_5
+# -- Compiling entity DffR_N
+# -- Compiling architecture structural of DffR_N
+# -- Compiling entity EXMEMPipeline
+# -- Compiling architecture mixed of EXMEMPipeline
+# -- Compiling entity FetchLogic
+# -- Compiling architecture structure of FetchLogic
+# -- Compiling entity FirstDataPath
+# -- Compiling architecture structure of FirstDataPath
+# -- Compiling entity IDEXPipeline
+# -- Compiling architecture mixed of IDEXPipeline
+# -- Compiling entity IFIDPipeline
+# -- Compiling architecture mixed of IFIDPipeline
+# -- Loading package NUMERIC_STD
+# -- Compiling entity InstMem
+# -- Compiling architecture rtl of InstMem
+# -- Compiling entity LogicUnit
+# -- Compiling architecture structure of LogicUnit
+# -- Compiling entity MEMWBPipeline
+# -- Compiling architecture mixed of MEMWBPipeline
+# -- Compiling entity MIPS_Processor
+# -- Compiling architecture structure of MIPS_Processor
+# -- Compiling entity OnesComp
+# -- Compiling architecture structural of OnesComp
+# -- Compiling entity PC
+# -- Compiling architecture structural of PC
+# -- Compiling entity RegFile
+# -- Compiling architecture structural of RegFile
+# -- Compiling entity andg2
+# -- Compiling architecture dataflow of andg2
+# -- Compiling entity andg2_N
+# -- Compiling architecture structural of andg2_N
+# -- Compiling entity barrelShifter
+# -- Compiling architecture structural of barrelShifter
+# -- Compiling entity bitExtension
+# -- Compiling architecture structural of bitExtension
+# -- Compiling entity control
+# -- Compiling architecture structural of control
+# -- Compiling entity decoder5t32
+# -- Compiling architecture structure of decoder5t32
+# -- Compiling entity dffg
+# -- Compiling architecture mixed of dffg
+# -- Compiling entity invg
+# -- Compiling architecture dataflow of invg
+# -- Compiling entity mem
+# -- Compiling architecture rtl of mem
+# -- Compiling entity mux2t1
+# -- Compiling architecture structure of mux2t1
+# -- Compiling entity mux2t1_5
+# -- Compiling architecture structural of mux2t1_5
+# -- Compiling entity mux2t1_N
+# -- Compiling architecture structural of mux2t1_N
+# -- Compiling entity mux2t1data
+# -- Compiling architecture dataflow of mux2t1data
+# -- Compiling entity mux32t1
+# -- Compiling architecture structure of mux32t1
+# -- Compiling entity mux4t1
+# -- Compiling architecture structure of mux4t1
+# -- Compiling entity mux8t1
+# -- Compiling architecture structure of mux8t1
+# -- Compiling entity norg2_N
+# -- Compiling architecture structural of norg2_N
+# -- Compiling entity org2
+# -- Compiling architecture dataflow of org2
+# -- Compiling entity org2_N
+# -- Compiling architecture structural of org2_N
+# -- Compiling entity pipeline_test
+# -- Compiling architecture structure of pipeline_test
+# -- Loading package std_logic_textio
+# -- Loading package ENV
+# -- Compiling entity tb
+# -- Compiling architecture mixed of tb
+# -- Compiling entity tb_pipeline_test
+# -- Compiling architecture mixed of tb_pipeline_test
+# End time: 12:52:23 on Dec 08,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vsim -voptargs="+acc" tb_pipeline_test
+# vsim -voptargs="+acc" tb_pipeline_test 
+# Start time: 12:52:25 on Dec 08,2021
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.tb_pipeline_test(mixed)#1
+# Loading work.pipeline_test(structure)#1
+# Loading work.ifidpipeline(mixed)#1
+# Loading work.dffr_n(structural)#1
+# Loading work.dffg(mixed)#1
+# Loading work.idexpipeline(mixed)#1
+# Loading work.dffr_5(structural)#1
+# Loading work.dffr_3(structural)#1
+# Loading work.dffr_2(structural)#1
+# Loading work.exmempipeline(mixed)#1
+# Loading work.memwbpipeline(mixed)#1
+add wave -position insertpoint  \
+sim:/tb_pipeline_test/cCLK_PER \
+sim:/tb_pipeline_test/CLK \
+sim:/tb_pipeline_test/gCLK_HPER \
+sim:/tb_pipeline_test/N \
+sim:/tb_pipeline_test/reset \
+sim:/tb_pipeline_test/s_iEXMEMFlush \
+sim:/tb_pipeline_test/s_iEXMEMStall \
+sim:/tb_pipeline_test/s_iIDEXFlush \
+sim:/tb_pipeline_test/s_iIDEXStall \
+sim:/tb_pipeline_test/s_iIFIDFlush \
+sim:/tb_pipeline_test/s_iIFIDStall \
+sim:/tb_pipeline_test/s_iInst \
+sim:/tb_pipeline_test/s_iMEMWBFlush \
+sim:/tb_pipeline_test/s_iMEMWBStall \
+sim:/tb_pipeline_test/s_oInst
+run
+run
+run
+run
+add wave -position insertpoint  \
+sim:/tb_pipeline_test/DUT0/IDIFPIPE/o_Inst
+add wave -position insertpoint  \
+sim:/tb_pipeline_test/DUT0/IDEXPIPE/o_Inst
+add wave -position insertpoint  \
+sim:/tb_pipeline_test/DUT0/EXMEMPIPE/o_Inst
+add wave -position insertpoint  \
+sim:/tb_pipeline_test/DUT0/MEMWBPIPE/o_Inst
+restart -f
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
+run
+run
+run
+run
+add wave -position insertpoint  \
+sim:/tb_pipeline_test/DUT0/IDIFPIPE/i_Inst
+add wave -position insertpoint  \
+sim:/tb_pipeline_test/DUT0/IDEXPIPE/i_Inst
+add wave -position insertpoint  \
+sim:/tb_pipeline_test/DUT0/EXMEMPIPE/i_Inst
+add wave -position insertpoint  \
+sim:/tb_pipeline_test/DUT0/MEMWBPIPE/i_Inst
+restart -f
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
+run
+run
+run
+run
+add wave -position insertpoint  \
+sim:/tb_pipeline_test/DUT0/IDIFPIPE/INSTDFF/i_RST
+add wave -position insertpoint  \
+sim:/tb_pipeline_test/DUT0/IDIFPIPE/PCADDRDFF/i_RST
+add wave -position insertpoint  \
+sim:/tb_pipeline_test/DUT0/IDIFPIPE/INSTDFF/i_WE
+add wave -position insertpoint  \
+sim:/tb_pipeline_test/DUT0/IDIFPIPE/PCADDRDFF/i_WE
+run
+run
+# End time: 13:20:58 on Dec 08,2021, Elapsed time: 0:28:33
+# Errors: 0, Warnings: 0
