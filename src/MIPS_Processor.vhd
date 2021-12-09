@@ -322,13 +322,14 @@ signal s_EXInst, s_MEMInst, s_WBInst : std_logic_Vector(31 downto 0);
 
 --Forwarding Signals
 signal s_ALUAoDMEM : std_logic_vector(1 downto 0);
-signal ALUAInput, ALUBInput, s_ALUAMUXA, ALUBoIMM, s_ALUBMUXA : std_logic_vector(31 downto 0);
+signal s_RDAoDMEM, s_RDBoDMEM : std_logic;
+signal ALUAInput, ALUBInput, s_ALUAMUXA, ALUBoIMM, s_ALUBMUXA, s_PCSrcIn1, s_PCSrcIn2 : std_logic_vector(31 downto 0);
 
 
 
   -- Required data memory signals
   signal s_DMemWr       : std_logic; -- TODO: use this signal as the final active high data memory write enable signal
-  signal s_DMemAddr     : std_logic_vector(N-1 downto 0); -- TODO: use this signal as the final data memory address input
+  signal s_DMemAddr     : std_logic_vector(N-1 downts_EXREGDSTo 0); -- TODO: use this signal as the final data memory address input
   signal s_DMemData     : std_logic_vector(N-1 downto 0); -- TODO: use this signal as the final data memory data input
   signal s_DMemOut      : std_logic_vector(N-1 downto 0); -- TODO: use this signal as the data memory output
  
@@ -439,7 +440,7 @@ REGFILE1: RegFile
 
 BITIMM: bitExtension
  port map(i_SignSel => s_SignSelCtl,
-	i_bit16	=> s_IDINST(15 downto 0),
+	i_bit16	=> s_IDINST(15 downto 0),s_EXREGDST
 	o_bit32	=> s_IDIMM);	
 
 s_IDEXStall <= '1'; --????? when do we need to stall this pipeline
@@ -647,7 +648,7 @@ MEMWBPIPE: MEMWBPipeline port map(i_CLK => iCLK,
 	o_MEMDATA  => s_WBMEMDATA,
 	o_Jal	   => s_WBJal,
 	o_MemtoReg => s_WBMemtoReg,
-	o_RegWrEn  => s_WBRegWrEn,
+	o_RegWrEn  => s_RegWr,
 	o_Halt	   => s_Halt,
 	o_RGDST	   => s_WBREGDST);
 
@@ -672,6 +673,7 @@ REGDSTJal: mux2t1_5 port map(
        o_O   => s_RegWrAddr);
 
 --Forwarding Logic Stuff
+--EX Stage
 --ALUA or Last Mux Out
 MUXALUAOLASTMUX: mux2t1_N port map(
 	i_S => s_ALUAoDMEM(0),
@@ -683,7 +685,7 @@ MUXALUAOLASTMUX: mux2t1_N port map(
 MUXDMEMOALUA: mux2t1_N port map(
 	i_S => s_ALUAoDMEM(1),
 	i_D0 => s_ALUAMUXA,
-	i_D1 => i_ALURES,
+	i_D1 => s_MEMALURES,
 	o_O => ALUAInput);
 
 --ALUB or Last Mux Out
@@ -697,10 +699,24 @@ MUXALUAOLASTMUX: mux2t1_N port map(
 MUXDMEMOALUA: mux2t1_N port map(
 	i_S => s_ALUBoDMEM(1),
 	i_D0 => s_ALUBMUXA,
-	i_D1 => i_ALURES,
+	i_D1 => s_MEMALURES,
 	o_O => ALUBoIMM);
 
---s_EXPB
+--ID Stage
+--Register A or DMEM In
+MUXDMEMOALUA: mux2t1_N port map(
+	i_S => s_RDAoDMEM,
+	i_D0 => s_IDPA,
+	i_D1 => s_MEMALURES,
+	o_O => s_PCSrcIn1);
+
+--Register B or DMEM In
+MUXDMEMOALUA: mux2t1_N port map(
+	i_S => s_RDBoDMEM,
+	i_D0 => s_IDPB,
+	i_D1 => s_MEMALURES,
+	o_O => s_PCSrcIn2);
+
 
 end structure;
 

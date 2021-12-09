@@ -20,42 +20,57 @@ use IEEE.std_logic_1164.all;
 entity hazard_detection is
   generic(N : integer := 32);
   port( iCLK            : in std_logic;
-        oIFIDStall 	: in std_logic;
-	oIDEXStall 	: in std_logic;
-	oMEMWBStall 	: in std_logic;
-	oEXMEMStall 	: in std_logic;
-	oIFIDFlush 	: in std_logic;
-	oIDEXFlush 	: in std_logic;
-	oMEMWBFlush 	: in std_logic;
-	oEXMEMFlush 	: in std_logic);
+	iIDEXMemRead	: in std_logic;
+	iIDEXRegRt	: in std_logic_vector(N-1 downto 0);
+	iIFIDRegRs	: in std_logic_vector(N-1 downto 0);
+	oPCStall	: out std_logic;
+        oIFIDStall 	: out std_logic;
+	oIDEXStall 	: out std_logic;
+	oMEMWBStall 	: out std_logic;
+	oEXMEMStall 	: out std_logic;
+	oIFIDFlush 	: out std_logic;
+	oIDEXFlush 	: out std_logic;
+	oMEMWBFlush 	: out std_logic;
+	oEXMEMFlush 	: out std_logic);
 end  hazard_detection;
 
 
-architecture structure of hazard_detection is
-
-
-component IFIDPipeline is
-  port(i_CLK         : in std_logic;     -- Clock input
-       i_RST         : in std_logic;     -- Reset input
-       i_Stall	     : in std_logic;
-       i_Inst	     : in std_logic_vector(31 downto 0);
-       i_PCAddr      : in std_logic_vector(31 downto 0);
-       o_Inst        : out std_logic_vector(31 downto 0);     -- Data value input
-       o_PCAddr      : out std_logic_vector(31 downto 0));   -- Data value output
-end component;
-
-signal s_IDInst, s_EXInst, s_MEMInst : std_logic_vector(31 downto 0);
+architecture dataflow of hazard_detection is
 
 begin
 
-IDIFPIPE: IFIDPipeline port map(
-	i_CLK    => iCLK,
-	i_RST    => iIFIDFlush,
-	i_Stall	 => iIFIDStall,
-        i_Inst   => iInst,
-	i_PCAddr => iInst,
-	o_Inst => s_IDInst);
+PROCESS (iMEMWBRegWr, iMEMWBRegRd, iIDEXRegRs, iIDEXRegRt, iEXMEMRegWr, iEXMEMRegRd, iIDEXMemRead, iIFIDRegRs, iIFIDRegRt)
+	begin
+
+	if iIDEXMemRead = '1' AND (iIDEXRegRt = iIFIDRegRs or iIDEXRegRt = iIFIDRegRt) then		--load-use
+	  oPCStall <= '0';
+	  oIFIDStall <= '0';
+	  oIDEXStall <= '0';	--flush instead?
+	  
+
+	elsif iMEMWBRegWr = '1' AND iMEMWBRegRd /= "00000" and iMEMWBRegRd = iIDEXRegRt then
+	oAluB <= "01";
+
+	elsif iEXMEMRegWr = '1' AND iEXMEMRegRd /= "00000" and iEXMEMRegRd = iIDEXRegRs then
+	oAluA <= "10";
+
+	elsif iEXMEMRegWr = '1' AND iEXMEMRegRd /= "00000" and iEXMEMRegRd = iIDEXRegRt then
+	oAluB <= "10";
+
+	elsif iMEMWBRegWr = '1' AND iMEMWBRegRd /= "00000" and not (iEXMEMRegWr = '1' and (iEXMEMRegRd /= "00000") and (iEXMEMRegRd /= iIDEXRegRs)) and iMEMWBRegRd = iIDEXRegRs then
+	oAluA <= "01";
+
+	elsif iMEMWBRegWr = '1' AND iMEMWBRegRd /= "00000" and not (iEXMEMRegWr = '1' and (iEXMEMRegRd /= "00000") and (iEXMEMRegRd /= iIDEXRegRt)) and iMEMWBRegRd = iIDEXRegRt then
+	oAluB <= "01";
+	
+	else
+	  oAluA <= "00";
+	  oAluB <= "00";
+
+	end if;
+	
+END PROCESS;
 
 
-end structure;
+end dataflow;
 

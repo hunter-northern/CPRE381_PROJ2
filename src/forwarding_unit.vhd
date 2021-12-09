@@ -26,11 +26,13 @@ entity forwarding_unit is
 	iIDEXRegRt	: in std_logic_vector(4 downto 0);
 	iEXMEMRegWr	: in std_logic;	
 	iEXMEMRegRd	: in std_logic_vector(4 downto 0);
-	iIDEXMemRead	: in std_logic_vector(4 downto 0);
+	iIDEXMemRead	: in std_logic;
 	iIFIDRegRs	: in std_logic_vector(4 downto 0);
 	iIFIDRegRt	: in std_logic_vector(4 downto 0);
 	oAluA    	: in std_logic_vector(1 downto 0);
-	oAluB 		: in std_logic_vector(1 downto 0));
+	oAluB 		: in std_logic_vector(1 downto 0);
+	oRdA    	: in std_logic_vector(1 downto 0);
+	oRdB    	: in std_logic_vector(1 downto 0));
 end  forwarding_unit;
 
 
@@ -40,13 +42,34 @@ architecture dataflow of forwarding_unit is
 
 begin
 
-IDIFPIPE: IFIDPipeline port map(
-	i_CLK    => iCLK,
-	i_RST    => iIFIDFlush,
-	i_Stall	 => iIFIDStall,
-        i_Inst   => iInst,
-	i_PCAddr => iInst,
-	o_Inst => s_IDInst);
+PROCESS (iMEMWBRegWr, iMEMWBRegRd, iIDEXRegRs, iIDEXRegRt, iEXMEMRegWr, iEXMEMRegRd, iIDEXMemRead, iIFIDRegRs, iIFIDRegRt)
+	begin
+
+	if iMEMWBRegWr = '1' AND iMEMWBRegRd /= "00000" and iMEMWBRegRd = iIDEXRegRs then	
+	oAluA <= "01";
+
+	elsif iMEMWBRegWr = '1' AND iMEMWBRegRd /= "00000" and iMEMWBRegRd = iIDEXRegRt then
+	oAluB <= "01";
+
+	elsif iEXMEMRegWr = '1' AND iEXMEMRegRd /= "00000" and iEXMEMRegRd = iIDEXRegRs then
+	oAluA <= "10";
+
+	elsif iEXMEMRegWr = '1' AND iEXMEMRegRd /= "00000" and iEXMEMRegRd = iIDEXRegRt then
+	oAluB <= "10";
+
+	elsif iMEMWBRegWr = '1' AND iMEMWBRegRd /= "00000" and not (iEXMEMRegWr = '1' and (iEXMEMRegRd /= "00000") and (iEXMEMRegRd /= iIDEXRegRs)) and iMEMWBRegRd = iIDEXRegRs then
+	oAluA <= "01";
+
+	elsif iMEMWBRegWr = '1' AND iMEMWBRegRd /= "00000" and not (iEXMEMRegWr = '1' and (iEXMEMRegRd /= "00000") and (iEXMEMRegRd /= iIDEXRegRt)) and iMEMWBRegRd = iIDEXRegRt then
+	oAluB <= "01";
+	
+	else
+	  oAluA <= "00";
+	  oAluB <= "00";
+
+	end if;
+	
+END PROCESS;
 
 
 end dataflow;
