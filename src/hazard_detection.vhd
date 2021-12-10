@@ -21,8 +21,9 @@ entity hazard_detection is
   generic(N : integer := 32);
   port( iCLK            : in std_logic;
 	iIDEXMemRead	: in std_logic;
-	iIDEXRegRt	: in std_logic_vector(N-1 downto 0);
-	iIFIDRegRs	: in std_logic_vector(N-1 downto 0);
+	iIDEXRegRt	: in std_logic_vector(4 downto 0);
+	iIFIDRegRs	: in std_logic_vector(4 downto 0);
+	iIFIDRegRt	: in std_logic_vector(4 downto 0);
 	oPCStall	: out std_logic;
         oIFIDStall 	: out std_logic;
 	oIDEXStall 	: out std_logic;
@@ -43,29 +44,29 @@ PROCESS (iMEMWBRegWr, iMEMWBRegRd, iIDEXRegRs, iIDEXRegRt, iEXMEMRegWr, iEXMEMRe
 	begin
 
 	if iIDEXMemRead = '1' AND (iIDEXRegRt = iIFIDRegRs or iIDEXRegRt = iIFIDRegRt) then		--load-use
-	  oPCStall <= '0';
-	  oIFIDStall <= '0';
-	  oIDEXStall <= '0';	--flush instead?
-	  
+	  oPCStall	<= '0'; --
+          oIFIDStall 	<= '0'; --
+    	  oIDEXStall 	<= '0';	--flush instead?
+	  oMEMWBStall 	<= '1';
+	  oEXMEMStall 	<= '1';
+	  oIFIDFlush 	<= '0';
+	  oIDEXFlush 	<= '0';
+	  oMEMWBFlush 	<= '0';
+	  oEXMEMFlush 	<= '0';
 
-	elsif iMEMWBRegWr = '1' AND iMEMWBRegRd /= "00000" and iMEMWBRegRd = iIDEXRegRt then
-	oAluB <= "01";
-
-	elsif iEXMEMRegWr = '1' AND iEXMEMRegRd /= "00000" and iEXMEMRegRd = iIDEXRegRs then
-	oAluA <= "10";
-
-	elsif iEXMEMRegWr = '1' AND iEXMEMRegRd /= "00000" and iEXMEMRegRd = iIDEXRegRt then
-	oAluB <= "10";
-
-	elsif iMEMWBRegWr = '1' AND iMEMWBRegRd /= "00000" and not (iEXMEMRegWr = '1' and (iEXMEMRegRd /= "00000") and (iEXMEMRegRd /= iIDEXRegRs)) and iMEMWBRegRd = iIDEXRegRs then
-	oAluA <= "01";
-
-	elsif iMEMWBRegWr = '1' AND iMEMWBRegRd /= "00000" and not (iEXMEMRegWr = '1' and (iEXMEMRegRd /= "00000") and (iEXMEMRegRd /= iIDEXRegRt)) and iMEMWBRegRd = iIDEXRegRt then
-	oAluB <= "01";
+--	elsif iMEMWBRegWr = '1' AND iMEMWBRegRd /= "00000" and not (iEXMEMRegWr = '1' and (iEXMEMRegRd /= "00000") and (iEXMEMRegRd /= iIDEXRegRt)) and iMEMWBRegRd = iIDEXRegRt then
+--	oAluB <= "01";
 	
 	else
-	  oAluA <= "00";
-	  oAluB <= "00";
+	  oPCStall	<= '1';
+          oIFIDStall 	<= '1';
+    	  oIDEXStall 	<= '1';
+	  oMEMWBStall 	<= '1';
+	  oEXMEMStall 	<= '1';
+	  oIFIDFlush 	<= '0';
+	  oIDEXFlush 	<= '0';
+	  oMEMWBFlush 	<= '0';
+	  oEXMEMFlush 	<= '0';
 
 	end if;
 	
