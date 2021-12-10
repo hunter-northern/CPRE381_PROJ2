@@ -380,7 +380,6 @@ begin
 -- TODO: Ensure that s_Ovfl is connected to the overflow output of your ALU
 -- TODO: Implement the rest of your processor below this comment! 
 
-s_PCStall <= '1'; --?????? when should we stall PC
 
 PCREG: PC port map(
 	i_CLK  => iCLK,
@@ -391,8 +390,7 @@ PCREG: PC port map(
 
 s_NextInstAddr <= s_PCADDR;
 
-s_IFIDFlush <= (s_JorBranch or iRST); --any other times we need to stall this?
-s_IFIDStall <= '1'; --????? When do we stall this pipeline
+--s_IFIDFlush <= (s_JorBranch or iRST); --any other times we need to stall this?
 
 IDIFPIPE: IFIDPipeline port map(
 	i_CLK    => iCLK,
@@ -422,12 +420,12 @@ CONTROL1: control
 	o_Halt	      	=> s_IDHalt,
 	o_SignSelCtl  	=> s_SignSelCtl,
         oJr		=> s_Jr, --done
-        oJal     	=> s_IDJal, --done
+        oJal     	=> , --done
         oBNE     	=> s_BNE, --done
         oRegWrite 	=> s_IDRegWrEn); --done
 
 FORWARDING: forwarding_unit
-  port map(iCLK         => ,
+  port map(iCLK         => iCLK,
            iMEMWBRegWr 	=> ,
 	   iMEMWBRegRd 	=> ,
 	   iIDEXRegRs	=> ,
@@ -437,28 +435,28 @@ FORWARDING: forwarding_unit
 	   iIDEXMemRead	=> ,
 	   iIFIDRegRs	=> ,
 	   iIFIDRegRt	=> ,
-	   oAluA    	=> ,
-	   oAluB 	=> );
+	   oAluA    	=> s_ALUAoDMEM,
+	   oAluB 	=> s_ALUBoDMEM);
 
 HAZARD: hazard_detection
-  port map(iCLK            : in std_logic;
-	   iIDEXMemRead	: in std_logic;
-	   iIDEXRegRt	: in std_logic_vector(4 downto 0);
-	   iIFIDRegRs	: in std_logic_vector(4 downto 0);
-	   iIFIDRegRt	: in std_logic_vector(4 downto 0);
-	   iJump		: in std_logic;
-	   iJAL		: in std_logic;
-	   iBranch		: in std_logic;
-	   iJR		: in std_logic;
-	   oPCStall	: out std_logic;
-           oIFIDStall 	: out std_logic;
-	   oIDEXStall 	: out std_logic;
-	   oMEMWBStall 	: out std_logic;
-	   oEXMEMStall 	: out std_logic;
-	   oIFIDFlush 	: out std_logic;
-	   oIDEXFlush 	: out std_logic;
-	oMEMWBFlush 	=> ,
-	oEXMEMFlush 	: out std_logic);
+  port map(iCLK         => iCLK,
+	   iIDEXMemRead	=> ,
+	   iIDEXRegRt	=> ,
+	   iIFIDRegRs	=> ,
+	   iIFIDRegRt	=> ,
+	   iJump	=> s_J,
+	   iJAL		=> s_IDJal,
+	   iBranch	=> s_Branch,
+	   iJR		=> s_Jr,
+	   oPCStall	=> s_PCStall,
+           oIFIDStall 	=> s_IFIDStall,
+	   oIDEXStall 	=> s_IDEXStall,
+	   oMEMWBStall 	=> s_MEMWBStall,
+	   oEXMEMStall 	=> s_EXMEMStall,
+	   oIFIDFlush 	=> s_IFIDFlush,
+	   oIDEXFlush 	=> s_IDEXFlush,
+	   oMEMWBFlush 	=> s_MEMWBFlush,
+	   oEXMEMFlush 	=> s_EXMEMFlush);
 
 REGFILE1: RegFile
   port map(
@@ -476,9 +474,6 @@ BITIMM: bitExtension
  port map(i_SignSel => s_SignSelCtl,
 	i_bit16	=> s_IDINST(15 downto 0),
 	o_bit32	=> s_IDIMM);
-
-s_IDEXStall <= '1'; --????? when do we need to stall this pipeline
-s_IDEXFlush <= '0'; --????? when do we need to flush this pipeline
 
 IDEXPIPE: IDEXPipeline port map(
 	i_CLK  		=> iCLK,
@@ -626,9 +621,6 @@ REGDST1: mux2t1_5 port map(
        i_D1  => s_EXRD,
        o_O   => s_EXREGDST);
 
-s_EXMEMStall <= '1'; --????? when do we need to stall this pipeline
-s_EXMEMFlush <= '0'; --????? when do we need to flush this pipeline
-
 EXMEMPIPE: EXMEMPipeline port map(
 	i_CLK  		=> iCLK,
         i_RST   	=> s_EXMEMFlush,
@@ -658,10 +650,6 @@ EXMEMPIPE: EXMEMPipeline port map(
 s_DMemData <= s_MEMPB;
 s_DMemAddr <= s_MEMALURES;
 s_DMemWr  <=  s_MEMMemWrEn;
-
-
-s_MEMWBStall <= '1'; --????? when do we need to stall this pipeline
-s_MEMWBFlush <= '0'; --????? when do we need to flush this pipeline
 
 MEMWBPIPE: MEMWBPipeline port map(i_CLK => iCLK,
         i_RST      => s_MEMWBFlush,
@@ -738,18 +726,18 @@ MUXDMEMOALUAOLASTMUX: mux2t1_N port map(
 
 --ID Stage
 --Register A or DMEM In
-MUXDMEMINOALUA: mux2t1_N port map(
-	i_S => s_RDAoDMEM,
-	i_D0 => s_IDPA,
-	i_D1 => s_MEMALURES,
-	o_O => s_PCSrcIn1);
+--MUXDMEMINOALUA: mux2t1_N port map(
+--	i_S => s_RDAoDMEM,
+--	i_D0 => s_IDPA,
+--	i_D1 => s_MEMALURES,
+--	o_O => s_PCSrcIn1);
 
 --Register B or DMEM In
-MUXDMEMINOALUB: mux2t1_N port map(
-	i_S => s_RDBoDMEM,
-	i_D0 => s_IDPB,
-	i_D1 => s_MEMALURES,
-	o_O => s_PCSrcIn2);
+--MUXDMEMINOALUB: mux2t1_N port map(
+--	i_S => s_RDBoDMEM,
+--	i_D0 => s_IDPB,
+--	i_D1 => s_MEMALURES,
+--	o_O => s_PCSrcIn2);
 
 
 end structure;
