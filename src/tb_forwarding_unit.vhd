@@ -35,11 +35,11 @@ component forwarding_unit is
 	iIDEXMemRead	: in std_logic;
 	iIFIDRegRs	: in std_logic_vector(4 downto 0);
 	iIFIDRegRt	: in std_logic_vector(4 downto 0);
-	oAluA    	: in std_logic_vector(1 downto 0);
-	oAluB 		: in std_logic_vector(1 downto 0);
-	oRdA    	: in std_logic_vector(1 downto 0);
-	oRdB    	: in std_logic_vector(1 downto 0));
+	oAluA    	: out std_logic_vector(1 downto 0);
+	oAluB 		: out std_logic_vector(1 downto 0));
 end component;
+--	oRdA    	: out std_logic_vector(1 downto 0);
+--	oRdB    	: out std_logic_vector(1 downto 0)
 
 signal CLK, reset : std_logic := '0';
 
@@ -54,14 +54,13 @@ signal s_iIFIDRegRs	: std_logic_vector(4 downto 0);
 signal s_iIFIDRegRt	: std_logic_vector(4 downto 0);
 signal s_oAluA    	: std_logic_vector(1 downto 0);
 signal s_oAluB 		: std_logic_vector(1 downto 0);
-signal s_oRdA    	: std_logic_vector(1 downto 0);
-signal s_oRdB    	: std_logic_vector(1 downto 0);
+--signal s_oRdA    	: std_logic_vector(1 downto 0);
+--signal s_oRdB    	: std_logic_vector(1 downto 0);
 
 begin
 
   DUT0: forwarding_unit
   port map(iCLK		=>  CLK,
-	   iIFIDStall 	=>  s_iIFIDStall,
 	   iMEMWBRegWr 	=>  s_iMEMWBRegWr,
 	   iMEMWBRegRd 	=>  s_iMEMWBRegRd,
   	   iIDEXRegRs 	=>  s_iIDEXRegRs,
@@ -72,9 +71,10 @@ begin
            iIFIDRegRs   =>  s_iIFIDRegRs,
 	   iIFIDRegRt	=>  s_iIFIDRegRt,
 	   oAluA 	=>  s_oAluA,
-	   oAluB 	=>  s_oAluB,
-           oRdA         =>  s_oRdA,
-	   oRdB		=>  s_oRdB);
+	   oAluB 	=>  s_oAluB);
+
+--           oRdA         =>  s_oRdA,
+--   	   oRdB		=>  s_oRdB
 
   
   P_CLK: process
@@ -118,10 +118,10 @@ wait for gCLK_HPER;
     -- Test case 2: 
 	s_iMEMWBRegWr   <= '1';
 	s_iMEMWBRegRd   <= "11111";
-	s_iIDEXRegRs	<= "11111";
+	s_iIDEXRegRs	<= "11101";
 	s_iIDEXRegRt	<= "01101";
 	
-	s_iEXMEMRegWr	<= '0';	
+	s_iEXMEMRegWr	<= '1';	
 	s_iEXMEMRegRd	<= "11101";
 	s_iIDEXMemRead	<= '1';
 	s_iIFIDRegRs	<= "11111";
@@ -222,6 +222,19 @@ wait for gCLK_HPER;
     -- Test case 10: 
 	s_iMEMWBRegWr   <= '0';
 	s_iMEMWBRegRd   <= "01101";
+	s_iIDEXRegRs	<= "11100";
+	s_iIDEXRegRt	<= "11101";
+	
+	s_iEXMEMRegWr	<= '0';	
+	s_iEXMEMRegRd	<= "11101";
+	s_iIDEXMemRead	<= '1';
+	s_iIFIDRegRs	<= "11111";
+	s_iIFIDRegRt	<= "11111";
+    wait for gCLK_HPER*2;
+
+    -- Test case 11: 
+	s_iMEMWBRegWr   <= '0';
+	s_iMEMWBRegRd   <= "00000";
 	s_iIDEXRegRs	<= "11100";
 	s_iIDEXRegRt	<= "11101";
 	

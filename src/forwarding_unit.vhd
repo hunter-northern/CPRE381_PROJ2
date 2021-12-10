@@ -29,12 +29,11 @@ entity forwarding_unit is
 	iIDEXMemRead	: in std_logic;
 	iIFIDRegRs	: in std_logic_vector(4 downto 0);
 	iIFIDRegRt	: in std_logic_vector(4 downto 0);
-	oAluA    	: in std_logic_vector(1 downto 0);
-	oAluB 		: in std_logic_vector(1 downto 0);
-	oRdA    	: in std_logic_vector(1 downto 0);
-	oRdB    	: in std_logic_vector(1 downto 0));
+	oAluA    	: out std_logic_vector(1 downto 0);
+	oAluB 		: out std_logic_vector(1 downto 0));
 end  forwarding_unit;
-
+--	oRdA    	: out std_logic_vector(1 downto 0);
+--	oRdB    	: out std_logic_vector(1 downto 0)
 
 architecture dataflow of forwarding_unit is
 

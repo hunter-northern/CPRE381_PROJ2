@@ -18,7 +18,7 @@ use IEEE.std_logic_1164.all;
 entity tb_hazard_detection is
   generic(gCLK_HPER   : time := 10 ns; 
           N : integer := 32);   -- Generic for half of the clock cycle period
-end tb_pipeline_test;
+end tb_hazard_detection;
 
 architecture mixed of tb_hazard_detection is
 
@@ -35,6 +35,10 @@ component hazard_detection is
 	iIDEXRegRt	: in std_logic_vector(4 downto 0);
 	iIFIDRegRs	: in std_logic_vector(4 downto 0);
 	iIFIDRegRt	: in std_logic_vector(4 downto 0);
+	iJump		: in std_logic;
+	iJAL		: in std_logic;
+	iBranch		: in std_logic;
+	iJR		: in std_logic;
 	oPCStall	: out std_logic;
         oIFIDStall 	: out std_logic;
 	oIDEXStall 	: out std_logic;
@@ -63,7 +67,11 @@ signal s_oEXMEMStall    : std_logic;
 signal s_oIFIDFlush     : std_logic;
 signal s_oIDEXFlush     : std_logic;
 signal s_oMEMWBFlush    : std_logic;
-signal s_oEXMEMFlush   : std_logic;
+signal s_oEXMEMFlush    : std_logic;
+signal s_iJump		: std_logic;
+signal s_iJAL		: std_logic;
+signal s_iBranch		: std_logic;
+signal s_iJR		: std_logic;
 
 begin
 
@@ -77,6 +85,10 @@ begin
 	   iIDEXRegRt 	=>  s_iIDEXRegRt,
 	   iIFIDRegRs 	=>  s_iIFIDRegRs,
 	   iIFIDRegRt	=>  s_iIFIDRegRt,
+	   iJump	=>  s_iJump,
+	   iJAL		=>  s_iJAL,
+	   iBranch	=>  s_iBranch,
+	   iJR		=>  s_iJR,
   	   oPCStall 	=>  s_oPCStall,
 	   oIFIDStall 	=>  s_oIFIDStall,
 	   oIDEXStall 	=>  s_oIDEXStall,
@@ -122,31 +134,91 @@ wait for gCLK_HPER;
 
     -- Test case 1:
     s_iIDEXMemRead <= '1';
-    s_iIDEXRegRt   <= '11111';
-    s_iIFIDRegRs   <= '11111';
-    s_iIFIDRegRt   <= '10101';	
+    s_iIDEXRegRt   <= "11111";
+    s_iIFIDRegRs   <= "11111";
+    s_iIFIDRegRt   <= "10101";	
+    s_iJump	   <= '0';
+    s_iJAL	   <= '0';
+    s_iBranch 	   <= '0';
+    s_iJR	   <= '0';
     wait for gCLK_HPER*2;
 
     -- Test case 2:
     s_iIDEXMemRead <= '1';
-    s_iIDEXRegRt   <= '10101';
-    s_iIFIDRegRs   <= '11111';
-    s_iIFIDRegRt   <= '10101';	
+    s_iIDEXRegRt   <= "10101";
+    s_iIFIDRegRs   <= "11111";
+    s_iIFIDRegRt   <= "10101";	
+    s_iJump	   <= '0';
+    s_iJAL	   <= '0';
+    s_iBranch 	   <= '0';
+    s_iJR	   <= '0';	
     wait for gCLK_HPER*2;
 
     -- Test case 3:
     s_iIDEXMemRead <= '0';
-    s_iIDEXRegRt   <= '10101';
-    s_iIFIDRegRs   <= '11111';
-    s_iIFIDRegRt   <= '10101';	
+    s_iIDEXRegRt   <= "10101";
+    s_iIFIDRegRs   <= "11111";
+    s_iIFIDRegRt   <= "10101";	
+    s_iJump	   <= '0';
+    s_iJAL	   <= '0';
+    s_iBranch 	   <= '0';
+    s_iJR	   <= '0';
     wait for gCLK_HPER*2;
 
     -- Test case 4:
     s_iIDEXMemRead <= '1';
-    s_iIDEXRegRt   <= '10111';
-    s_iIFIDRegRs   <= '11111';
-    s_iIFIDRegRt   <= '10101';	
+    s_iIDEXRegRt   <= "10111";
+    s_iIFIDRegRs   <= "11111";
+    s_iIFIDRegRt   <= "10101";	
+    s_iJump	   <= '0';
+    s_iJAL	   <= '0';
+    s_iBranch 	   <= '0';
+    s_iJR	   <= '0';
     wait for gCLK_HPER*2;	
+
+    -- Test case 5:
+    s_iIDEXMemRead <= '1';
+    s_iIDEXRegRt   <= "10111";
+    s_iIFIDRegRs   <= "11111";
+    s_iIFIDRegRt   <= "10101";	
+    s_iJump	   <= '1';
+    s_iJAL	   <= '0';
+    s_iBranch 	   <= '0';
+    s_iJR	   <= '0';
+    wait for gCLK_HPER*2;
+
+    -- Test case 6:
+    s_iIDEXMemRead <= '1';
+    s_iIDEXRegRt   <= "10111";
+    s_iIFIDRegRs   <= "11111";
+    s_iIFIDRegRt   <= "10101";	
+    s_iJump	   <= '0';
+    s_iJAL	   <= '1';
+    s_iBranch 	   <= '0';
+    s_iJR	   <= '0';
+    wait for gCLK_HPER*2;
+
+    -- Test case 7:
+    s_iIDEXMemRead <= '1';
+    s_iIDEXRegRt   <= "10111";
+    s_iIFIDRegRs   <= "10111";
+    s_iIFIDRegRt   <= "11111";	
+    s_iJump	   <= '0';
+    s_iJAL	   <= '0';
+    s_iBranch 	   <= '1';
+    s_iJR	   <= '0';
+    wait for gCLK_HPER*2;
+
+    -- Test case 8:
+    s_iIDEXMemRead <= '1';
+    s_iIDEXRegRt   <= "10111";
+    s_iIFIDRegRs   <= "10111";
+    s_iIFIDRegRt   <= "11111";	
+    s_iJump	   <= '0';
+    s_iJAL	   <= '0';
+    s_iBranch 	   <= '0';
+    s_iJR	   <= '1';
+    wait for gCLK_HPER*2;
 
   end process;
 

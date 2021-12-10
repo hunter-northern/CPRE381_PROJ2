@@ -321,7 +321,7 @@ signal s_IFIDFlush, s_IDEXFlush, s_MEMWBFlush, s_EXMEMFlush : std_logic;
 signal s_EXInst, s_MEMInst, s_WBInst : std_logic_Vector(31 downto 0);
 
 --Forwarding Signals
-signal s_ALUAoDMEM : std_logic_vector(1 downto 0);
+signal s_ALUAoDMEM, s_ALUBoDMEM : std_logic_vector(1 downto 0);
 signal s_RDAoDMEM, s_RDBoDMEM : std_logic;
 signal ALUAInput, ALUBInput, s_ALUAMUXA, ALUBoIMM, s_ALUBMUXA, s_PCSrcIn1, s_PCSrcIn2 : std_logic_vector(31 downto 0);
 
@@ -329,7 +329,7 @@ signal ALUAInput, ALUBInput, s_ALUAMUXA, ALUBoIMM, s_ALUBMUXA, s_PCSrcIn1, s_PCS
 
   -- Required data memory signals
   signal s_DMemWr       : std_logic; -- TODO: use this signal as the final active high data memory write enable signal
-  signal s_DMemAddr     : std_logic_vector(N-1 downts_EXREGDSTo 0); -- TODO: use this signal as the final data memory address input
+  signal s_DMemAddr     : std_logic_vector(N-1 downto 0); -- TODO: use this signal as the final data memory address input
   signal s_DMemData     : std_logic_vector(N-1 downto 0); -- TODO: use this signal as the final data memory data input
   signal s_DMemOut      : std_logic_vector(N-1 downto 0); -- TODO: use this signal as the data memory output
  
@@ -426,6 +426,40 @@ CONTROL1: control
         oBNE     	=> s_BNE, --done
         oRegWrite 	=> s_IDRegWrEn); --done
 
+FORWARDING: forwarding_unit
+  port map(iCLK         => ,
+           iMEMWBRegWr 	=> ,
+	   iMEMWBRegRd 	=> ,
+	   iIDEXRegRs	=> ,
+	   iIDEXRegRt	=> ,
+	   iEXMEMRegWr	=> ,
+	   iEXMEMRegRd	=> ,
+	   iIDEXMemRead	=> ,
+	   iIFIDRegRs	=> ,
+	   iIFIDRegRt	=> ,
+	   oAluA    	=> ,
+	   oAluB 	=> );
+
+HAZARD: hazard_detection
+  port map(iCLK            : in std_logic;
+	   iIDEXMemRead	: in std_logic;
+	   iIDEXRegRt	: in std_logic_vector(4 downto 0);
+	   iIFIDRegRs	: in std_logic_vector(4 downto 0);
+	   iIFIDRegRt	: in std_logic_vector(4 downto 0);
+	   iJump		: in std_logic;
+	   iJAL		: in std_logic;
+	   iBranch		: in std_logic;
+	   iJR		: in std_logic;
+	   oPCStall	: out std_logic;
+           oIFIDStall 	: out std_logic;
+	   oIDEXStall 	: out std_logic;
+	   oMEMWBStall 	: out std_logic;
+	   oEXMEMStall 	: out std_logic;
+	   oIFIDFlush 	: out std_logic;
+	   oIDEXFlush 	: out std_logic;
+	oMEMWBFlush 	=> ,
+	oEXMEMFlush 	: out std_logic);
+
 REGFILE1: RegFile
   port map(
 	i_CLK  => iCLK,
@@ -440,8 +474,8 @@ REGFILE1: RegFile
 
 BITIMM: bitExtension
  port map(i_SignSel => s_SignSelCtl,
-	i_bit16	=> s_IDINST(15 downto 0),s_EXREGDST
-	o_bit32	=> s_IDIMM);	
+	i_bit16	=> s_IDINST(15 downto 0),
+	o_bit32	=> s_IDIMM);
 
 s_IDEXStall <= '1'; --????? when do we need to stall this pipeline
 s_IDEXFlush <= '0'; --????? when do we need to flush this pipeline
@@ -689,14 +723,14 @@ MUXDMEMOALUA: mux2t1_N port map(
 	o_O => ALUAInput);
 
 --ALUB or Last Mux Out
-MUXALUAOLASTMUX: mux2t1_N port map(
+MUXALUBOLASTMUX: mux2t1_N port map(
 	i_S => s_ALUBoDMEM(0),
 	i_D0 => s_EXPB,
 	i_D1 => S_ALUWriteData,
 	o_O => s_ALUBMUXA);
 
 --DMEM or (ALUA or Last Mux Out)
-MUXDMEMOALUA: mux2t1_N port map(
+MUXDMEMOALUAOLASTMUX: mux2t1_N port map(
 	i_S => s_ALUBoDMEM(1),
 	i_D0 => s_ALUBMUXA,
 	i_D1 => s_MEMALURES,
@@ -704,14 +738,14 @@ MUXDMEMOALUA: mux2t1_N port map(
 
 --ID Stage
 --Register A or DMEM In
-MUXDMEMOALUA: mux2t1_N port map(
+MUXDMEMINOALUA: mux2t1_N port map(
 	i_S => s_RDAoDMEM,
 	i_D0 => s_IDPA,
 	i_D1 => s_MEMALURES,
 	o_O => s_PCSrcIn1);
 
 --Register B or DMEM In
-MUXDMEMOALUA: mux2t1_N port map(
+MUXDMEMINOALUB: mux2t1_N port map(
 	i_S => s_RDBoDMEM,
 	i_D0 => s_IDPB,
 	i_D1 => s_MEMALURES,

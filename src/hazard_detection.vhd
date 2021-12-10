@@ -24,6 +24,10 @@ entity hazard_detection is
 	iIDEXRegRt	: in std_logic_vector(4 downto 0);
 	iIFIDRegRs	: in std_logic_vector(4 downto 0);
 	iIFIDRegRt	: in std_logic_vector(4 downto 0);
+	iJump		: in std_logic;
+	iJAL		: in std_logic;
+	iBranch		: in std_logic;
+	iJR		: in std_logic;
 	oPCStall	: out std_logic;
         oIFIDStall 	: out std_logic;
 	oIDEXStall 	: out std_logic;
@@ -40,23 +44,49 @@ architecture dataflow of hazard_detection is
 
 begin
 
-PROCESS (iMEMWBRegWr, iMEMWBRegRd, iIDEXRegRs, iIDEXRegRt, iEXMEMRegWr, iEXMEMRegRd, iIDEXMemRead, iIFIDRegRs, iIFIDRegRt)
+PROCESS (iIDEXRegRt, iIDEXMemRead, iIFIDRegRs, iIFIDRegRt, iJAL, iJump, iBranch, iJR)
 	begin
 
-	if iIDEXMemRead = '1' AND (iIDEXRegRt = iIFIDRegRs or iIDEXRegRt = iIFIDRegRt) then		--load-use
+	if iIDEXMemRead = '1' AND ((iIDEXRegRt = iIFIDRegRs) or (iIDEXRegRt = iIFIDRegRt)) then		--load-use
 	  oPCStall	<= '0'; --
           oIFIDStall 	<= '0'; --
-    	  oIDEXStall 	<= '0';	--flush instead?
+    	  oIDEXStall 	<= '1';	
 	  oMEMWBStall 	<= '1';
 	  oEXMEMStall 	<= '1';
 	  oIFIDFlush 	<= '0';
-	  oIDEXFlush 	<= '0';
+	  oIDEXFlush 	<= '1'; --
 	  oMEMWBFlush 	<= '0';
 	  oEXMEMFlush 	<= '0';
-
---	elsif iMEMWBRegWr = '1' AND iMEMWBRegRd /= "00000" and not (iEXMEMRegWr = '1' and (iEXMEMRegRd /= "00000") and (iEXMEMRegRd /= iIDEXRegRt)) and iMEMWBRegRd = iIDEXRegRt then
---	oAluB <= "01";
-	
+	elsif iJump = '1' or iJAL = '1' then --jump
+	  oPCStall	<= '1';
+          oIFIDStall 	<= '1';
+    	  oIDEXStall 	<= '1';
+	  oMEMWBStall 	<= '1';
+	  oEXMEMStall 	<= '1';
+	  oIFIDFlush 	<= '1'; --
+	  oIDEXFlush 	<= '0'; --depends where we do comparison, assume we are doing it correct, so this is not flushed
+	  oMEMWBFlush 	<= '0';
+	  oEXMEMFlush 	<= '0';
+	elsif iJR = '1' and iIFIDRegRs = iIDEXRegRt then
+	  oPCStall	<= '0'; --
+	  oIFIDStall	<= '0'; --
+	  oIDEXStall 	<= '1';
+	  oMEMWBStall 	<= '1';
+	  oEXMEMStall 	<= '1';
+	  oIFIDFlush 	<= '0';
+	  oIDEXFlush	<= '1'; --
+	  oMEMWBFlush 	<= '0';
+	  oEXMEMFlush 	<= '0';
+	elsif iBranch = '1' and ((iIDEXRegRt = iIFIDRegRs) or (iIDEXRegRt = iIFIDRegRt)) and iIDEXRegRt /= "00000" then
+	  oPCStall	<= '0'; --
+	  oIFIDStall	<= '0'; --
+	  oIDEXStall 	<= '1';
+	  oMEMWBStall 	<= '1';
+	  oEXMEMStall 	<= '1';
+	  oIFIDFlush 	<= '0';
+	  oIDEXFlush	<= '1'; --
+	  oMEMWBFlush 	<= '0';
+	  oEXMEMFlush 	<= '0';
 	else
 	  oPCStall	<= '1';
           oIFIDStall 	<= '1';
