@@ -283,25 +283,23 @@ component invg is
 
 end component;
 
-signal s_oC, s_Branch, s_BNE, s_J, s_Jr, s_oMemtoReg, s_SHFTDIR : std_logic;
+signal s_oC, s_Branch, s_BNE, s_J, s_Jr : std_logic;
 signal s_SignSelCtl : std_logic := '1';
-signal s_ALUWriteData, s_JaloALUWrite, s_InstrAddr, s_MEMOUT, s_JumpAddr : std_logic_vector(31 downto 0); 
-signal s_LogicChoice : std_logic_vector(1 downto 0);
+signal s_ALUWriteData, s_FetchPC : std_logic_vector(31 downto 0); 
 
  --IF PIPE Signals
-signal s_PCADDR, s_JumpoBranchAddr, s_PCADDRNEXT : std_logic_vector(31 downto 0);
+signal s_PCADDR, s_PCADDRNEXT : std_logic_vector(31 downto 0);
 signal s_PCADDR4 : std_logic_vector(31 downto 0) := x"00400000";
 
  --ID PIPE Signals
-signal s_IDPCADDR, s_IDINST, s_IDPA, s_IDPB, s_IDIMM, s_IDBranchZero, s_BranchImm, s_IDBranchAddr, s_BranchoPC, s_BranchoPCoJ, s_BoPCoJoJr: std_logic_vector(31 downto 0); 
-signal s_IDRS, s_IDRT, s_IDRD : std_logic_vector(4 downto 0);
+signal s_IDPCADDR, s_IDINST, s_IDPA, s_IDPB, s_IDIMM : std_logic_vector(31 downto 0); 
 signal s_IDALUOP : std_logic_vector(2 downto 0);
 signal s_IDLogicCtrl : std_logic_vector(1 downto 0);
 signal s_IDRegDst, s_IDMemToReg, s_IDMemWrEn, s_IDALUSRC, s_IDADDSUB, s_IDSHFTDIR, s_IDSHFTTYPE, s_IDHalt, s_IDJal, s_IDRegWrEn : std_logic;
-signal s_IDC, s_BranchTrue, s_JorBranch, s_IDOVER1, s_IDOVER2, s_IDC1, s_IDC2, s_IDOVER3, s_IDZero, s_IDNotZero, s_JorBrnch, s_IDFlush1 : std_logic; 
+signal s_ControlFlow : std_logic; 
 
  --EX PIPE Signals
-signal s_EXPCADDR, s_EXINST, s_EXPA, s_EXPB, s_EXALURES, s_EXIMM, s_EXPBoIMM: std_logic_vector(31 downto 0); 
+signal s_EXPCADDR, s_EXPA, s_EXPB, s_EXALURES, s_EXIMM, s_EXPBoIMM: std_logic_vector(31 downto 0); 
 signal s_EXRS, s_EXRT, s_EXRD, s_EXREGDST, s_EXSHAMT : std_logic_vector(4 downto 0);
 signal s_EXALUOP : std_logic_vector(2 downto 0);
 signal s_EXLogicCtrl : std_logic_vector(1 downto 0);
@@ -309,8 +307,8 @@ signal s_EXRegDstSel, s_EXMemToReg, s_EXMemWrEn, s_EXALUSRC, s_EXADDSUB, s_EXSHF
 signal s_EXALUZERO, s_IDUnsigned, s_EXUnsigned, s_IDFLUSH : std_logic;
 
  --MEM PIPE Signals
-signal s_MEMPCADDR, s_MEMALURES, s_MEMPB: std_logic_vector(31 downto 0); 
-signal s_MEMREGDST : std_logic_vector(4 downto 0);
+signal s_MEMPCADDR, s_MEMALURES, s_MEMPB, s_MEMALUWriteData, s_MEMRegWrData: std_logic_vector(31 downto 0); 
+signal s_MEMREGDST, s_MemRegNum : std_logic_vector(4 downto 0);
 signal s_MEMMemToReg, s_MEMMemWrEn, s_MEMHalt, s_MEMJal, s_MEMRegWrEn : std_logic;
 
  --WB PIPE Signals
@@ -392,11 +390,11 @@ PCADD1: AdderH_N port map(
 	o_C  => s_oC, 
        	o_B  => s_PCADDR4);
 
-s_IDFlush1 <= (s_IDFLUSH or iRST);
+--s_IDFlush1 <= (s_IDFLUSH or iRST);
 
 IDIFPIPE: IFIDPipeline port map(
 	i_CLK  => iCLK,
-       i_RST   => s_IDFlush1,
+       i_RST   => iRST,
        i_Inst  => s_Inst,
 	i_PCAddr => s_PCADDR4,
        o_Inst   => s_IDINST,
@@ -450,11 +448,17 @@ BITIMM: bitExtension
 	i_JumpAddr	=> s_Inst(25 downto 0),
 	i_Imm		=> s_IDIMM,
 	--i_PCAddr	=> s_IDPCADDR,
-	i_PCAddr	=> s_PCADDR4,
+	i_PCAddr	=> s_IDPCADDR,
 	i_PA		=> s_IDPA,
 	i_PB		=> s_IDPB,
-	o_PCADDRNext	=> s_PCADDRNEXT,
-	o_Flush		=> s_IDFLUSH);   
+	o_PCADDRNext	=> s_FETCHPC,
+	o_Flush		=> s_ControlFlow);   
+
+MUXPCADD: mux2t1_N port map(
+	i_S => s_ControlFlow,
+	i_D0 => s_PCADDR4,
+	i_D1 => s_FETCHPC,
+	o_O  => s_PCADDRNEXT);
 
 IDEXPIPE: IDEXPipeline port map(
 	i_CLK  => iCLK,
@@ -474,7 +478,7 @@ IDEXPIPE: IDEXPipeline port map(
 	i_RegWrEn => s_IDRegWrEn,
 	i_RegDst  => s_IDRegDst,
 	i_ADDSUB  	=> s_IDADDSUB,
-	i_SHFTDIR	=> s_SHFTDIR,
+	i_SHFTDIR	=> s_IDSHFTDIR,
 	i_SHFTTYPE	=> s_IDSHFTTYPE,
 	i_Halt		=> s_IDHalt,
 	i_Unsigned	=> s_IDUnsigned,
@@ -525,7 +529,7 @@ ALU1 : ALU port map(i_PA => s_EXPA,
 
 --Stall will turn off the Write Enable on IFID and IDEX 
 
-oALUOut <= s_EXALURES; -- MIGHT NEED TO BE FROM WB
+oALUOut <= s_EXALURES; 
 
 REGDST1: mux2t1_5 port map(
 	i_S  => s_EXRegDstSel,
@@ -560,46 +564,46 @@ s_DMemData <= s_MEMPB;
 s_DMemAddr <= s_MEMALURES;
 s_DMemWr  <=  s_MEMMemWrEn;
 
+MUXMEMOALU: mux2t1_N port map(
+	i_S => s_MEMMemtoReg,
+	i_D0 => s_MEMALURES,
+	i_D1 => s_DMemOut,
+	o_O  => s_MEMALUWriteData);
+
+MUXMEMOALUOJAL: mux2t1_N port map(
+	i_S => s_MEMJal,
+	i_D0 => s_MEMALUWriteData,
+	i_D1 => s_MEMPCADDR,
+	o_O  => s_MEMRegWrData);
+
+REGDSTJal: mux2t1_5 port map(
+	i_S  => s_MEMJal,
+       i_D0  => s_MEMREGDST,
+       i_D1  => "11111",
+       o_O   => s_MemRegNum);
+
 MEMWBPIPE: MEMWBPipeline port map(i_CLK => iCLK,
        i_RST => iRST,
-       i_ALURES	 => s_MEMALURES,
+       i_ALURES	 => s_MEMRegWrData,
 	i_PCADDR => s_MEMPCADDR,
 	i_MEMDATA => s_DMemOut,
-	i_RGDST	  => s_MEMRegDst,
+	i_RGDST	  => s_MemRegNum,
 	i_Jal	  => s_MEMJal,
 	i_MemtoReg => s_MEMMemtoReg,
 	i_RegWrEn  => s_MEMRegWrEn,
 	i_Halt	   => s_MEMHalt,
        
-	o_ALURES   => s_WBALURES,
+	o_ALURES   => s_RegWrData,
 	o_PCADDR   => s_WBPCADDR,
 	o_MEMDATA  => s_WBMEMDATA,
 	o_Jal	   => s_WBJal,
 	o_MemtoReg => s_WBMemtoReg,
-	o_RegWrEn  => s_WBRegWrEn,
+	o_RegWrEn  => s_RegWr,
 	o_Halt	   => s_Halt,
-	o_RGDST	   => s_WBREGDST);
+	o_RGDST	   => s_RegWrAddr);
 
 --ADD WRITE BACK LOGIC FOR DATA AND MUXES
-s_RegWr <= s_WBRegWrEn;
-
-MUXMEMOALU: mux2t1_N port map(
-	i_S => s_WBMemtoReg,
-	i_D0 => s_WBALURES,
-	i_D1 => s_DMemOut,
-	o_O  => s_ALUWriteData);
-
-MUXMEMOALUOJAL: mux2t1_N port map(
-	i_S => s_WBJal,
-	i_D0 => s_ALUWriteData,
-	i_D1 => s_WBPCADDR,
-	o_O  => s_RegWrData);
-
-REGDSTJal: mux2t1_5 port map(
-	i_S  => s_WBJal,
-       i_D0  => s_WBREGDST,
-       i_D1  => "11111",
-       o_O   => s_RegWrAddr);
+--s_RegWr <= s_WBRegWrEn;
 
 end structure;
 
