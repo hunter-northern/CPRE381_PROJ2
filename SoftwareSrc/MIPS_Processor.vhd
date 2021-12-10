@@ -283,9 +283,7 @@ component invg is
 
 end component;
 
-
-signal s_ALURES : std_logic_vector(31 downto 0);
-signal s_oC, s_Branch, s_BNE, s_J, s_Jal, s_Jr, s_oMemtoReg, s_SHFTDIR : std_logic;
+signal s_oC, s_Branch, s_BNE, s_J, s_Jr, s_oMemtoReg, s_SHFTDIR : std_logic;
 signal s_SignSelCtl : std_logic := '1';
 signal s_ALUWriteData, s_JaloALUWrite, s_InstrAddr, s_MEMOUT, s_JumpAddr : std_logic_vector(31 downto 0); 
 signal s_LogicChoice : std_logic_vector(1 downto 0);
@@ -426,7 +424,7 @@ CONTROL1: control
        oBNE     => s_BNE, --done
        oRegWrite => s_IDRegWrEn); --done
 
-s_RegWr <= s_WBRegWrEn;
+
 
 REGFILE1: RegFile
   port map(i_CLK  => iCLK,
@@ -583,17 +581,18 @@ MEMWBPIPE: MEMWBPipeline port map(i_CLK => iCLK,
 	o_RGDST	   => s_WBREGDST);
 
 --ADD WRITE BACK LOGIC FOR DATA AND MUXES
+s_RegWr <= s_WBRegWrEn;
 
 MUXMEMOALU: mux2t1_N port map(
-	i_S => s_oMemtoReg,
-	i_D0 => s_ALURES,
+	i_S => s_WBMemtoReg,
+	i_D0 => s_WBALURES,
 	i_D1 => s_DMemOut,
-	o_O  => S_ALUWriteData);
+	o_O  => s_ALUWriteData);
 
 MUXMEMOALUOJAL: mux2t1_N port map(
 	i_S => s_WBJal,
 	i_D0 => s_ALUWriteData,
-	i_D1 => s_MEMPCADDR,
+	i_D1 => s_WBPCADDR,
 	o_O  => s_RegWrData);
 
 REGDSTJal: mux2t1_5 port map(
