@@ -8,7 +8,6 @@ generic(N : integer := 32); -- Generic of type integer for input/output data wid
   port( i_CLK        	: in std_logic;     -- Clock input
         i_RST        	: in std_logic;     -- Reset input
 	i_Stall		: in std_logic;
-        i_Inst	    	: in std_logic_vector(31 downto 0);
 	i_ALURES	: in std_logic_vector(31 downto 0);
 	i_PCADDR    	: in std_logic_vector(31 downto 0);
 	i_MEMDATA    	: in std_logic_vector(31 downto 0);
@@ -18,7 +17,6 @@ generic(N : integer := 32); -- Generic of type integer for input/output data wid
 	i_RegWrEn	: in std_logic;
 	i_Halt		: in std_logic;
        
-	o_Inst	    	: out std_logic_vector(31 downto 0);
 	o_ALURES	: out std_logic_vector(31 downto 0);
 	o_PCADDR	: out std_logic_vector(31 downto 0);
 	o_MEMDATA    	: out std_logic_vector(31 downto 0);
@@ -79,13 +77,6 @@ component DffR_2 is
 end component;
 
 begin
-
-INSTDFF: DffR_N port map(
-	i_Clk => i_CLK,
-	i_RST => i_RST,
-	i_WE  => i_Stall,
-	i_D   => i_Inst,
-	o_Q   => o_Inst);
 
 ALURESDFF: DffR_N port map(
 	i_Clk => i_CLK,

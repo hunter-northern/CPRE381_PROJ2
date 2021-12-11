@@ -19,57 +19,52 @@ use IEEE.std_logic_1164.all;
 
 entity forwarding_unit is
   generic(N : integer := 32);
-  port( iCLK            : in std_logic;
-        iMEMWBRegWr 	: in std_logic;
+  port( iMEMWBRegWr 	: in std_logic;
 	iMEMWBRegRd 	: in std_logic_vector(4 downto 0);
 	iIDEXRegRs	: in std_logic_vector(4 downto 0);
 	iIDEXRegRt	: in std_logic_vector(4 downto 0);
-	iEXMEMRegWr	: in std_logic;	
-	iEXMEMRegRd	: in std_logic_vector(4 downto 0);
-	iIDEXMemRead	: in std_logic;
-	iIFIDRegRs	: in std_logic_vector(4 downto 0);
-	iIFIDRegRt	: in std_logic_vector(4 downto 0);
-	oAluA    	: out std_logic_vector(1 downto 0);
-	oAluB 		: out std_logic_vector(1 downto 0));
+	iEXMEMRegWr	: in std_logic;
+	oAluA		: out std_logic_vector(1 downto 0);
+	oAluB		: out std_logic_vector(1 downto 0));
 end  forwarding_unit;
 --	oRdA    	: out std_logic_vector(1 downto 0);
 --	oRdB    	: out std_logic_vector(1 downto 0)
 
 architecture dataflow of forwarding_unit is
 
---signal s_IDInst, s_EXInst, s_MEMInst : std_logic_vector(31 downto 0);
 
 begin
 
-PROCESS (iMEMWBRegWr, iMEMWBRegRd, iIDEXRegRs, iIDEXRegRt, iEXMEMRegWr, iEXMEMRegRd, iIDEXMemRead, iIFIDRegRs, iIFIDRegRt)
+PROCESS (iMEMWBRegWr, iMEMWBRegRd, iIDEXRegRs, iIDEXRegRt, iEXMEMRegWr)
 	begin
 
 	if iMEMWBRegWr = '1' AND iMEMWBRegRd /= "00000" and iMEMWBRegRd = iIDEXRegRs then	
 	oAluA <= "01";
-
 	elsif iMEMWBRegWr = '1' AND iMEMWBRegRd /= "00000" and iMEMWBRegRd = iIDEXRegRt then
 	oAluB <= "01";
-
-	elsif iEXMEMRegWr = '1' AND iEXMEMRegRd /= "00000" and iEXMEMRegRd = iIDEXRegRs then
-	oAluA <= "10";
-
-	elsif iEXMEMRegWr = '1' AND iEXMEMRegRd /= "00000" and iEXMEMRegRd = iIDEXRegRt then
-	oAluB <= "10";
-
-	elsif iMEMWBRegWr = '1' AND iMEMWBRegRd /= "00000" and not (iEXMEMRegWr = '1' and (iEXMEMRegRd /= "00000") and (iEXMEMRegRd /= iIDEXRegRs)) and iMEMWBRegRd = iIDEXRegRs then
-	oAluA <= "01";
-
-	elsif iMEMWBRegWr = '1' AND iMEMWBRegRd /= "00000" and not (iEXMEMRegWr = '1' and (iEXMEMRegRd /= "00000") and (iEXMEMRegRd /= iIDEXRegRt)) and iMEMWBRegRd = iIDEXRegRt then
-	oAluB <= "01";
-	
-	else
-	  oAluA <= "00";
-	  oAluB <= "00";
-
+        else
+	oAluA <= "00";
+	oAluB <= "00";
 	end if;
+	
+	if iEXMEMRegWr = '1' AND iMEMWBRegRd /= "00000" and iMEMWBRegRd = iIDEXRegRs then
+	oAluA <= "10";
+	elsif iEXMEMRegWr = '1' AND iMEMWBRegRd /= "00000" and iMEMWBRegRd = iIDEXRegRt then
+	oAluB <= "10";
+	else
+	oAluA <= "00";
+	oAluB <= "00";
+	end if;
+
+--	elsif iMEMWBRegWr = '1' AND iMEMWBRegRd /= "00000" and not (iEXMEMRegWr = '1' and (iEXMEMRegRd /= "00000") and 
+--(iEXMEMRegRd /= iIDEXRegRs)) and iMEMWBRegRd = iIDEXRegRs then
+--	oAluA <= "01";
+
+--	elsif iMEMWBRegWr = '1' AND iMEMWBRegRd /= "00000" and not (iEXMEMRegWr = '1' and (iEXMEMRegRd /= "00000") and 
+--(iEXMEMRegRd /= iIDEXRegRt)) and iMEMWBRegRd = iIDEXRegRt then
+--	oAluB <= "01";
 	
 END PROCESS;
 
 
 end dataflow;
-

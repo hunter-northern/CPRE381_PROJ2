@@ -30,8 +30,7 @@ constant cCLK_PER  : time := gCLK_HPER * 2;
 -- TODO: change component declaration as needed.
 component hazard_detection is
   generic(N : integer := 32); -- Generic of type integer for input/output data width. Default value is 32.
-  port( iCLK            : in std_logic;
-	iIDEXMemRead	: in std_logic;
+  port( iIDEXMemRead	: in std_logic;
 	iIDEXRegRt	: in std_logic_vector(4 downto 0);
 	iIFIDRegRs	: in std_logic_vector(4 downto 0);
 	iIFIDRegRt	: in std_logic_vector(4 downto 0);
@@ -80,8 +79,7 @@ begin
   -- during simulation. What follows DUT0 is the entity name that will be used to find
   -- the appropriate library component during simulation loading.
   DUT0: hazard_detection
-  port map(iCLK		=>  CLK,
-	   iIDEXMemRead =>  s_iIDEXMemRead,
+  port map(iIDEXMemRead =>  s_iIDEXMemRead,
 	   iIDEXRegRt 	=>  s_iIDEXRegRt,
 	   iIFIDRegRs 	=>  s_iIFIDRegRs,
 	   iIFIDRegRt	=>  s_iIFIDRegRt,

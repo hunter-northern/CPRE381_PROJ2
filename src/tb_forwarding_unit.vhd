@@ -25,8 +25,7 @@ constant cCLK_PER  : time := gCLK_HPER * 2;
 
 component forwarding_unit is
   generic(N : integer := 32); -- Generic of type integer for input/output data width. Default value is 32.
-  port( iCLK            : in std_logic;
-        iMEMWBRegWr 	: in std_logic;
+  port( iMEMWBRegWr 	: in std_logic;
 	iMEMWBRegRd 	: in std_logic_vector(4 downto 0);
 	iIDEXRegRs	: in std_logic_vector(4 downto 0);
 	iIDEXRegRt	: in std_logic_vector(4 downto 0);
@@ -60,8 +59,7 @@ signal s_oAluB 		: std_logic_vector(1 downto 0);
 begin
 
   DUT0: forwarding_unit
-  port map(iCLK		=>  CLK,
-	   iMEMWBRegWr 	=>  s_iMEMWBRegWr,
+  port map(iMEMWBRegWr 	=>  s_iMEMWBRegWr,
 	   iMEMWBRegRd 	=>  s_iMEMWBRegRd,
   	   iIDEXRegRs 	=>  s_iIDEXRegRs,
 	   iIDEXRegRt 	=>  s_iIDEXRegRt,

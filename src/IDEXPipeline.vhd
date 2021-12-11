@@ -9,7 +9,6 @@ generic(N : integer := 32); -- Generic of type integer for input/output data wid
         i_RST        	: in std_logic;     -- Reset input
 	i_Stall	   	: in std_logic;
         i_PA	    	: in std_logic_vector(31 downto 0);
-	i_Inst	    	: in std_logic_vector(31 downto 0);
 	i_PB    	: in std_logic_vector(31 downto 0);
 	i_RS	    	: in std_logic_vector(4 downto 0);
 	i_RT    	: in std_logic_vector(4 downto 0);
@@ -31,7 +30,6 @@ generic(N : integer := 32); -- Generic of type integer for input/output data wid
 	i_SHAMT		: in std_logic_vector(4 downto 0);
 	i_LogicCtrl	: in std_logic_vector(1 downto 0);
        
-	o_Inst	    	: out std_logic_vector(31 downto 0);
 	o_PA	    	: out std_logic_vector(31 downto 0);
 	o_PB    	: out std_logic_vector(31 downto 0);
 	o_RS	    	: out std_logic_vector(4 downto 0);
@@ -105,13 +103,6 @@ component DffR_2 is
 end component;
 
 begin
-
-INSTDFF: DffR_N port map(
-	i_Clk => i_CLK,
-	i_RST => i_RST,
-	i_WE  => i_Stall,
-	i_D   => i_Inst,
-	o_Q   => o_Inst);
 
 PADFF: DffR_N port map(
 	i_Clk => i_CLK,

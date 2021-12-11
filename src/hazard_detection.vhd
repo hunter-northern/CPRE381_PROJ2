@@ -19,8 +19,7 @@ use IEEE.std_logic_1164.all;
 
 entity hazard_detection is
   generic(N : integer := 32);
-  port( iCLK            : in std_logic;
-	iIDEXMemRead	: in std_logic;
+  port( iIDEXMemRead	: in std_logic;
 	iIDEXRegRt	: in std_logic_vector(4 downto 0);
 	iIFIDRegRs	: in std_logic_vector(4 downto 0);
 	iIFIDRegRt	: in std_logic_vector(4 downto 0);
