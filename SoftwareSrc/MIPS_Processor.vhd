@@ -445,7 +445,7 @@ BITIMM: bitExtension
 	i_BNE		=> s_BNE,
 	i_Jr		=> s_Jr,
 	i_J		=> s_J,
-	i_JumpAddr	=> s_Inst(25 downto 0),
+	i_JumpAddr	=> s_IDINST(25 downto 0),
 	i_Imm		=> s_IDIMM,
 	--i_PCAddr	=> s_IDPCADDR,
 	i_PCAddr	=> s_IDPCADDR,
